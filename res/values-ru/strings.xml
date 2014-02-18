@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="url">http://89.222.166.108/api/</string>
+    <!--http://89.222.166.108/api/-->
+    <!--http://edusty.azurewebsites.net/api/-->
+
+    <string name="app_name">Edusty</string>
+    <string name="sign_in">Войти</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="edit">Редактировать</string>
+    <string name="apply">Применить</string>
+    <string name="settings">Настройки</string>
+    <string name="quit">Выйти из аккаунта</string>
+    <string name="firstName">Имя</string>
+    <string name="middleName">Отчество</string>
+    <string name="lastName">Фамилия</string>
+    <string name="birthDate">Дата Рождения</string>
+    <string name="eMail">Email</string>
+    <string name="phone">Телефон</string>
+    <string name="city">Город</string>
+    <string name="country">Страна</string>
+    <string name="join">Вступить</string>
+    <string name="leave">Выйти</string>
+    <string name="profile">Профиль</string>
+    <string name="feed">Лента</string>
+    <string name="messages">Сообщения</string>
+    <string name="friends">Друзья</string>
+    <string name="groups">Группы</string>
+    <string name="courses">Курсы</string>
+    <string name="search">Поиск</string>
+    <string name="create">Создать</string>
+    <string name="follow">Подписаться</string>
+    <string name="unfollow">Отписаться</string>
+    <string name="title">Название</string>
+    <string name="starttime">Начало:</string>
+    <string name="endtime">Окончание:</string>
+    <string name="location">Место:</string>
+    <string name="date">Дата</string>
+    <string name="time">Время</string>
+    <string name="add">Добавить</string>
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отмена</string>
+    <string name="at">в</string>
+    <string name="delete">Удалить</string>
+    <string name="website">Сайт:</string>
+    <string name="groupImage">groupImage</string>
+    <string name="description">Описание</string>
+    <string name="group">Группа:</string>
+    <string name="interval">Периодичность:</string>
+    <string name="secIsDev">Раздел в разработке</string>
+    <string name="update">Обновить</string>
+    <string name="please_wait">Пожалуйста, подождите!</string>
+    <string name="authorization">Авторизация</string>
+    <string name="error_please_try_again">Ошибка. Попробуйте снова.</string>
+    <string name="password">Пароль</string>
+    <string name="all_day">Целый день</string>
+    <string name="registration_complete">Регистрация завершена успешно</string>
+    <string name="edit_date">Отредактируйте дату</string>
+    <string name="please_set_text">Введите название</string>
+    <string name="enter_message">Введите сообщение</string>
+    <string name="new_messages_not_found">Новых сообщений нет</string>
+    <string name="mark">Оценка</string>
+    <string name="lesson">Занятие</string>
+    <string name="type">Тип</string>
+    <string name="repeat">Повторять:</string>
+    <string name="license">Нажимая "Зарегистрироваться", Вы принимаете условия </string>
+    <string name="terms_of_service"><u>Соглашения</u>.</string>
+    <string name="registration">Регистрация</string>
+
+    <string-array name="intervals">
+        <item>Каждый день</item>
+        <item>Каждую неделю</item>
+        <item>Каждые 2 недели</item>
+        <item>Каждые 3 недели</item>
+        <item>Каждый месяц</item>
+        <item>Каждые пол года</item>
+        <item>Каждый год</item>
+        <item>Никогда</item>
+    </string-array>
+
+    <string-array name="titles">
+        <item>ДРУЗЬЯ</item>
+        <item>СОБЫТИЯ</item>
+        <item>ЛЕНТА</item>
+        <item>ГРУППЫ</item>
+        <item>ЖУРНАЛЫ</item>
+        <item>ОЦЕНКИ</item>
+        <item>КУРСЫ</item>
+    </string-array>
+
+    <string-array name="group_titles">
+        <item>ИНФОРМАЦИЯ</item>
+        <item>СОБЫТИЯ</item>
+        <item>ЛЕНТА</item>
+        <item>УЧАСТНИКИ</item>
+    </string-array>
+
+    <string-array name="group_free">
+        <item>Открытая</item>
+        <item>Закрытая</item>
+    </string-array>
+
+    <string-array name="journals">
+        <item>Мои журналы</item>
+        <item>Мои оценки</item>
+    </string-array>
+
+    <string-array name="my_journal_types">
+        <item>По дате</item>
+        <item>По людям</item>
+    </string-array>
+
+    <string-array name="journal_types">
+        <item>Посещаемость</item>
+        <item>Оценка</item>
+        <item>Контрольная работа</item>
+        <item>Лабораторная работа</item>
+        <item>Семинар</item>
+        <item>Курсовая работа</item>
+        <item>Зачет</item>
+        <item>Экзамен</item>
+    </string-array>
+
+    <string-array name="status_codes">
+        <item>Операция прошла успешно</item>
+        <item>Token не существует</item>
+        <item>Запрашиваемый пользователь не найден</item>
+        <item>SaveChanges() == 0</item>
+        <item>E-Mail не соответствует требованиям.</item>
+        <item>Неверный E-Mail или пароль.</item>
+        <item>Элемент не найден в БД</item>
+        <item>Неверное имя страны</item>
+        <item>Внутренняя ошибка сервера</item>
+        <item>Запись уже существует</item>
+        <item>Присланный объект неверен.</item>
+        <item>Только владелец может выполнить это действие</item>
+        <item>Нет прав на выполнение данной операции</item>
+        <item>Такой E-Mail уже зарегистрирован</item>
+        <item>Не заполнены обязательные поля‏</item>
+    </string-array>
+</resources>

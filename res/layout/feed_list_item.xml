@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#20ffffff">
+
+    <ImageView
+        android:id="@+id/imgFeed"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/icon"
+        android:contentDescription="icon"
+        android:minHeight="32dp"
+        android:minWidth="32dp"
+        android:scaleType="fitXY"
+        android:layout_margin="5dp"></ImageView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_margin="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:id="@+id/tvTitle"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_blue_dark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Message"
+            android:id="@+id/tvMessage"
+            android:layout_below="@+id/tvTitle"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:id="@+id/tvTime"
+            android:textStyle="italic"
+            android:textColor="@android:color/secondary_text_light_nodisable"
+            android:textSize="11sp"
+            android:layout_below="@+id/tvName"
+            android:layout_alignParentRight="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:id="@+id/tvName"
+            android:textStyle="italic"
+            android:layout_below="@+id/tvMessage"
+            android:layout_alignParentLeft="true"
+            android:textColor="@android:color/secondary_text_light_nodisable" />
+
+    </RelativeLayout>
+
+</LinearLayout>

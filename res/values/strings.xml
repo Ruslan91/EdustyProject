@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="url">http://89.222.166.108/api/</string>
+    <!--http://89.222.166.108/api/-->
+    <!--http://edusty.azurewebsites.net/api/-->
+
+    <string name="app_name">Edusty</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="edit">Edit</string>
+    <string name="apply">Apply</string>
+    <string name="settings">Settings</string>
+    <string name="quit">Log Out</string>
+    <string name="firstName">First name</string>
+    <string name="middleName">Middle name</string>
+    <string name="lastName">Last name</string>
+    <string name="birthDate">Birth date</string>
+    <string name="eMail">Email</string>
+    <string name="phone">Phone</string>
+    <string name="city">City</string>
+    <string name="country">Country</string>
+    <string name="join">Join</string>
+    <string name="leave">Leave</string>
+    <string name="profile">Profile</string>
+    <string name="feed">Feed</string>
+    <string name="messages">Messages</string>
+    <string name="friends">Friends</string>
+    <string name="groups">Groups</string>
+    <string name="courses">Courses</string>
+    <string name="search">Search</string>
+    <string name="create">Create</string>
+    <string name="follow">Follow</string>
+    <string name="unfollow">Unfollow</string>
+    <string name="title">Title</string>
+    <string name="starttime">Start:</string>
+    <string name="endtime">End:</string>
+    <string name="location">Location:</string>
+    <string name="interval">Interval:</string>
+    <string name="group">Group:</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="add">add</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="at">at</string>
+    <string name="delete">Delete</string>
+    <string name="website">WebSite</string>
+    <string name="groupImage">groupImage</string>
+    <string name="description">Description</string>
+    <string name="secIsDev">Section in Development</string>
+    <string name="update">Update</string>
+    <string name="please_wait">Please wait!</string>
+    <string name="authorization">Authorization</string>
+    <string name="error_please_try_again">Error. Please try again</string>
+    <string name="password">Password</string>
+    <string name="all_day">All day</string>
+    <string name="registration_complete">Registration complete</string>
+    <string name="edit_date">Edit date!</string>
+    <string name="please_set_text">Please set text to Title</string>
+    <string name="enter_message">Enter message</string>
+    <string name="new_messages_not_found">New messages not found</string>
+    <string name="mark">Mark</string>
+    <string name="lesson">Lesson</string>
+    <string name="type">Тип</string>
+    <string name="repeat">Repeat:</string>
+    <string name="license">By clicking "Sign Up", You are agreeing to </string>
+    <string name="terms_of_service"><u>Terms of Service</u>.</string>
+    <string name="registration">Registration</string>
+
+    <string-array name="intervals">
+        <item>Everyday</item>
+        <item>Every week</item>
+        <item>Every 2 weeks</item>
+        <item>Every 3 weeks</item>
+        <item>Every Month</item>
+        <item>Every half year</item>
+        <item>Every year</item>
+        <item>Never</item>
+    </string-array>
+
+    <string-array name="titles">
+        <item>FRIENDS</item>
+        <item>EVENTS</item>
+        <item>FEED</item>
+        <item>GROUPS</item>
+        <item>JOURNALS</item>
+        <item>MARKS</item>
+        <item>COURSES</item>
+    </string-array>
+
+    <string-array name="group_titles">
+        <item>INFORMATION</item>
+        <item>EVENTS</item>
+        <item>FEED</item>
+        <item>FOLLOWERS</item>
+    </string-array>
+
+    <string-array name="group_free">
+        <item>Open</item>
+        <item>Closed</item>
+    </string-array>
+
+    <string-array name="journals">
+        <item>My Journals</item>
+        <item>My Marks</item>
+    </string-array>
+
+    <string-array name="my_journal_types">
+        <item>Date</item>
+        <item>Members</item>
+    </string-array>
+
+    <string-array name="journal_types">
+        <item>Visitation</item>
+        <item>Mark</item>
+        <item>Test</item>
+        <item>Laboratory work</item>
+        <item>Seminar</item>
+        <item>Course work</item>
+        <item>Passing</item>
+        <item>Exam</item>
+    </string-array>
+</resources>

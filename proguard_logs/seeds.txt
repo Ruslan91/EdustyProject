@@ -1,0 +1,377 @@
+android.support.v4.app.BackStackState
+android.support.v4.app.BackStackState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.Fragment$SavedState
+android.support.v4.app.Fragment$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.FragmentActivity: FragmentActivity()
+android.support.v4.app.FragmentManagerState
+android.support.v4.app.FragmentManagerState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.FragmentState
+android.support.v4.app.FragmentState: android.os.Parcelable$Creator CREATOR
+android.support.v4.content.ModernAsyncTask$Status: android.support.v4.content.ModernAsyncTask$Status[] values()
+android.support.v4.content.ModernAsyncTask$Status: android.support.v4.content.ModernAsyncTask$Status valueOf(java.lang.String)
+android.support.v4.view.PagerTabStrip
+android.support.v4.view.PagerTabStrip: PagerTabStrip(android.content.Context)
+android.support.v4.view.PagerTabStrip: PagerTabStrip(android.content.Context,android.util.AttributeSet)
+android.support.v4.view.PagerTabStrip: void setTabIndicatorColor(int)
+android.support.v4.view.PagerTabStrip: void setTabIndicatorColorResource(int)
+android.support.v4.view.PagerTabStrip: int getTabIndicatorColor()
+android.support.v4.view.PagerTabStrip: void setTextSpacing(int)
+android.support.v4.view.PagerTabStrip: void setBackgroundDrawable(android.graphics.drawable.Drawable)
+android.support.v4.view.PagerTabStrip: void setBackgroundColor(int)
+android.support.v4.view.PagerTabStrip: void setBackgroundResource(int)
+android.support.v4.view.PagerTabStrip: void setDrawFullUnderline(boolean)
+android.support.v4.view.PagerTabStrip: boolean getDrawFullUnderline()
+android.support.v4.view.PagerTabStrip: int getMinHeight()
+android.support.v4.view.PagerTitleStrip: void setSingleLineAllCaps(android.widget.TextView)
+android.support.v4.view.PagerTitleStrip: PagerTitleStrip(android.content.Context)
+android.support.v4.view.PagerTitleStrip: PagerTitleStrip(android.content.Context,android.util.AttributeSet)
+android.support.v4.view.PagerTitleStrip: void setTextSpacing(int)
+android.support.v4.view.PagerTitleStrip: int getTextSpacing()
+android.support.v4.view.PagerTitleStrip: void setNonPrimaryAlpha(float)
+android.support.v4.view.PagerTitleStrip: void setTextColor(int)
+android.support.v4.view.PagerTitleStrip: void setGravity(int)
+android.support.v4.view.PagerTitleStrip: int getMinHeight()
+android.support.v4.view.ViewPager
+android.support.v4.view.ViewPager: ViewPager(android.content.Context)
+android.support.v4.view.ViewPager: ViewPager(android.content.Context,android.util.AttributeSet)
+android.support.v4.view.ViewPager: void setScrollState(int)
+android.support.v4.view.ViewPager: void setAdapter(android.support.v4.view.PagerAdapter)
+android.support.v4.view.ViewPager: android.support.v4.view.PagerAdapter getAdapter()
+android.support.v4.view.ViewPager: void setOnAdapterChangeListener(android.support.v4.view.ViewPager$OnAdapterChangeListener)
+android.support.v4.view.ViewPager: void setCurrentItem(int)
+android.support.v4.view.ViewPager: int getCurrentItem()
+android.support.v4.view.ViewPager: void setOnPageChangeListener(android.support.v4.view.ViewPager$OnPageChangeListener)
+android.support.v4.view.ViewPager: int getOffscreenPageLimit()
+android.support.v4.view.ViewPager: void setOffscreenPageLimit(int)
+android.support.v4.view.ViewPager: void setPageMargin(int)
+android.support.v4.view.ViewPager: int getPageMargin()
+android.support.v4.view.ViewPager: void setPageMarginDrawable(android.graphics.drawable.Drawable)
+android.support.v4.view.ViewPager: void setPageMarginDrawable(int)
+android.support.v4.view.ViewPager: void setScrollingCacheEnabled(boolean)
+android.support.v4.view.ViewPager$SavedState
+android.support.v4.view.ViewPager$SavedState: android.os.Parcelable$Creator CREATOR
+com.example.Milestone1.AuthorizationActivity
+com.example.Milestone1.AuthorizationActivity: AuthorizationActivity()
+com.example.Milestone1.AuthorizationActivity: void OnClickBtnLogIn(android.view.View)
+com.example.Milestone1.AuthorizationActivity: void OnClickBtnSignUp(android.view.View)
+com.example.Milestone1.CreateCourseActivity
+com.example.Milestone1.CreateCourseActivity: CreateCourseActivity()
+com.example.Milestone1.CreateEventActivity
+com.example.Milestone1.CreateEventActivity: CreateEventActivity()
+com.example.Milestone1.CreateEventActivity: void onClickStartTimePick(android.view.View)
+com.example.Milestone1.CreateEventActivity: void onClickStartDatePick(android.view.View)
+com.example.Milestone1.CreateEventActivity: void onClickEndTimePick(android.view.View)
+com.example.Milestone1.CreateEventActivity: void onClickEndDatePick(android.view.View)
+com.example.Milestone1.CreateGroupActivity
+com.example.Milestone1.CreateGroupActivity: CreateGroupActivity()
+com.example.Milestone1.CreateGroupActivity: void onClickBtnCreateGroup(android.view.View)
+com.example.Milestone1.CreateJournalActivity
+com.example.Milestone1.CreateJournalActivity: CreateJournalActivity()
+com.example.Milestone1.CreateMarksJournalActivity
+com.example.Milestone1.CreateMarksJournalActivity: CreateMarksJournalActivity()
+com.example.Milestone1.EditEventActivity
+com.example.Milestone1.EditEventActivity: EditEventActivity()
+com.example.Milestone1.EditEventActivity: void onClickStartTimePick(android.view.View)
+com.example.Milestone1.EditEventActivity: void onClickStartDatePick(android.view.View)
+com.example.Milestone1.EditEventActivity: void onClickEndTimePick(android.view.View)
+com.example.Milestone1.EditEventActivity: void onClickEndDatePick(android.view.View)
+com.example.Milestone1.EditGroupActivity
+com.example.Milestone1.EditGroupActivity: EditGroupActivity()
+com.example.Milestone1.EditGroupActivity: void onClickBtnEditGroup(android.view.View)
+com.example.Milestone1.EditMarksJournalActivity
+com.example.Milestone1.EditMarksJournalActivity: EditMarksJournalActivity()
+com.example.Milestone1.EventActivity
+com.example.Milestone1.EventActivity: EventActivity()
+com.example.Milestone1.GroupFragmentActivity
+com.example.Milestone1.GroupFragmentActivity: GroupFragmentActivity()
+com.example.Milestone1.GroupsActivity
+com.example.Milestone1.GroupsActivity: GroupsActivity()
+com.example.Milestone1.JournalActivity
+com.example.Milestone1.JournalActivity: JournalActivity()
+com.example.Milestone1.LicenseActivity
+com.example.Milestone1.LicenseActivity: LicenseActivity()
+com.example.Milestone1.MainActivity
+com.example.Milestone1.MainActivity: MainActivity()
+com.example.Milestone1.MarksActivity
+com.example.Milestone1.MarksActivity: MarksActivity()
+com.example.Milestone1.MyMarksActivity
+com.example.Milestone1.MyMarksActivity: MyMarksActivity()
+com.example.Milestone1.OtherMainActivity
+com.example.Milestone1.OtherMainActivity: OtherMainActivity()
+com.example.Milestone1.R$array: int group_free
+com.example.Milestone1.R$array: int group_titles
+com.example.Milestone1.R$array: int intervals
+com.example.Milestone1.R$array: int journal_types
+com.example.Milestone1.R$array: int journals
+com.example.Milestone1.R$array: int my_journal_types
+com.example.Milestone1.R$array: int status_codes
+com.example.Milestone1.R$array: int titles
+com.example.Milestone1.R$drawable: int blackboard_background
+com.example.Milestone1.R$drawable: int ic_action_accept
+com.example.Milestone1.R$drawable: int ic_action_cancel
+com.example.Milestone1.R$drawable: int ic_action_discard
+com.example.Milestone1.R$drawable: int ic_action_edit
+com.example.Milestone1.R$drawable: int ic_action_new
+com.example.Milestone1.R$drawable: int ic_action_new_event
+com.example.Milestone1.R$drawable: int ic_action_next_item
+com.example.Milestone1.R$drawable: int ic_action_person
+com.example.Milestone1.R$drawable: int ic_action_refresh
+com.example.Milestone1.R$drawable: int ic_action_save
+com.example.Milestone1.R$drawable: int ic_action_search
+com.example.Milestone1.R$drawable: int ic_action_send_now
+com.example.Milestone1.R$drawable: int ic_action_undo
+com.example.Milestone1.R$drawable: int ic_launcher
+com.example.Milestone1.R$drawable: int icon
+com.example.Milestone1.R$drawable: int logo
+com.example.Milestone1.R$drawable: int social_person
+com.example.Milestone1.R$id: int action_add
+com.example.Milestone1.R$id: int action_apply
+com.example.Milestone1.R$id: int action_cancel
+com.example.Milestone1.R$id: int action_create
+com.example.Milestone1.R$id: int action_delete
+com.example.Milestone1.R$id: int action_edit
+com.example.Milestone1.R$id: int action_follow
+com.example.Milestone1.R$id: int action_profile
+com.example.Milestone1.R$id: int action_quit
+com.example.Milestone1.R$id: int action_save
+com.example.Milestone1.R$id: int action_search
+com.example.Milestone1.R$id: int action_settings
+com.example.Milestone1.R$id: int action_update
+com.example.Milestone1.R$id: int btnCreate
+com.example.Milestone1.R$id: int btnEdit
+com.example.Milestone1.R$id: int btnLogIn
+com.example.Milestone1.R$id: int btnNextLevel
+com.example.Milestone1.R$id: int btnReg
+com.example.Milestone1.R$id: int btnSend
+com.example.Milestone1.R$id: int btnSignUp
+com.example.Milestone1.R$id: int cbAllDay
+com.example.Milestone1.R$id: int cbMark
+com.example.Milestone1.R$id: int edEmail
+com.example.Milestone1.R$id: int edPasswd
+com.example.Milestone1.R$id: int editEmail
+com.example.Milestone1.R$id: int editLastName
+com.example.Milestone1.R$id: int editName
+com.example.Milestone1.R$id: int editPasswd
+com.example.Milestone1.R$id: int editSendMessage
+com.example.Milestone1.R$id: int etBirthDate
+com.example.Milestone1.R$id: int etCity
+com.example.Milestone1.R$id: int etCourseName
+com.example.Milestone1.R$id: int etDescription
+com.example.Milestone1.R$id: int etEmail
+com.example.Milestone1.R$id: int etFirstName
+com.example.Milestone1.R$id: int etJournalName
+com.example.Milestone1.R$id: int etLastName
+com.example.Milestone1.R$id: int etLocation
+com.example.Milestone1.R$id: int etMark
+com.example.Milestone1.R$id: int etMiddleName
+com.example.Milestone1.R$id: int etPhone
+com.example.Milestone1.R$id: int etTitle
+com.example.Milestone1.R$id: int firstName
+com.example.Milestone1.R$id: int groupDescription
+com.example.Milestone1.R$id: int groupImage
+com.example.Milestone1.R$id: int groupName
+com.example.Milestone1.R$id: int groupWebSite
+com.example.Milestone1.R$id: int imageGroup
+com.example.Milestone1.R$id: int imgFeed
+com.example.Milestone1.R$id: int imgUser
+com.example.Milestone1.R$id: int lTitle
+com.example.Milestone1.R$id: int lastName
+com.example.Milestone1.R$id: int linearLayout1
+com.example.Milestone1.R$id: int linearLayout2
+com.example.Milestone1.R$id: int listCourses
+com.example.Milestone1.R$id: int listEvents
+com.example.Milestone1.R$id: int listFeed
+com.example.Milestone1.R$id: int listFriends
+com.example.Milestone1.R$id: int listGroups
+com.example.Milestone1.R$id: int listJournalDates
+com.example.Milestone1.R$id: int listJournals
+com.example.Milestone1.R$id: int listMarks
+com.example.Milestone1.R$id: int listView
+com.example.Milestone1.R$id: int pager
+com.example.Milestone1.R$id: int pagerTabStrip
+com.example.Milestone1.R$id: int scrollView
+com.example.Milestone1.R$id: int spCountry
+com.example.Milestone1.R$id: int spFree
+com.example.Milestone1.R$id: int spGroup
+com.example.Milestone1.R$id: int spInterval
+com.example.Milestone1.R$id: int spJournalCourse
+com.example.Milestone1.R$id: int spJournalGroup
+com.example.Milestone1.R$id: int spJournalTypes
+com.example.Milestone1.R$id: int spLessonNumber
+com.example.Milestone1.R$id: int spType
+com.example.Milestone1.R$id: int tableRow
+com.example.Milestone1.R$id: int text
+com.example.Milestone1.R$id: int textView
+com.example.Milestone1.R$id: int textView2
+com.example.Milestone1.R$id: int textView3
+com.example.Milestone1.R$id: int textView4
+com.example.Milestone1.R$id: int textView5
+com.example.Milestone1.R$id: int textView6
+com.example.Milestone1.R$id: int textViewWebSite
+com.example.Milestone1.R$id: int tvCity
+com.example.Milestone1.R$id: int tvCourseName
+com.example.Milestone1.R$id: int tvDate
+com.example.Milestone1.R$id: int tvDescription
+com.example.Milestone1.R$id: int tvEndDate
+com.example.Milestone1.R$id: int tvEndTime
+com.example.Milestone1.R$id: int tvGroup
+com.example.Milestone1.R$id: int tvGroupDescription
+com.example.Milestone1.R$id: int tvGroupName
+com.example.Milestone1.R$id: int tvGroupWebSite
+com.example.Milestone1.R$id: int tvInterval
+com.example.Milestone1.R$id: int tvJournalCourse
+com.example.Milestone1.R$id: int tvJournalGroup
+com.example.Milestone1.R$id: int tvJournalOwner
+com.example.Milestone1.R$id: int tvJournalTitle
+com.example.Milestone1.R$id: int tvLessonNumber
+com.example.Milestone1.R$id: int tvLicense
+com.example.Milestone1.R$id: int tvLocation
+com.example.Milestone1.R$id: int tvMark
+com.example.Milestone1.R$id: int tvMessage
+com.example.Milestone1.R$id: int tvName
+com.example.Milestone1.R$id: int tvRepeat
+com.example.Milestone1.R$id: int tvStartTime
+com.example.Milestone1.R$id: int tvTime
+com.example.Milestone1.R$id: int tvTitle
+com.example.Milestone1.R$id: int tvType
+com.example.Milestone1.R$id: int userImage
+com.example.Milestone1.R$id: int viewpager
+com.example.Milestone1.R$layout: int activity_main
+com.example.Milestone1.R$layout: int authorization
+com.example.Milestone1.R$layout: int course_create
+com.example.Milestone1.R$layout: int event
+com.example.Milestone1.R$layout: int event_create
+com.example.Milestone1.R$layout: int event_edit
+com.example.Milestone1.R$layout: int event_list_item
+com.example.Milestone1.R$layout: int feed
+com.example.Milestone1.R$layout: int feed_list_item
+com.example.Milestone1.R$layout: int fragment_default
+com.example.Milestone1.R$layout: int friend_list_item
+com.example.Milestone1.R$layout: int friends
+com.example.Milestone1.R$layout: int group_create
+com.example.Milestone1.R$layout: int group_edit
+com.example.Milestone1.R$layout: int group_feed
+com.example.Milestone1.R$layout: int group_feed_list_item
+com.example.Milestone1.R$layout: int group_information
+com.example.Milestone1.R$layout: int groups_list_item
+com.example.Milestone1.R$layout: int journal_create
+com.example.Milestone1.R$layout: int journal_dates_list
+com.example.Milestone1.R$layout: int journal_dates_list_item
+com.example.Milestone1.R$layout: int license
+com.example.Milestone1.R$layout: int listevents
+com.example.Milestone1.R$layout: int listfriends
+com.example.Milestone1.R$layout: int listgroup
+com.example.Milestone1.R$layout: int main
+com.example.Milestone1.R$layout: int marks_create_list
+com.example.Milestone1.R$layout: int marks_create_list_item
+com.example.Milestone1.R$layout: int marks_date_list_item
+com.example.Milestone1.R$layout: int marks_edit_list_item
+com.example.Milestone1.R$layout: int marks_list
+com.example.Milestone1.R$layout: int marks_list_item
+com.example.Milestone1.R$layout: int messages
+com.example.Milestone1.R$layout: int my_marks_list_item
+com.example.Milestone1.R$layout: int profile
+com.example.Milestone1.R$layout: int profile_edit
+com.example.Milestone1.R$layout: int registration
+com.example.Milestone1.R$layout: int user_courses
+com.example.Milestone1.R$layout: int user_courses_list_item
+com.example.Milestone1.R$layout: int user_groups_list_item
+com.example.Milestone1.R$layout: int user_journals
+com.example.Milestone1.R$layout: int user_journals_list_item
+com.example.Milestone1.R$menu: int create_event
+com.example.Milestone1.R$menu: int create_journal_menu
+com.example.Milestone1.R$menu: int edit_menu
+com.example.Milestone1.R$menu: int event_menu
+com.example.Milestone1.R$menu: int feed_menu
+com.example.Milestone1.R$menu: int group_menu
+com.example.Milestone1.R$menu: int journal_menu
+com.example.Milestone1.R$menu: int main_menu
+com.example.Milestone1.R$menu: int marks_menu
+com.example.Milestone1.R$menu: int profile
+com.example.Milestone1.R$menu: int user_courses_menu
+com.example.Milestone1.R$menu: int user_events_menu
+com.example.Milestone1.R$menu: int user_friends_menu
+com.example.Milestone1.R$menu: int user_groups_menu
+com.example.Milestone1.R$menu: int user_journals_menu
+com.example.Milestone1.R$string: int add
+com.example.Milestone1.R$string: int all_day
+com.example.Milestone1.R$string: int app_name
+com.example.Milestone1.R$string: int apply
+com.example.Milestone1.R$string: int at
+com.example.Milestone1.R$string: int authorization
+com.example.Milestone1.R$string: int birthDate
+com.example.Milestone1.R$string: int cancel
+com.example.Milestone1.R$string: int city
+com.example.Milestone1.R$string: int country
+com.example.Milestone1.R$string: int courses
+com.example.Milestone1.R$string: int create
+com.example.Milestone1.R$string: int date
+com.example.Milestone1.R$string: int delete
+com.example.Milestone1.R$string: int description
+com.example.Milestone1.R$string: int eMail
+com.example.Milestone1.R$string: int edit
+com.example.Milestone1.R$string: int edit_date
+com.example.Milestone1.R$string: int endtime
+com.example.Milestone1.R$string: int enter_message
+com.example.Milestone1.R$string: int error_please_try_again
+com.example.Milestone1.R$string: int feed
+com.example.Milestone1.R$string: int firstName
+com.example.Milestone1.R$string: int follow
+com.example.Milestone1.R$string: int friends
+com.example.Milestone1.R$string: int group
+com.example.Milestone1.R$string: int groupImage
+com.example.Milestone1.R$string: int groups
+com.example.Milestone1.R$string: int interval
+com.example.Milestone1.R$string: int join
+com.example.Milestone1.R$string: int lastName
+com.example.Milestone1.R$string: int leave
+com.example.Milestone1.R$string: int lesson
+com.example.Milestone1.R$string: int license
+com.example.Milestone1.R$string: int location
+com.example.Milestone1.R$string: int mark
+com.example.Milestone1.R$string: int messages
+com.example.Milestone1.R$string: int middleName
+com.example.Milestone1.R$string: int new_messages_not_found
+com.example.Milestone1.R$string: int password
+com.example.Milestone1.R$string: int phone
+com.example.Milestone1.R$string: int please_set_text
+com.example.Milestone1.R$string: int please_wait
+com.example.Milestone1.R$string: int profile
+com.example.Milestone1.R$string: int quit
+com.example.Milestone1.R$string: int registration
+com.example.Milestone1.R$string: int registration_complete
+com.example.Milestone1.R$string: int repeat
+com.example.Milestone1.R$string: int save
+com.example.Milestone1.R$string: int search
+com.example.Milestone1.R$string: int secIsDev
+com.example.Milestone1.R$string: int settings
+com.example.Milestone1.R$string: int sign_in
+com.example.Milestone1.R$string: int sign_up
+com.example.Milestone1.R$string: int starttime
+com.example.Milestone1.R$string: int terms_of_service
+com.example.Milestone1.R$string: int time
+com.example.Milestone1.R$string: int title
+com.example.Milestone1.R$string: int type
+com.example.Milestone1.R$string: int unfollow
+com.example.Milestone1.R$string: int update
+com.example.Milestone1.R$string: int url
+com.example.Milestone1.R$string: int website
+com.example.Milestone1.R$style: int EdustyBackground
+com.example.Milestone1.R$style: int EdustyFont
+com.example.Milestone1.RegistrationActivity
+com.example.Milestone1.RegistrationActivity: RegistrationActivity()
+com.example.Milestone1.RegistrationActivity: void OnClickBtnReg(android.view.View)
+com.example.Milestone1.RegistrationActivity: void onClickLicenseString(android.view.View)
+com.example.Milestone1.UserActivity
+com.example.Milestone1.UserActivity: UserActivity()
+com.example.Milestone1.UserEditActivity
+com.example.Milestone1.UserEditActivity: UserEditActivity()
+com.example.Milestone1.UserEditActivity: void onClickEditBirthDate(android.view.View)
+com.google.gson.FieldNamingPolicy: com.google.gson.FieldNamingPolicy[] values()
+com.google.gson.FieldNamingPolicy: com.google.gson.FieldNamingPolicy valueOf(java.lang.String)
+com.google.gson.LongSerializationPolicy: com.google.gson.LongSerializationPolicy[] values()
+com.google.gson.LongSerializationPolicy: com.google.gson.LongSerializationPolicy valueOf(java.lang.String)
+com.google.gson.stream.JsonScope: com.google.gson.stream.JsonScope[] values()
+com.google.gson.stream.JsonScope: com.google.gson.stream.JsonScope valueOf(java.lang.String)
+com.google.gson.stream.JsonToken: com.google.gson.stream.JsonToken[] values()
+com.google.gson.stream.JsonToken: com.google.gson.stream.JsonToken valueOf(java.lang.String)

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_gravity="left"
+    android:focusableInTouchMode="false"
+    style="@style/EdustyBackground">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edEmail"
+        android:inputType="textEmailAddress"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:hint="@string/eMail"
+        android:textColor="@android:color/white"
+        android:layout_margin="10dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edPasswd"
+        android:inputType="textPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/edEmail"
+        android:hint="@string/password"
+        android:textColor="@android:color/white"
+        android:layout_margin="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@string/sign_in"
+        android:id="@+id/btnLogIn"
+        android:onClick="OnClickBtnLogIn"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/edPasswd"
+        android:layout_alignRight="@+id/edPasswd" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSignUp"
+        android:onClick="OnClickBtnSignUp"
+        android:clickable="true"
+        android:linksClickable="false"
+        android:singleLine="false"
+        android:textColor="@android:color/white"
+        android:autoText="false"
+        android:editable="false"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        android:textIsSelectable="true"
+        android:layout_below="@+id/btnLogIn"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="@string/sign_up" />
+
+</RelativeLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    style="@style/EdustyBackground">
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/etJournalName"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:hint="Название" />
+
+    <Spinner
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spJournalGroup"
+        android:spinnerMode="dialog"
+        android:layout_below="@+id/spJournalCourse"
+        android:layout_alignLeft="@+id/spJournalCourse" />
+
+    <Spinner
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spJournalCourse"
+        android:spinnerMode="dialog"
+        android:layout_below="@+id/etJournalName"
+        android:layout_alignLeft="@+id/etJournalName" />
+
+</RelativeLayout>

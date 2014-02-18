@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    style="@style/EdustyBackground">
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/groupName"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:hint="Название" />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/groupDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/groupName"
+        android:hint="Описание" />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/groupWebSite"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/groupDescription"
+        android:hint="Веб-сайт" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Создать"
+        android:id="@+id/btnCreate"
+        android:onClick="onClickBtnCreateGroup"
+        android:layout_below="@+id/spFree"
+        android:layout_centerHorizontal="true" />
+
+    <Spinner
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spFree"
+        android:layout_below="@+id/groupWebSite"
+        android:layout_centerHorizontal="true"
+        android:spinnerMode="dropdown"
+        android:entries="@array/group_free" />
+</RelativeLayout>
