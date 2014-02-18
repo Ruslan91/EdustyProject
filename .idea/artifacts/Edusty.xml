@@ -1,0 +1,25 @@
+<component name="ArtifactManager">
+  <artifact type="apk" name="Edusty">
+    <output-path>$PROJECT_DIR$/out/artifacts/Edusty</output-path>
+    <properties id="android-properties">
+      <options>
+        <option name="keyAlias" value="sign" />
+        <option name="keyPassword" value="S2V5UGFzc3dvcmQ=&#13;&#10;" />
+        <option name="keyStorePassword" value="RWR1c3R5UGFzc3dvcmQ=&#13;&#10;" />
+        <option name="keyStoreUrl" value="file://$USER_HOME$/AndroidAPK's/edustysign.jks" />
+        <option name="proGuardCfgFiles">
+          <list>
+            <option value="file://%MODULE_SDK_HOME%/tools/proguard/proguard-android.txt" />
+          </list>
+        </option>
+        <option name="runProGuard" value="true" />
+        <option name="signingMode" value="RELEASE_SIGNED" />
+      </options>
+    </properties>
+    <root id="archive" name="Edusty.apk">
+      <element id="android-final-package" facet="Milestone1/android/Android" />
+      <element id="module-output" name="Milestone1" />
+      <element id="dir-copy" path="$PROJECT_DIR$" />
+    </root>
+  </artifact>
+</component>

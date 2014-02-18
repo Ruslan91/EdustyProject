@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:orientation="vertical"
+    style="@style/EdustyBackground">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spLessonNumber"
+            android:spinnerMode="dropdown"
+            android:layout_margin="5dp"
+            android:layout_weight="3" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spType"
+            android:spinnerMode="dropdown"
+            android:layout_margin="5dp"
+            android:entries="@array/journal_types"
+            android:focusableInTouchMode="false"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/listMarks"
+        android:layout_margin="5dp"
+        android:clickable="false"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="5dp" />
+</LinearLayout>

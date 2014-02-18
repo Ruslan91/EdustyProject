@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/linearLayout1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#20ffffff">
+
+    <ImageView
+        android:id="@+id/groupImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon"
+        android:layout_margin="5dp"
+        android:maxHeight="100dp"
+        android:maxWidth="100dp"
+        android:adjustViewBounds="false"></ImageView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:clickable="false"
+        android:layout_margin="5dp">
+
+        <TextView
+            android:id="@+id/groupName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Group Name"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"></TextView>
+
+        <TextView
+            android:id="@+id/groupDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Group Description"
+            android:layout_margin="5dp"></TextView>
+    </LinearLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnNextLevel"
+        android:onClick="OnClickBtnNextLevel"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_action_next_item"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/groupImage"
+        android:background="#20ffffff" />
+</LinearLayout>
