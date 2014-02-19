@@ -94,7 +94,7 @@ public class UserCoursesFragment extends Fragment {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.add(0, 1, 0, "Удалить запись");
         AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        if (courses[acmi.position].getIsCourseOwner() == Boolean.FALSE) {
+        if (courses[acmi.position].getIsOwner() == Boolean.FALSE) {
             menu.getItem(0).setEnabled(false);
         } else menu.getItem(0).setEnabled(true);
     }
@@ -105,8 +105,8 @@ public class UserCoursesFragment extends Fragment {
             // получаем инфу о пункте списка
             AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
             courseID = courses[acmi.position].getId();
-            RemoveCourse removeMessage = new RemoveCourse();
-            removeMessage.execute();
+            RemoveCourse removeCourse = new RemoveCourse();
+            removeCourse.execute();
             return true;
         }
         return super.onContextItemSelected(item);
@@ -183,7 +183,7 @@ public class UserCoursesFragment extends Fragment {
             try {
                 HttpClient httpclient = new DefaultHttpClient();
                 Gson gson = new Gson();
-                HttpDelete request = new HttpDelete(getString(R.string.url) + "Courses?token=" + token + "&messageID=" + courseID);
+                HttpDelete request = new HttpDelete(getString(R.string.url) + "Course?token=" + token + "&courseID=" + courseID);
                 HttpResponse response = httpclient.execute(request);
                 InputStreamReader reader = new InputStreamReader(response.getEntity()
                         .getContent(), HTTP.UTF_8);

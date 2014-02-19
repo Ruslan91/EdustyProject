@@ -8,14 +8,14 @@ import java.util.UUID;
 public class Courses {
     UUID Id;
     String Title;
-    Boolean IsCourseOwner;
+    Boolean IsOwner;
 
-    public Boolean getIsCourseOwner() {
-        return IsCourseOwner;
+    public Boolean getIsOwner() {
+        return IsOwner;
     }
 
-    public void setIsCourseOwner(Boolean isCourseOwner) {
-        IsCourseOwner = isCourseOwner;
+    public void setIsOwner(Boolean isOwner) {
+        IsOwner = isOwner;
     }
 
     public UUID getId() {

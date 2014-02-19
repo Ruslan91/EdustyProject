@@ -70,6 +70,7 @@ public class UserJournalsFragment extends Fragment {
                         intent.putExtra("journalID", journals[position].getId().toString());
                         intent.putExtra("title", journals[position].getTitle());
                         intent.putExtra("groupID", journals[position].getGroupID().toString());
+                        intent.putExtra("isOwner", journals[position].getIsOwner());
                         startActivity(intent);
                         onDestroy();
                     } catch (Exception e) {

@@ -102,8 +102,36 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
         return myView;
     }
 
-    public void setData() {
-        if (feed != null) {
+    public void setData(Response response) {
+        try {
+            feed = (Feed[]) response.getItem();
+            datetime = new Date[feed.length];
+            data = new ArrayList<Map<String, String>>(
+                    feed.length);
+            data.clear();
+            for (int i = 0; i < feed.length; i++) {
+                m = new HashMap<String, String>();
+                if (feed[i].getTitle() != null) {
+                    m.put("names", feed[i].getFirstName() + " " + feed[i].getLastName());
+                    m.put("titles", feed[i].getTitle());
+                } else {
+                    m.put("names", "");
+                    m.put("titles", feed[i].getFirstName() + " " + feed[i].getLastName());
+                }
+                m.put("messages", feed[i].getBody());
+                datetime[i] = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").parse(feed[i].getTime());
+                m.put("times", new SimpleDateFormat("EEE, dd MMMM yyyy" + " " + "HH:mm").format(datetime[i]));
+                if (feed[i].getPictureID() != null) {
+                    m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + feed[i].getPictureID());
+                }
+                data.add(m);
+            }
+            sAdapter = new FeedAdapter(getActivity(), data, R.layout.feed_list_item,
+                    new String[]{"names", "messages", "times", "titles"},
+                    new int[]{R.id.tvName, R.id.tvMessage, R.id.tvTime, R.id.tvTitle}
+            );
+            listFeed.setAdapter(sAdapter);
+        /*if (feed != null) {
             timeOffset = feed[0].getTime().toString();
         } else timeOffset = null;
         GetNewFeed updateFeed = new GetNewFeed();
@@ -134,7 +162,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
                     data.add(0, m);
                 }
                 sAdapter.notifyDataSetChanged();
-            }
+            }*/
         } catch (Exception e) {
             this.exception = e;
         }
@@ -150,10 +178,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
                     send.Token = token;
                     sendmessage = new SendMessageToFeed();
                     sendmessage.execute();
-                    result = sendmessage.get();
-                    sent = (Boolean) result.getItem();
-                    sAdapter.notifyDataSetChanged();
-                    setData();
+                    //setData();
                 } catch (Exception e) {
                     this.exception = e;
                 }
@@ -161,7 +186,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    @Override
+/*    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.add(0, 1, 0, "Удалить запись");
@@ -182,7 +207,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
             return true;
         }
         return super.onContextItemSelected(item);
-    }
+    }*/
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.feed_menu, menu);
@@ -194,7 +219,8 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
         boolean ret;
         if (item.getItemId() == R.id.action_update) {
             ret = true;
-            setData();
+
+            //setData();
         } else {
             ret = super.onOptionsItemSelected(item);
         }
@@ -209,19 +235,12 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            /*pdLoading.setMessage("\tЗагрузка...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();*/
+
         }
 
         @Override
         protected void onPostExecute(Void v) {
-            sAdapter = new FeedAdapter(getActivity(), data, R.layout.feed_list_item,
-                    new String[]{"names", "messages", "times", "titles"},
-                    new int[]{R.id.tvName, R.id.tvMessage, R.id.tvTime, R.id.tvTitle}
-            );
-            listFeed.setAdapter(sAdapter);
-            //pdLoading.dismiss();
+            setData(result);
         }
 
         @Override
@@ -236,28 +255,8 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
                 Type fooType = new TypeToken<Response<Feed[]>>() {
                 }.getType();
                 result = gson.fromJson(reader, fooType);
-                feed = (Feed[]) result.getItem();
-                datetime = new Date[feed.length];
-                data = new ArrayList<Map<String, String>>(
-                        feed.length);
-                data.clear();
-                for (int i = 0; i < feed.length; i++) {
-                    m = new HashMap<String, String>();
-                    if (feed[i].getTitle() != null) {
-                        m.put("names", feed[i].getFirstName() + " " + feed[i].getLastName());
-                        m.put("titles", feed[i].getTitle());
-                    } else {
-                        m.put("names", "");
-                        m.put("titles", feed[i].getFirstName() + " " + feed[i].getLastName());
-                    }
-                    m.put("messages", feed[i].getBody());
-                    datetime[i] = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").parse(feed[i].getTime());
-                    m.put("times", new SimpleDateFormat("EEE, dd MMMM yyyy" + " " + "HH:mm").format(datetime[i]));
-                    if (feed[i].getPictureID() != null) {
-                        m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + feed[i].getPictureID());
-                    }
-                    data.add(m);
-                }
+
+
             } catch (Exception e) {
                 this.ex = e;
             }

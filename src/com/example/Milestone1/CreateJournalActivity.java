@@ -1,6 +1,7 @@
 package com.example.Milestone1;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -92,7 +93,7 @@ public class CreateJournalActivity extends Activity {
             ret = true;
             try {
                 createJournal = new CreateJournal();
-                if (etJournalName.getText() != null && etJournalName.getText().toString() != "") {
+                if (!etJournalName.getText().toString().equals("")) {
                     createJournal.setTitle(etJournalName.getText().toString());
 
                 } else
@@ -103,16 +104,8 @@ public class CreateJournalActivity extends Activity {
 
                 PostCreateJournal postCreateJournal = new PostCreateJournal();
                 postCreateJournal.execute();
-                result = postCreateJournal.get();
-                if (result.getItem() != null) {
-                    Intent intent = new Intent(this, MainActivity.class);
-                    intent.putExtra("tab", 4);
-                    startActivity(intent);
-                    finish();
-                } else
-                    Toast.makeText(this, getString(R.string.error_please_try_again), Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
-
+                Toast.makeText(this, getString(R.string.error_please_try_again), Toast.LENGTH_SHORT).show();
             }
         }
         return ret;
@@ -165,6 +158,25 @@ public class CreateJournalActivity extends Activity {
     public class PostCreateJournal extends AsyncTask<Void, Void, Response> {
 
         private Exception ex;
+        ProgressDialog progressDialog = new ProgressDialog(CreateJournalActivity.this);
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            if (response.getItem() != null) {
+                progressDialog.dismiss();
+                startActivity(new Intent(CreateJournalActivity.this, MainActivity.class));
+                finish();
+            } else {
+                Toast.makeText(CreateJournalActivity.this, getString(R.string.error_please_try_again), Toast.LENGTH_SHORT).show();
+            }
+        }
 
         protected Response doInBackground(Void... params) {
 

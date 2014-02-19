@@ -13,6 +13,15 @@ public class Journals {
     String Title;
     UUID CourseID;
     UUID GroupID;
+    Boolean IsOwner;
+
+    public Boolean getIsOwner() {
+        return IsOwner;
+    }
+
+    public void setIsOwner(Boolean isOwner) {
+        IsOwner = isOwner;
+    }
 
     public UUID getId() {
         return Id;

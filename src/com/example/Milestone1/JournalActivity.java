@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.Milestone1.Classes.JournalDates;
 import com.example.Milestone1.Classes.Members;
@@ -21,6 +22,7 @@ import com.google.gson.reflect.TypeToken;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
@@ -51,6 +53,7 @@ public class JournalActivity extends Activity {
     private GetJournalMembers getJournalMembers;
     private SimpleAdapter simpleAdapter;
     private Members[] members;
+    private Boolean isOwner;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +62,7 @@ public class JournalActivity extends Activity {
         token = UUID.fromString(getSharedPreferences("userdetails", MODE_PRIVATE).getString("token", ""));
         journalID = UUID.fromString(getIntent().getExtras().getString("journalID"));
         groupID = UUID.fromString(getIntent().getExtras().getString("groupID"));
+        isOwner = getIntent().getExtras().getBoolean("isOwner");
         spJournalTypes = (Spinner) findViewById(R.id.spJournalTypes);
         spJournalTypes.setSelection(0);
         try {
@@ -143,17 +147,25 @@ public class JournalActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.journal_menu, menu);
+        if (isOwner == Boolean.TRUE) {
+            menu.getItem(2).setVisible(true);
+        } else menu.getItem(2).setVisible(false);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_create:
+        if (item.getItemId() == R.id.action_create) {
                 Intent intent = new Intent(this, CreateMarksJournalActivity.class);
                 intent.putExtra("journalID", journalID.toString());
                 intent.putExtra("groupID", groupID.toString());
                 startActivity(intent);
+        }
+        if (item.getItemId() == R.id.action_delete) {
+                RemoveJournal removeJournal = new RemoveJournal();
+                removeJournal.execute();
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -230,6 +242,32 @@ public class JournalActivity extends Activity {
                 result = gson.fromJson(reader, fooType);
             } catch (Exception e) {
                 this.ex = e;
+            }
+            return result;
+        }
+    }
+    public class RemoveJournal extends AsyncTask<Void, Void, Response> {
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            /*if (result.getItem() == Boolean.TRUE) {
+
+            } else
+                Toast.makeText(JournalActivity.this, "Только владелец может выполнить это действие", Toast.LENGTH_SHORT).show();*/
+        }
+
+        @Override
+        protected Response doInBackground(Void... voids) {
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                Gson gson = new Gson();
+                HttpDelete request = new HttpDelete(getString(R.string.url) + "Journal?token=" + token + "&journalID=" + journalID);
+                HttpResponse response = httpclient.execute(request);
+                InputStreamReader reader = new InputStreamReader(response.getEntity()
+                        .getContent(), HTTP.UTF_8);
+                result = gson.fromJson(reader, Response.class);
+            } catch (Exception e) {
+
             }
             return result;
         }
