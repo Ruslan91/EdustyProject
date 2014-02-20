@@ -23,7 +23,6 @@ import android.widget.Toast;
 import com.example.Milestone1.Adapters.FeedAdapter;
 import com.example.Milestone1.Classes.Feed;
 import com.example.Milestone1.Classes.Response;
-import com.example.Milestone1.Classes.SendGroupMessage;
 import com.example.Milestone1.Classes.SendMessage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -168,6 +167,38 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    public void updateFeed(Response response) {
+        try {
+            newFeed = (Feed[]) response.getItem();
+            if (newFeed.length == 0) {
+                Toast.makeText(getActivity(), "New messages not found", Toast.LENGTH_SHORT).show();
+            } else {
+                feed = newFeed;
+                for (int i = 0; i < feed.length; i++) {
+                    m = new HashMap<String, String>();
+                    if (feed[i].getTitle() != null) {
+                        m.put("names", feed[i].getFirstName() + " " + feed[i].getLastName());
+                        m.put("titles", feed[i].getTitle());
+                    } else {
+                        m.put("names", "");
+                        m.put("titles", feed[i].getFirstName() + " " + feed[i].getLastName());
+
+                    }
+                    m.put("messages", feed[i].getBody());
+                    datetime[i] = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").parse(feed[i].getTime());
+                    m.put("times", new SimpleDateFormat("EEE, dd MMMM yyyy" + " " + "HH:mm").format(datetime[i]));
+                    if (feed[i].getPictureID() != null && feed[i].getPictureID().compareTo(new UUID(0, 0)) != 0) {
+                        m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + feed[i].getPictureID());
+                    }
+                    data.add(0, m);
+                }
+            }
+            sAdapter.notifyDataSetChanged();
+        } catch (Exception e) {
+            this.exception = e;
+        }
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -176,9 +207,8 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
                     send.Message = editSendMessage.getText().toString();
                     editSendMessage.setText("");
                     send.Token = token;
-                    sendmessage = new SendMessageToFeed();
-                    sendmessage.execute();
-                    //setData();
+                    timeOffset = feed[0].getTime();
+                    new SendMessageToFeed().execute();
                 } catch (Exception e) {
                     this.exception = e;
                 }
@@ -186,7 +216,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-/*    @Override
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.add(0, 1, 0, "Удалить запись");
@@ -207,7 +237,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
             return true;
         }
         return super.onContextItemSelected(item);
-    }*/
+    }
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.feed_menu, menu);
@@ -219,8 +249,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
         boolean ret;
         if (item.getItemId() == R.id.action_update) {
             ret = true;
-
-            //setData();
+            new GetNewFeed().execute(timeOffset);
         } else {
             ret = super.onOptionsItemSelected(item);
         }
@@ -265,20 +294,26 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
     }
 
     //Получение новых сообщений ленты
-    public class GetNewFeed extends AsyncTask<UUID, Void, Response> {
+    public class GetNewFeed extends AsyncTask<String, Void, Response> {
         public Exception ex;
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        String timeOffset = null;
 
         @Override
         protected void onPreExecute() {
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
         }
 
         @Override
         protected void onPostExecute(Response response) {
-
+            updateFeed(response);
+            progressDialog.dismiss();
         }
 
         @Override
-        protected Response doInBackground(UUID... params) {
+        protected Response doInBackground(String... times) {
+            timeOffset = times[0];
             try {
                 HttpClient httpclient = new DefaultHttpClient();
                 Gson gson = new Gson();
@@ -297,11 +332,22 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
     }
 
     //Отправить сообщение в ленту
-    public class SendMessageToFeed extends AsyncTask<SendGroupMessage, Void, Response> {
+    public class SendMessageToFeed extends AsyncTask<String, Void, Response> {
         public Exception ex;
 
         @Override
-        protected Response doInBackground(SendGroupMessage... params) {
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            new GetNewFeed().execute();
+        }
+
+        @Override
+        protected Response doInBackground(String... params) {
 
             try {
                 HttpClient httpclient = new DefaultHttpClient();

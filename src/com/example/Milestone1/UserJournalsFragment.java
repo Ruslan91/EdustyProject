@@ -88,7 +88,7 @@ public class UserJournalsFragment extends Fragment {
         journals = (Journals[]) response.getItem();
         data = new ArrayList<Map<String, String>>(
                 journals.length);
-
+        data.clear();
         for (int i = 0; i < journals.length; i++) {
             m = new HashMap<String, String>();
             m.put("titles", journals[i].getTitle());

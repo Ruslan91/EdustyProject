@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -42,18 +41,13 @@ public class UserGroupsFragment extends Fragment {
     final String ATTRIBUTE_NAME_TEXTD = "textD";
     final String ATTRIBUTE_NAME_IMAGE = "picture";
 
-    Exception exception;
+    public Exception exception;
     ListView listGroups;
-    ImageView groupImage;
     UUID token;
     Response result;
     Groups[] groups;
     GetUserGroups getUserGroups;
     public UUID groupID;
-    private SharedPreferences sharedPreferences;
-    private SimpleAdapter sAdapter;
-    private GetUserGroups updateUserGroups;
-    private ArrayList<Map<String, String>> data;
     Map<String, String> m;
 
 
@@ -65,13 +59,16 @@ public class UserGroupsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View myView = inflater.inflate(R.layout.listgroup, container, false);
-        sharedPreferences = getActivity().getSharedPreferences("userdetails", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userdetails", Context.MODE_PRIVATE);
         token = UUID.fromString(sharedPreferences.getString("token", ""));
         try {
             getUserGroups = new GetUserGroups();
             getUserGroups.execute();
             listGroups = (ListView) myView.findViewById(R.id.listGroups);
             listGroups.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                public Exception exception;
+
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
                     // When clicked, show a toast with the TextView text;
@@ -85,7 +82,7 @@ public class UserGroupsFragment extends Fragment {
                         intent.putExtra("groupOwner", groups[position].getIsOwner());
                         startActivity(intent);
                     } catch (Exception e) {
-
+                        this.exception = e;
                     }
                 }
             });
@@ -100,25 +97,26 @@ public class UserGroupsFragment extends Fragment {
         try {
             groups = (Groups[]) response.getItem();
 
-            data = new ArrayList<Map<String, String>>(
+            ArrayList<Map<String, String>> data = new ArrayList<>(
                     groups.length);
             data.clear();
-            for (int i = 0; i < groups.length; i++) {
-                m = new HashMap<String, String>();
-                m.put(ATTRIBUTE_NAME_TEXTN, groups[i].getName());
-                m.put(ATTRIBUTE_NAME_TEXTD, groups[i].getDescription());
-                if (groups[i].getPictureID() != null && groups[i].getPictureID().compareTo(new UUID(0, 0)) != 0) {
-                    m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + groups[i].getPictureID());
+            for (Groups group : groups) {
+                m = new HashMap<>();
+                m.put(ATTRIBUTE_NAME_TEXTN, group.getName());
+                m.put(ATTRIBUTE_NAME_TEXTD, group.getDescription());
+                if (group.getPictureID() != null && group.getPictureID().compareTo(new UUID(0, 0)) != 0) {
+                    m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + group.getPictureID());
                 }
                 m.put("layout", "user_groups");
                 data.add(m);
             }
-            sAdapter = new GroupsAdapter(getActivity(), data, R.layout.user_groups_list_item,
+            SimpleAdapter sAdapter = new GroupsAdapter(getActivity(), data, R.layout.user_groups_list_item,
                     new String[]{ATTRIBUTE_NAME_TEXTN, ATTRIBUTE_NAME_TEXTD, ATTRIBUTE_NAME_IMAGE},
                     new int[]{R.id.groupName, R.id.groupDescription, R.id.groupImage}
             );
             listGroups.setAdapter(sAdapter);
         } catch (Exception e) {
+            this.exception = e;
         }
 
     }
@@ -168,17 +166,16 @@ public class UserGroupsFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        boolean ret;
+        boolean ret = false;
         if (item.getItemId() == R.id.action_update) {
-            ret = true;
             try {
-                updateUserGroups = new GetUserGroups();
+                GetUserGroups updateUserGroups = new GetUserGroups();
                 updateUserGroups.execute();
             } catch (Exception ignored) {
 
             }
         }
-        if (item.getItemId() == R.id.action_search) {
+        else if (item.getItemId() == R.id.action_search) {
             ret = true;
             Intent intent = new Intent(getActivity(), GroupsActivity.class);
             startActivity(intent);

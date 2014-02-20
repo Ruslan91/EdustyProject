@@ -1,6 +1,7 @@
 package com.example.Milestone1;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,10 +31,12 @@ public class AuthorizationActivity extends Activity {
     public Response response;
     Exception exception;
     private userAuthorization user;
+    private String[] statusCodes;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authorization);
+        statusCodes = getResources().getStringArray(R.array.status_codes);
         edEmail = (EditText) findViewById(R.id.edEmail);
         edEmail.setText(getIntent().getStringExtra("email"));
         edPasswd = (EditText) findViewById(R.id.edPasswd);
@@ -92,7 +95,11 @@ public class AuthorizationActivity extends Activity {
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
+            if (response.getStatusCode().equals(0)) {
             setData(response);
+            } else {
+                Toast.makeText(AuthorizationActivity.this, statusCodes[response.getStatusCode()], Toast.LENGTH_LONG).show();
+            }
             pdLoading.dismiss();
         }
 

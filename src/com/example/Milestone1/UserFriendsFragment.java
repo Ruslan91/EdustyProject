@@ -35,15 +35,12 @@ import java.util.Map;
 import java.util.UUID;
 
 public class UserFriendsFragment extends Fragment {
-    GetFriends getFriends;
     Members[] friends;
     Exception exception;
     ListView listFriends;
     UUID token, friendID;
     String friend_string;
     private Response result;
-    private ArrayList<Map<String, String>> data;
-    private HashMap<String, String> m;
 
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -91,13 +88,13 @@ public class UserFriendsFragment extends Fragment {
     void SetData(Response response) {
         try {
             friends = (Members[]) response.getItem();
-            data = new ArrayList<>(friends.length);
-            for (int i = 0; i < friends.length; i++) {
-                m = new HashMap<>();
-                m.put("name", friends[i].getFirstName());
-                m.put("lastName", friends[i].getLastName());
-                if (friends[i].getPictureID() != null && friends[i].getPictureID().compareTo(new UUID(0, 0)) != 0) {
-                    m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + friends[i].getPictureID());
+            ArrayList<Map<String, String>> data = new ArrayList<>(friends.length);
+            for (Members friend : friends) {
+                HashMap<String, String> m = new HashMap<>();
+                m.put("name", friend.getFirstName());
+                m.put("lastName", friend.getLastName());
+                if (friend.getPictureID() != null && friend.getPictureID().compareTo(new UUID(0, 0)) != 0) {
+                    m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + friend.getPictureID());
                 }
                 data.add(m);
             }
@@ -107,7 +104,7 @@ public class UserFriendsFragment extends Fragment {
             );
             listFriends.setAdapter(sAdapter);
         } catch (Exception e) {
-
+            this.exception = e;
         }
     }
 

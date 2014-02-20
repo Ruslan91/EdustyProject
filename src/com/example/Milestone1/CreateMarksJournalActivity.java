@@ -123,10 +123,7 @@ public class CreateMarksJournalActivity extends Activity {
                         m = (Map<String, String>) data.get(i);
                         for (Map.Entry<String, String> entry : m.entrySet()) {
                             String key = entry.getKey();
-                            if (key == "type") {
-                                String value = entry.getValue();
-                                marksReads[i].setType(spType_pos);
-                            } else if (key == "description") {
+                            if (key == "description") {
                                 String value = entry.getValue();
                                 marksReads[i].setDescription(value);
                             } else if (key == "mark") {
@@ -134,6 +131,7 @@ public class CreateMarksJournalActivity extends Activity {
                                 marksReads[i].setMark(Integer.valueOf(value));
                             }
                         }
+                        marksReads[i].setType(spType_pos);
                         marksReads[i].setUserID(members[i].getId());
                     }
                     createMarks.setItem(marksReads);

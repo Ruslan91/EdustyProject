@@ -10,7 +10,7 @@
         android:theme="@android:style/Theme.Holo"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:debuggable="false">
+        android:debuggable="true">
         <activity
             android:name=".AuthorizationActivity"
             android:theme="@android:style/Theme.Holo.NoActionBar"
