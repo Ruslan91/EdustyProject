@@ -71,10 +71,10 @@ public class UserActivity extends Activity {
         try {
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
-                if (extras.getString("MemberID") != null) {
-                    userID = UUID.fromString(extras.getString("MemberID"));
-                } else if (extras.getString("FriendID") != null) {
-                    userID = UUID.fromString(extras.getString("FriendID"));
+                if (extras.getString("memberID") != null) {
+                    userID = UUID.fromString(extras.getString("memberID"));
+                } else if (extras.getString("friendID") != null) {
+                    userID = UUID.fromString(extras.getString("friendID"));
                 } else {
                     userID = UUID.fromString(extras.getString("userID"));
                 }
@@ -125,8 +125,8 @@ public class UserActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.profile, menu);
         try {
+            getMenuInflater().inflate(R.menu.profile, menu);
             if (getIntent().getExtras() != null) {
                 menu.getItem(0).setVisible(false);
                 user = (User) result.getItem();
@@ -148,7 +148,9 @@ public class UserActivity extends Activity {
                 menu.getItem(3).setVisible(false);
             }
         } catch (Exception e) {
+            this.exception = e;
         }
+
 
         return true;
 
@@ -228,7 +230,7 @@ public class UserActivity extends Activity {
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
-            setData(result);
+            setData(response);
             pdLoading.dismiss();
         }
 

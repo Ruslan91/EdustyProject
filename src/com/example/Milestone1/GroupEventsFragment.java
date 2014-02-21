@@ -139,8 +139,7 @@ public class GroupEventsFragment extends Fragment {
         if (item.getItemId() == R.id.action_add) {
             ret = true;
             Intent intent = new Intent(getActivity().getApplicationContext(), CreateEventActivity.class);
-            String groupID_string = groupID.toString();
-            intent.putExtra("groupID", groupID_string);
+            intent.putExtra("groupID", groupID.toString());
             startActivity(intent);
             onDestroy();
         }

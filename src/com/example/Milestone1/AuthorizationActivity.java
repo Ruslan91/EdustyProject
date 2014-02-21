@@ -36,7 +36,7 @@ public class AuthorizationActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authorization);
-        statusCodes = getResources().getStringArray(R.array.status_codes);
+        //statusCodes = getResources().getStringArray(R.array.status_codes);
         edEmail = (EditText) findViewById(R.id.edEmail);
         edEmail.setText(getIntent().getStringExtra("email"));
         edPasswd = (EditText) findViewById(R.id.edPasswd);
@@ -98,7 +98,7 @@ public class AuthorizationActivity extends Activity {
             if (response.getStatusCode().equals(0)) {
             setData(response);
             } else {
-                Toast.makeText(AuthorizationActivity.this, statusCodes[response.getStatusCode()], Toast.LENGTH_LONG).show();
+                //Toast.makeText(AuthorizationActivity.this, statusCodes[response.getStatusCode()], Toast.LENGTH_LONG).show();
             }
             pdLoading.dismiss();
         }

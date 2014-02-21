@@ -70,7 +70,7 @@ public class UserFriendsFragment extends Fragment {
                         friendID = friends[pos].Id;
                         friend_string = friendID.toString();
                         Intent intent = new Intent(getActivity().getApplicationContext(), UserActivity.class);
-                        intent.putExtra("FriendID", friendID.toString());
+                        intent.putExtra("friendID", friendID.toString());
                         startActivity(intent);
                         onDestroy();
 

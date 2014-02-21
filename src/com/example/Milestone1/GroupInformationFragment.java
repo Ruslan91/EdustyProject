@@ -120,7 +120,6 @@ public class GroupInformationFragment extends Fragment {
             ret = true;
             if (groupInfo.getIsOwner()) {
                 new RemoveGroup().execute();
-                //getActivity().showDialog(1);
             } else {
                 groupFollow = new GroupFollow();
                 groupFollow.setToken(token);

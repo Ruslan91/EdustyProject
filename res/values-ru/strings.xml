@@ -67,6 +67,7 @@
     <string name="license">Нажимая "Зарегистрироваться", Вы принимаете условия </string>
     <string name="terms_of_service"><u>Соглашения</u>.</string>
     <string name="registration">Регистрация</string>
+    <string name="send">Send</string>
 
     <string-array name="intervals">
         <item>Каждый день</item>

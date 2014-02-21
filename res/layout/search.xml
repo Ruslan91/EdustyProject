@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/blackboard_background">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_message"
+            android:id="@+id/etSearch"
+            android:focusableInTouchMode="true"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:inputType="none"
+            android:layout_weight="5"/>
+
+        <ImageButton
+            android:text="@string/send"
+            android:id="@+id/btnSend"
+            android:onClick="onClickBtnSendForSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_action_send_now"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#20ffffff"
+            android:contentDescription="@string/send" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/listResults"
+        android:footerDividersEnabled="true"
+        android:headerDividersEnabled="true"
+        android:dividerHeight="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:focusable="false"
+        android:divider="@android:color/transparent"
+        android:scrollingCache="false"/>
+</LinearLayout>

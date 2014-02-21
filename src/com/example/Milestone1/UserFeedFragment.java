@@ -17,7 +17,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Milestone1.Adapters.FeedAdapter;
@@ -56,16 +55,12 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
     Integer count;
     EditText editSendMessage;
     SendMessage send = new SendMessage();
-    Boolean sent;
-    SendMessageToFeed sendmessage;
     public Exception exception;
     private Date[] datetime;
     private FeedAdapter sAdapter;
     Map<String, String> m;
     String timeOffset;
     ArrayList<Map<String, String>> data;
-    private Feed[] newFeed;
-    private TextView tvName;
     private UUID messageID;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -105,11 +100,11 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
         try {
             feed = (Feed[]) response.getItem();
             datetime = new Date[feed.length];
-            data = new ArrayList<Map<String, String>>(
+            data = new ArrayList<>(
                     feed.length);
             data.clear();
             for (int i = 0; i < feed.length; i++) {
-                m = new HashMap<String, String>();
+                m = new HashMap<>();
                 if (feed[i].getTitle() != null) {
                     m.put("names", feed[i].getFirstName() + " " + feed[i].getLastName());
                     m.put("titles", feed[i].getTitle());
@@ -169,13 +164,13 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
 
     public void updateFeed(Response response) {
         try {
-            newFeed = (Feed[]) response.getItem();
+            Feed[] newFeed = (Feed[]) response.getItem();
             if (newFeed.length == 0) {
                 Toast.makeText(getActivity(), "New messages not found", Toast.LENGTH_SHORT).show();
             } else {
                 feed = newFeed;
                 for (int i = 0; i < feed.length; i++) {
-                    m = new HashMap<String, String>();
+                    m = new HashMap<>();
                     if (feed[i].getTitle() != null) {
                         m.put("names", feed[i].getFirstName() + " " + feed[i].getLastName());
                         m.put("titles", feed[i].getTitle());
@@ -258,7 +253,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
 
     //Получение сообщений ленты
     public class GetFeed extends AsyncTask<UUID, Void, Void> {
-        public Exception ex;
+        Exception exception;
         ProgressDialog pdLoading = new ProgressDialog(getActivity());
 
         @Override
@@ -287,7 +282,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
 
 
             } catch (Exception e) {
-                this.ex = e;
+                this.exception = e;
             }
             return null;
         }
@@ -295,7 +290,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
 
     //Получение новых сообщений ленты
     public class GetNewFeed extends AsyncTask<String, Void, Response> {
-        public Exception ex;
+        Exception exception;
         ProgressDialog progressDialog = new ProgressDialog(getActivity());
         String timeOffset = null;
 
@@ -325,7 +320,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
                 }.getType();
                 result = gson.fromJson(reader, fooType);
             } catch (Exception e) {
-                this.ex = e;
+                this.exception = e;
             }
             return result;
         }
@@ -333,7 +328,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
 
     //Отправить сообщение в ленту
     public class SendMessageToFeed extends AsyncTask<String, Void, Response> {
-        public Exception ex;
+        Exception exception;
 
         @Override
         protected void onPreExecute() {
@@ -361,13 +356,15 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
                 result = new Gson().fromJson(reader, Response.class);
 
             } catch (Exception e) {
-                this.ex = e;
+                this.exception = e;
             }
             return result;
         }
     }
 
     public class RemoveMessage extends AsyncTask<Void, Void, Response> {
+        Exception exception;
+
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
@@ -389,7 +386,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
                         .getContent(), HTTP.UTF_8);
                 result = gson.fromJson(reader, Response.class);
             } catch (Exception e) {
-
+                this.exception = e;
             }
             return result;
         }

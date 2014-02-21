@@ -175,7 +175,7 @@ public class UserGroupsFragment extends Fragment {
 
             }
         }
-        else if (item.getItemId() == R.id.action_search) {
+        else if (item.getItemId() == R.id.action_catalog) {
             ret = true;
             Intent intent = new Intent(getActivity(), GroupsActivity.class);
             startActivity(intent);

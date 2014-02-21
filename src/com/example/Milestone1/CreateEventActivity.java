@@ -255,9 +255,11 @@ public class CreateEventActivity extends Activity {
                 if (spInterval.getSelectedItemPosition() != 7) {
                     createEvent.setTimeInterval(spInterval.getSelectedItemPosition());
                 } else createEvent.setTimeInterval(null);
-                if (spGroup.getSelectedItemPosition() != 0) {
+                if (groupID == null){
+                if (spGroup.getSelectedItemPosition() != 0){
                     createEvent.setGroupID(groups[spGroup.getSelectedItemPosition() - 1].getId());
                 } else createEvent.setGroupID(null);
+                } else createEvent.setGroupID(groupID);
                 CreateUserEvent createUserEvent = new CreateUserEvent();
                 createUserEvent.execute();
 /*                } else {

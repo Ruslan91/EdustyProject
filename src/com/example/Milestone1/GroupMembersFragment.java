@@ -89,7 +89,7 @@ public class GroupMembersFragment extends Fragment {
                         pos = position;
                         memberID = members[pos].Id;
                         Intent intent = new Intent(getActivity().getApplicationContext(), UserActivity.class);
-                        intent.putExtra("MemberID", memberID.toString());
+                        intent.putExtra("memberID", memberID.toString());
                         startActivity(intent);
                         onDestroy();
 

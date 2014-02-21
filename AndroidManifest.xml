@@ -88,6 +88,7 @@
         <activity
             android:name=".LicenseActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".SearchActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
