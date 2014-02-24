@@ -140,7 +140,8 @@ public class EventActivity extends Activity {
             intent.putExtra("eventID", eventID.toString());
 
             startActivity(intent);
-        } else {
+        }
+
             if (item.getItemId() == R.id.action_delete) {
                 try {
                     DeleteEvent eventDel = new DeleteEvent();
@@ -154,7 +155,6 @@ public class EventActivity extends Activity {
                     this.exception = e;
                 }
             }
-        }
         return ret;
     }
 

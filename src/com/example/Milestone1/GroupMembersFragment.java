@@ -46,25 +46,30 @@ public class GroupMembersFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View myView = inflater.inflate(R.layout.friends, container, false);
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userdetails", Context.MODE_PRIVATE);
+        token = UUID.fromString(sharedPreferences.getString("token", ""));
+        groupID = UUID.fromString(getActivity().getIntent().getStringExtra("groupID"));
+        listMembers = (ListView) myView.findViewById(R.id.listFriends);
+
+        getGroupMembers = new GetGroupMembers();
+        getGroupMembers.execute();
+        return myView;
+    }
+
+    public void setData(Response response) {
         try {
-            SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userdetails", Context.MODE_PRIVATE);
-            token = UUID.fromString(sharedPreferences.getString("token", ""));
-            groupID = UUID.fromString(getActivity().getIntent().getStringExtra("groupID"));
-            getGroupMembers = new GetGroupMembers();
-            getGroupMembers.execute();
-            result = getGroupMembers.get();
-            members = (Members[]) result.getItem();
+            members = (Members[]) response.getItem();
 
             data = new ArrayList<Map<String, String>>(
                     members.length);
 
             Map<String, String> m;
-            for (int i = 0; i < members.length; i++) {
+            for (Members member : members) {
                 m = new HashMap<String, String>();
-                m.put("name", members[i].getFirstName());
-                m.put("lastName", members[i].getLastName());
-                if (members[i].getPictureID() != null && members[i].getPictureID().compareTo(new UUID(0, 0)) != 0) {
-                    m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + members[i].getPictureID());
+                m.put("name", member.getFirstName());
+                m.put("lastName", member.getLastName());
+                if (member.getPictureID() != null && member.getPictureID().compareTo(new UUID(0, 0)) != 0) {
+                    m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + member.getPictureID());
                 }
                 data.add(m);
             }
@@ -76,7 +81,6 @@ public class GroupMembersFragment extends Fragment {
                     from, to);
 
             // определяем список и присваиваем ему адаптер
-            listMembers = (ListView) myView.findViewById(R.id.listFriends);
             listMembers.setAdapter(sAdapter);
             listMembers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public Exception ex;
@@ -101,14 +105,24 @@ public class GroupMembersFragment extends Fragment {
         } catch (Exception e) {
             this.exception = e;
         }
-        return myView;
     }
 
-    public class GetGroupMembers extends AsyncTask<UUID, Void, Response<Members[]>> {
+    public class GetGroupMembers extends AsyncTask<UUID, Void, Response> {
         public Exception ex;
 
         @Override
-        protected Response<Members[]> doInBackground(UUID... params) {
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            setData(response);
+        }
+
+        @Override
+        protected Response doInBackground(UUID... params) {
             try {
                 HttpClient httpclient = new DefaultHttpClient();
                 Gson gson = new Gson();

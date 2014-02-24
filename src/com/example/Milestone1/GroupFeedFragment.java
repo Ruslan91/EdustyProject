@@ -116,7 +116,7 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
 
     public void setData(Response response) {
         try {
-            feed = (GroupFeedRead[]) result.getItem();
+            feed = (GroupFeedRead[]) response.getItem();
             datetime = new Date[feed.length];
             data = new ArrayList<Map<String, String>>(
                     feed.length);

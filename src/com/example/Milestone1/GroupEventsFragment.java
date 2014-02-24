@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.example.Milestone1.Adapters.EventAdapter;
 import com.example.Milestone1.Classes.Event;
 import com.example.Milestone1.Classes.Response;
 import com.google.gson.Gson;
@@ -47,7 +48,7 @@ public class GroupEventsFragment extends Fragment {
     private static final String LOCATION = "location";
     private UUID token;
     private Response<Event[]> result;
-    private SimpleAdapter sAdapter;
+    private EventAdapter sAdapter;
     private Event[] events;
     private String[] titles, startTimes, endTimes, locations;
     private Date[] datetime, timedate;
@@ -72,22 +73,7 @@ public class GroupEventsFragment extends Fragment {
         GetGroupEvents getGroupEvents = new GetGroupEvents();
         getGroupEvents.execute();
         listEvents = (ListView) myView.findViewById(R.id.listEvents);
-        listEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public Exception exception;
 
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                try {
-                    eventID = data.get(position).get("eventID");
-                    Intent intent = new Intent(getActivity().getApplicationContext(), EventActivity.class);
-                    intent.putExtra("eventID", eventID);
-                    startActivity(intent);
-                    onDestroy();
-                } catch (Exception e) {
-                    this.exception = e;
-                }
-            }
-        });
 
         return myView;
     }
@@ -95,7 +81,7 @@ public class GroupEventsFragment extends Fragment {
     public void setData(Response response) {
         try {
             events = (Event[]) response.getItem();
-            datetime = new Date[events.length];
+            /*datetime = new Date[events.length];
             timedate = new Date[events.length];
             data = new ArrayList<HashMap<String, String>>(
                     events.length);
@@ -117,13 +103,24 @@ public class GroupEventsFragment extends Fragment {
                     return object1.get(STARTTIME).compareToIgnoreCase(object2.get(STARTTIME));
                 }
             };
-            Collections.sort(data, comparator);
-
-            sAdapter = new SimpleAdapter(getActivity(), data, R.layout.event_list_item,
-                    new String[]{TITLE, STARTTIME, ENDTIME, LOCATION},
-                    new int[]{R.id.tvTitle, R.id.tvStartTime, R.id.tvEndTime, R.id.tvLocation}
-            );
+            Collections.sort(data, comparator);*/
+            sAdapter = new EventAdapter(getActivity(), events);
             listEvents.setAdapter(sAdapter);
+            listEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public Exception exception;
+
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    try {
+                        Intent intent = new Intent(getActivity().getApplicationContext(), EventActivity.class);
+                        intent.putExtra("eventID", events[position].getEventID().toString());
+                        startActivity(intent);
+                        onDestroy();
+                    } catch (Exception e) {
+                        this.exception = e;
+                    }
+                }
+            });
         } catch (Exception e) {
 
         }

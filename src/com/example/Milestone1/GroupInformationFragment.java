@@ -67,7 +67,6 @@ public class GroupInformationFragment extends Fragment {
             groupID = UUID.fromString(getActivity().getIntent().getStringExtra("groupID"));
             getGroupInformation = new GetGroupInformation();
             getGroupInformation.execute();
-            //result = getGroupInformation.get();
 
         } catch (Exception e) {
             this.exception = e;
@@ -91,20 +90,25 @@ public class GroupInformationFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.group_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
-        groupInfo = (Groups) result.getItem();
-        menu.getItem(0).setVisible(false);
-        if (groupInfo.getMember() == Boolean.FALSE || groupInfo.getMember() == null) {
-            menu.getItem(1).setVisible(false);
-            menu.getItem(2).setTitle(R.string.join);
-            menu.getItem(2).setIcon(R.drawable.ic_action_accept);
-        } else {
-            menu.getItem(1).setVisible(true);
-            if (groupInfo.getIsOwner()) {
-                menu.getItem(2).setTitle(getString(R.string.delete));
-            } else menu.getItem(2).setTitle(R.string.leave);
-            menu.getItem(2).setIcon(R.drawable.ic_action_cancel);
+    }
+    public void onPrepareOptionsMenu(Menu menu) {
+        try {
+            groupInfo = (Groups) result.getItem();
+            menu.getItem(0).setVisible(false);
+            if (groupInfo.getMember() == Boolean.FALSE || groupInfo.getMember() == null) {
+                menu.getItem(1).setVisible(false);
+                menu.getItem(2).setTitle(R.string.join);
+                menu.getItem(2).setIcon(R.drawable.ic_action_accept);
+            } else {
+                menu.getItem(1).setVisible(true);
+                if (groupInfo.getIsOwner()) {
+                    menu.getItem(2).setTitle(getString(R.string.delete));
+                } else menu.getItem(2).setTitle(R.string.leave);
+                menu.getItem(2).setIcon(R.drawable.ic_action_cancel);
+            }
+        } catch (Exception e) {
+            this.exception = e;
         }
-
     }
 
     @Override
