@@ -39,8 +39,8 @@ public class CreateGroupActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_create);
         spFree = (Spinner) findViewById(R.id.spFree);
-        groupName = (EditText) findViewById(R.id.groupName);
-        groupDescription = (EditText) findViewById(R.id.groupDescription);
+        groupName = (EditText) findViewById(R.id.tvName);
+        groupDescription = (EditText) findViewById(R.id.tvDescription);
         groupWebSite = (EditText) findViewById(R.id.groupWebSite);
 
         SharedPreferences sharedPreferences = getSharedPreferences("userdetails", MODE_PRIVATE);

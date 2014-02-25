@@ -1,6 +1,7 @@
 package com.example.Milestone1;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -25,9 +26,6 @@ import org.apache.http.protocol.HTTP;
 
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 public class GroupsActivity extends Activity {
@@ -41,7 +39,6 @@ public class GroupsActivity extends Activity {
     ListView listGroups;
     Response result;
     Groups[] groups;
-    GetGroups getGroups;
     private UUID groupID;
     SharedPreferences sharedPreferences;
 
@@ -50,8 +47,8 @@ public class GroupsActivity extends Activity {
         setContentView(R.layout.listgroup);
         sharedPreferences = getSharedPreferences("userdetails", MODE_PRIVATE);
         token = UUID.fromString(sharedPreferences.getString("token", ""));
+        Bundle extras = getIntent().getExtras();
         try {
-            Bundle extras = getIntent().getExtras();
             if (extras != null) {
                 level = extras.getInt("level");
                 if (level != 0)
@@ -59,44 +56,18 @@ public class GroupsActivity extends Activity {
             } else {
                 level = 0;
             }
-
-            getGroups = new GetGroups();
-            getGroups.execute();
-            result = getGroups.get();
-            groups = (Groups[]) result.getItem();
-            String[] names = new String[groups.length];
-            String[] descriptions = new String[groups.length];
-            String[] groupsID = new String[groups.length];
-            String[] pictures = new String[groups.length];
-            for (int i = 0; i < groups.length; i++) {
-                names[i] = groups[i].Name;
-                descriptions[i] = groups[i].Description;
-                groupsID[i] = groups[i].getId().toString();
-                pictures[i] = getString(R.string.url) + "File?fileID=" + groups[i].getPictureID().toString() + "&token=" + token;
-            }
-
-            ArrayList<Map<String, String>> data = new ArrayList<Map<String, String>>(
-                    groups.length);
-            Map<String, String> m;
-            for (int i = 0; i < groups.length; i++) {
-                m = new HashMap<String, String>();
-                m.put(ATTRIBUTE_NAME_TEXTN, names[i]);
-                m.put(ATTRIBUTE_NAME_TEXTD, descriptions[i]);
-                m.put(ATTRIBUTE_NAME_GROUPID, groupsID[i]);
-                m.put("picture", pictures[i]);
-                m.put("level", String.valueOf(level));
-                m.put("layout", "groups");
-                data.add(m);
-            }
-
-            String[] from = {ATTRIBUTE_NAME_TEXTN, ATTRIBUTE_NAME_TEXTD};
-
-            int[] to = {R.id.groupName, R.id.groupDescription};
-
-            GroupsAdapter sAdapter = new GroupsAdapter(this, data, R.layout.groups_list_item,
-                    from, to);
-
             listGroups = (ListView) findViewById(R.id.listGroups);
+            new GetGroups().execute();
+
+        } catch (Exception e) {
+            this.exception = e;
+        }
+    }
+
+    public void setData(Response response) {
+        try {
+            groups = (Groups[]) response.getItem();
+            GroupsAdapter sAdapter = new GroupsAdapter(GroupsActivity.this, groups, "groups");
             listGroups.setAdapter(sAdapter);
             sAdapter.notifyDataSetChanged();
             listGroups.setClickable(true);
@@ -108,18 +79,17 @@ public class GroupsActivity extends Activity {
 
                     try {
                         groupID = groups[position].getId();
-                        Intent intent = new Intent(GroupsActivity.this.getApplicationContext(), GroupFragmentActivity.class);
+                        Intent intent = new Intent(GroupsActivity.this, GroupFragmentActivity.class);
                         intent.putExtra("groupID", groupID.toString());
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        /*SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("groupID", groupID.toString());
-                        editor.commit();
+                        editor.commit();*/
                         startActivity(intent);
                     } catch (Exception e) {
                         this.ex = e;
                     }
                 }
             });
-
         } catch (Exception e) {
             this.exception = e;
         }
@@ -161,6 +131,21 @@ public class GroupsActivity extends Activity {
 
     public class GetGroups extends AsyncTask<Void, Void, Response> {
         public Exception ex;
+        ProgressDialog progressDialog = new ProgressDialog(GroupsActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            setData(response);
+            progressDialog.dismiss();
+        }
 
         @Override
         protected Response doInBackground(Void... params) {

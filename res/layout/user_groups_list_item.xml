@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/icon"
         android:contentDescription="icon"
-        android:layout_margin="5dp"></ImageView>
+        android:layout_margin="5dp"/>
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -22,20 +22,20 @@
         android:layout_margin="5dp">
 
         <TextView
-            android:id="@+id/groupName"
+            android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Group Name"
             android:textSize="20sp"
             android:gravity="center_horizontal"
             android:layout_gravity="center_vertical"
-            android:layout_margin="5dp"></TextView>
+            android:layout_margin="5dp"/>
 
         <TextView
-            android:id="@+id/groupDescription"
+            android:id="@+id/tvDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Description"
-            android:layout_margin="5dp"></TextView>
+            android:layout_margin="5dp"/>
     </LinearLayout>
 </LinearLayout>

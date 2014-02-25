@@ -239,6 +239,9 @@ public class CreateEventActivity extends Activity {
 
     public void getData() {
         try {
+            createEvent = new CreateEvent();
+            createEvent.setToken(token);
+            //createEvent.setGroupID(groupID);
             if (etTitle.getText().toString().equals("")) {
                 Toast.makeText(this, getString(R.string.please_set_text), Toast.LENGTH_SHORT).show();
                 //item.setChecked(false);
@@ -285,9 +288,6 @@ public class CreateEventActivity extends Activity {
         boolean ret = false;
         if (item.getItemId() == R.id.action_save) {
             ret = true;
-            createEvent = new CreateEvent();
-            createEvent.setToken(token);
-            createEvent.setGroupID(groupID);
             getData();
         }
         return ret;

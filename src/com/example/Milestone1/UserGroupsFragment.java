@@ -44,7 +44,7 @@ public class UserGroupsFragment extends Fragment {
     public Exception exception;
     ListView listGroups;
     UUID token;
-    Response result;
+    public Response result;
     Groups[] groups;
     GetUserGroups getUserGroups;
     public UUID groupID;
@@ -65,27 +65,7 @@ public class UserGroupsFragment extends Fragment {
             getUserGroups = new GetUserGroups();
             getUserGroups.execute();
             listGroups = (ListView) myView.findViewById(R.id.listGroups);
-            listGroups.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                public Exception exception;
-
-                public void onItemClick(AdapterView<?> parent, View view,
-                                        int position, long id) {
-                    // When clicked, show a toast with the TextView text;
-                    int pos;
-
-                    try {
-                        pos = position;
-                        groupID = groups[pos].Id;
-                        Intent intent = new Intent(getActivity().getApplicationContext(), GroupFragmentActivity.class);
-                        intent.putExtra("groupID", groupID.toString());
-                        intent.putExtra("groupOwner", groups[position].getIsOwner());
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        this.exception = e;
-                    }
-                }
-            });
         } catch (Exception e) {
             this.exception = e;
         }
@@ -97,7 +77,7 @@ public class UserGroupsFragment extends Fragment {
         try {
             groups = (Groups[]) response.getItem();
 
-            ArrayList<Map<String, String>> data = new ArrayList<>(
+            /*ArrayList<Map<String, String>> data = new ArrayList<>(
                     groups.length);
             data.clear();
             for (Groups group : groups) {
@@ -109,12 +89,26 @@ public class UserGroupsFragment extends Fragment {
                 }
                 m.put("layout", "user_groups");
                 data.add(m);
-            }
-            SimpleAdapter sAdapter = new GroupsAdapter(getActivity(), data, R.layout.user_groups_list_item,
-                    new String[]{ATTRIBUTE_NAME_TEXTN, ATTRIBUTE_NAME_TEXTD, ATTRIBUTE_NAME_IMAGE},
-                    new int[]{R.id.groupName, R.id.groupDescription, R.id.groupImage}
-            );
+            }*/
+            GroupsAdapter sAdapter = new GroupsAdapter(getActivity(), groups, "user_groups");
             listGroups.setAdapter(sAdapter);
+            listGroups.setClickable(true);
+            listGroups.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                public Exception exception;
+
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    try {
+                        Intent intent = new Intent(getActivity().getApplicationContext(), GroupFragmentActivity.class);
+                        intent.putExtra("groupID", groups[position].getId().toString());
+                        intent.putExtra("groupOwner", groups[position].getIsOwner());
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        this.exception = e;
+                    }
+                }
+            });
         } catch (Exception e) {
             this.exception = e;
         }
