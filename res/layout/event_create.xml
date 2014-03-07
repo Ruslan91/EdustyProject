@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@android:style/Widget.Holo.Spinner"
-            android:hint="Date"
+            android:hint="@string/date"
             android:onClick="onClickStartDatePick"
             android:id="@+id/tvDate"
             android:layout_weight="2"
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             style="@android:style/Widget.Holo.Spinner"
-            android:hint="Time"
+            android:hint="@string/time"
             android:onClick="onClickStartTimePick"
             android:id="@+id/tvTime"
             android:layout_weight="1" />
@@ -117,7 +117,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/spInterval"
         android:entries="@array/intervals"
-        android:layout_column="0"
         android:layout_margin="5dp"
         android:spinnerMode="dialog" />
 
@@ -125,7 +124,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spGroup"
-        android:layout_column="0"
         android:spinnerMode="dialog" />
 
 </TableLayout>

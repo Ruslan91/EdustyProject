@@ -137,24 +137,20 @@ public class EventActivity extends Activity {
             intent.putExtra("location", event.getLocation());
             intent.putExtra("interval", event.getTimeInterval());
             intent.putExtra("description", event.getDescription());
+            intent.putExtra("groupID", event.getGroupID().toString());
             intent.putExtra("eventID", eventID.toString());
 
             startActivity(intent);
         }
 
-            if (item.getItemId() == R.id.action_delete) {
-                try {
-                    DeleteEvent eventDel = new DeleteEvent();
-                    eventDel.execute();
-                    ret = true;
-                    Intent intent = new Intent(this, MainActivity.class);
-                    intent.putExtra("tab", 1);
-                    startActivity(intent);
-                    onDestroy();
-                } catch (Exception e) {
-                    this.exception = e;
-                }
+        if (item.getItemId() == R.id.action_delete) {
+            try {
+                ret = true;
+                new DeleteEvent().execute();
+            } catch (Exception e) {
+                this.exception = e;
             }
+        }
         return ret;
     }
 
@@ -197,8 +193,26 @@ public class EventActivity extends Activity {
     }
 
     public class DeleteEvent extends AsyncTask<Void, Void, Response> {
-
+        ProgressDialog progressDialog = new ProgressDialog(getApplicationContext());
         private Exception ex;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            if (response.getItem().equals(true)) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("tab", 1);
+                startActivity(intent);
+                finish();
+            }
+        }
 
         protected Response doInBackground(Void... params) {
 

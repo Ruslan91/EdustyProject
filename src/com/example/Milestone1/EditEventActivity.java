@@ -3,6 +3,7 @@ package com.example.Milestone1;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,7 +19,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.example.Milestone1.Classes.Event;
 import com.example.Milestone1.Classes.Response;
@@ -36,7 +36,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Руслан on 26.09.13.
@@ -84,6 +83,7 @@ public class EditEventActivity extends Activity {
     private Response success;
     private UUID eventID;
     private Exception exception;
+    private UUID groupID;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,13 +100,13 @@ public class EditEventActivity extends Activity {
                 interval = extras.getInt("interval");
                 location = extras.getString("location");
                 description = extras.getString("description");
+                groupID = UUID.fromString(extras.getString("groupID"));
                 eventID = UUID.fromString(extras.getString("eventID"));
             }
         } catch (Exception e) {
 
         }
 
-        //btnApply = (Button) findViewById(R.id.btnApply);
         spInterval = (Spinner) findViewById(R.id.spInterval);
         cbAllDay = (CheckBox) findViewById(R.id.cbAllDay);
 
@@ -264,38 +264,31 @@ public class EditEventActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean ret = false;
         if (item.getItemId() == R.id.action_apply) {
-            eventEdit = new Event();
-            eventEdit.setToken(token);
-            eventEdit.setEventID(eventID);
-            eventEdit.setTitle(etTitle.getText().toString());
-            eventEdit.setDescription(etDescription.getText().toString());
-            eventEdit.setLocation(etLocation.getText().toString());
-            if (spInterval.getSelectedItemPosition() != 7) {
-                eventEdit.setTimeInterval(spInterval.getSelectedItemPosition());
-            } else eventEdit.setTimeInterval(null);
-            eventEdit.setStartTime(tvDate.getText().toString() + "T" + tvTime.getText().toString());
-            if (years <= endYears) {
-                eventEdit.setEndDate(tvEndDate.getText().toString() + "T" + tvEndTime.getText().toString());
-            } else {
-                Toast.makeText(this, "Edit date!", Toast.LENGTH_SHORT);
-            }
-            eventEdit.setEndTime(tvEndDate.getText().toString() + "T" + tvEndTime.getText().toString());
-
-            EventEdit event = new EventEdit();
-            event.execute();
             try {
-                success = event.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("tab", 1);
-            startActivity(intent);
-            finish();
-        }
+                eventEdit = new Event();
+                eventEdit.setToken(token);
+                eventEdit.setEventID(eventID);
+                eventEdit.setGroupID(groupID);
+                eventEdit.setTitle(etTitle.getText().toString());
+                eventEdit.setDescription(etDescription.getText().toString());
+                eventEdit.setLocation(etLocation.getText().toString());
+                if (spInterval.getSelectedItemPosition() != 7) {
+                    eventEdit.setTimeInterval(spInterval.getSelectedItemPosition());
+                } else eventEdit.setTimeInterval(null);
+                eventEdit.setStartTime(tvDate.getText().toString() + "T" + tvTime.getText().toString());
+            /*if (years <= endYears) {*/
+                eventEdit.setEndDate(tvEndDate.getText().toString() + "T" + tvEndTime.getText().toString());
+            /*} else {
+                Toast.makeText(this, "Edit date!", Toast.LENGTH_SHORT);
+            }*/
+                eventEdit.setEndTime(tvEndDate.getText().toString() + "T" + tvEndTime.getText().toString());
 
+                new EventEdit().execute();
+            } catch (Exception e) {
+                this.exception = e;
+            }
+
+        }
         return ret;
 
     }
@@ -330,8 +323,27 @@ public class EditEventActivity extends Activity {
     }*/
 
     public class EventEdit extends AsyncTask<Void, Void, Response> {
+        ProgressDialog progressDialog = new ProgressDialog(getApplicationContext());
 
         private Exception ex;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            if (response.getItem().equals(true)) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("tab", 1);
+                startActivity(intent);
+                finish();
+            }
+        }
 
         protected Response doInBackground(Void... params) {
 
