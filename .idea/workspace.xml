@@ -6,6 +6,10 @@
         <option name="name" value="app: com.example.Milestone1" />
         <option name="packageNamePattern" value="com.example.Milestone1" />
       </filter>
+      <filter>
+        <option name="name" value="app: com.example.Edusty" />
+        <option name="packageNamePattern" value="com.example.Edusty" />
+      </filter>
     </filters>
   </component>
   <component name="AndroidDesignerProfile">
@@ -68,18 +72,31 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ae249ee-c105-4aa8-8f17-5f27639f95c9" name="Default" comment="first">
+    <list default="true" id="1ae249ee-c105-4aa8-8f17-5f27639f95c9" name="Default" comment="apk work, menu files updates, search complete">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gen/com/example/Milestone1/Manifest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gen/com/example/Milestone1/R.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Руслан\AndroidStudioProjects\EdustyProject\res\menu\create_event.xml" afterPath="" />
+      <change type="MOVED" beforePath="C:\Users\Руслан\AndroidStudioProjects\EdustyProject\res\menu\profile.xml" afterPath="$PROJECT_DIR$/res/menu/profile_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/example/Milestone1/BuildConfig.java" afterPath="$PROJECT_DIR$/gen/com/example/Milestone1/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Milestone1/CreateEventActivity.java" afterPath="$PROJECT_DIR$/src/com/example/Milestone1/CreateEventActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Milestone1/CreateGroupActivity.java" afterPath="$PROJECT_DIR$/src/com/example/Milestone1/CreateGroupActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Milestone1/EditGroupActivity.java" afterPath="$PROJECT_DIR$/src/com/example/Milestone1/EditGroupActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Milestone1/GroupsActivity.java" afterPath="$PROJECT_DIR$/src/com/example/Milestone1/GroupsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Milestone1/Adapters/GroupsAdapter.java" afterPath="$PROJECT_DIR$/src/com/example/Milestone1/Adapters/GroupsAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Milestone1/UserGroupsFragment.java" afterPath="$PROJECT_DIR$/src/com/example/Milestone1/UserGroupsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/group_create.xml" afterPath="$PROJECT_DIR$/res/layout/group_create.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/group_edit.xml" afterPath="$PROJECT_DIR$/res/layout/group_edit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/groups_list_item.xml" afterPath="$PROJECT_DIR$/res/layout/groups_list_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/user_groups_list_item.xml" afterPath="$PROJECT_DIR$/res/layout/user_groups_list_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/Edusty.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Edusty.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/create_journal_menu.xml" afterPath="$PROJECT_DIR$/res/menu/create_journal_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/edit_menu.xml" afterPath="$PROJECT_DIR$/res/menu/edit_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/event_menu.xml" afterPath="$PROJECT_DIR$/res/menu/event_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/feed_menu.xml" afterPath="$PROJECT_DIR$/res/menu/feed_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/group_information.xml" afterPath="$PROJECT_DIR$/res/layout/group_information.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/group_menu.xml" afterPath="$PROJECT_DIR$/res/menu/group_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/main_menu.xml" afterPath="$PROJECT_DIR$/res/menu/main_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/marks_menu.xml" afterPath="$PROJECT_DIR$/res/menu/marks_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/user_courses_menu.xml" afterPath="$PROJECT_DIR$/res/menu/user_courses_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/user_events_menu.xml" afterPath="$PROJECT_DIR$/res/menu/user_events_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/user_friends_menu.xml" afterPath="$PROJECT_DIR$/res/menu/user_friends_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/user_journals_menu.xml" afterPath="$PROJECT_DIR$/res/menu/user_journals_menu.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="98a9ce75-3876-4722-a72b-c89b68c116b0" name="Failed commit: Default" comment="test1" />
@@ -142,7 +159,7 @@
       </breakpoint>
     </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/com/example/Milestone1/SearchActivity.java" line="114" class="com.example.Milestone1.SearchActivity$2" package="com.example.Milestone1">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/Milestone1/SearchActivity.java" line="107" class="com.example.Milestone1.SearchActivity$2" package="com.example.Milestone1">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -157,7 +174,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/example/Milestone1/UserFeedFragment.java" line="166" class="com.example.Milestone1.UserFeedFragment" package="com.example.Milestone1">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/Milestone1/UserFeedFragment.java" line="134" class="com.example.Milestone1.UserFeedFragment" package="com.example.Milestone1">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -172,7 +189,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/example/Milestone1/UserFeedFragment.java" line="204" class="com.example.Milestone1.UserFeedFragment" package="com.example.Milestone1">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/Milestone1/UserFeedFragment.java" line="172" class="com.example.Milestone1.UserFeedFragment" package="com.example.Milestone1">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -187,7 +204,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/example/Milestone1/GroupInformationFragment.java" line="251" class="com.example.Milestone1.GroupInformationFragment.RemoveGroup" package="com.example.Milestone1">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/Milestone1/GroupInformationFragment.java" line="249" class="com.example.Milestone1.GroupInformationFragment.RemoveGroup" package="com.example.Milestone1">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -217,36 +234,6 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/example/Milestone1/CreateEventActivity.java" line="331" class="com.example.Milestone1.CreateEventActivity.CreateUserEvent" package="com.example.Milestone1">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/example/Milestone1/CreateEventActivity.java" line="315" class="com.example.Milestone1.CreateEventActivity.CreateUserEvent" package="com.example.Milestone1">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
     </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
@@ -256,50 +243,7 @@
     <favorites_list name="Milestone1" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="UserFriendsFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/UserFriendsFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="42" selection-start="2670" selection-end="2670" vertical-scroll-proportion="9.52" vertical-offset="918" max-vertical-offset="2312">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EventAdapter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/Adapters/EventAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="34" selection-start="1148" selection-end="1148" vertical-scroll-proportion="9.08" vertical-offset="907" max-vertical-offset="1462">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateEventActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/CreateEventActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="316" column="30" selection-start="11755" selection-end="11755" vertical-scroll-proportion="0.23684211" vertical-offset="4430" max-vertical-offset="5763">
-              <folding>
-                <element signature="e#8824#8859#0" expanded="true" />
-                <element signature="e#12450#12473#0" expanded="true" />
-                <element signature="e#13697#13720#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Activity.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/app/Activity.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="174" column="0" selection-start="6969" selection-end="6969" vertical-scroll-proportion="-2.48" vertical-offset="2879" max-vertical-offset="7565">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -335,32 +279,10 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/res/layout/license.xml" />
-        <option value="$PROJECT_DIR$/res/layout/event.xml" />
-        <option value="$PROJECT_DIR$/gen/com/example/Milestone1/Manifest.java" />
-        <option value="$PROJECT_DIR$/gen/com/example/Milestone1/R.java" />
-        <option value="$PROJECT_DIR$/proguard_logs/dump.txt" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/Classes/userAuthorization.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/CreateCourseActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/RegistrationActivity.java" />
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/res/values-ru/strings.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/EditMarksJournalActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/UserEditActivity.java" />
-        <option value="$PROJECT_DIR$/gen/com/example/Milestone1/BuildConfig.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/Classes/Courses.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/UserCoursesFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/Classes/Journals.java" />
-        <option value="$PROJECT_DIR$/res/menu/journal_menu.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/CreateJournalActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/JournalActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/CreateMarksJournalActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/UserJournalsFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/ServerConnect/GetStatusCode.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/UserFeedFragment.java" />
         <option value="$PROJECT_DIR$/res/menu/user_groups_menu.xml" />
-        <option value="$PROJECT_DIR$/res/menu/main_menu.xml" />
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/MainActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/search.xml" />
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/Classes/UserResult.java" />
@@ -369,22 +291,45 @@
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/Classes/SearchResult.java" />
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/Adapters/SearchAdapter.java" />
         <option value="$PROJECT_DIR$/res/layout/search_list_item.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/UserFriendsFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/SearchActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/AuthorizationActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/UserActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/GroupMembersFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/GroupFeedFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/GroupInformationFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/EventActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/GroupEventsFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/UserEventsFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/Adapters/EventAdapter.java" />
         <option value="$PROJECT_DIR$/res/layout/user_groups_list_item.xml" />
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/UserGroupsFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Milestone1/GroupsActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/Adapters/GroupsAdapter.java" />
+        <option value="$PROJECT_DIR$/res/menu/profile.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/Milestone1/UserFriendsFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Milestone1/GroupMembersFragment.java" />
+        <option value="$PROJECT_DIR$/res/layout/group_information.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/Milestone1/GroupInformationFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Milestone1/UserFeedFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Milestone1/GroupFeedFragment.java" />
+        <option value="$PROJECT_DIR$/res/menu/create_journal_menu.xml" />
+        <option value="$PROJECT_DIR$/res/menu/create_event.xml" />
+        <option value="$PROJECT_DIR$/res/menu/edit_menu.xml" />
+        <option value="$PROJECT_DIR$/res/menu/event_menu.xml" />
+        <option value="$PROJECT_DIR$/res/menu/feed_menu.xml" />
+        <option value="$PROJECT_DIR$/res/menu/group_menu.xml" />
+        <option value="$PROJECT_DIR$/res/menu/groups_menu.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/Milestone1/GroupsActivity.java" />
+        <option value="$PROJECT_DIR$/res/menu/main_menu.xml" />
+        <option value="$PROJECT_DIR$/res/menu/marks_menu.xml" />
+        <option value="$PROJECT_DIR$/res/menu/profile_edit_menu.xml" />
+        <option value="$PROJECT_DIR$/res/menu/profile_menu.xml" />
+        <option value="$PROJECT_DIR$/res/menu/user_courses_menu.xml" />
+        <option value="$PROJECT_DIR$/res/menu/user_events_menu.xml" />
+        <option value="$PROJECT_DIR$/res/menu/user_friends_menu.xml" />
+        <option value="$PROJECT_DIR$/res/menu/user_journals_menu.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/Milestone1/UserActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Milestone1/UserEditActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Milestone1/SearchActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Milestone1/CreateCourseActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/Milestone1/CreateEventActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Milestone1/CreateGroupActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Milestone1/EditGroupActivity.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -454,47 +399,27 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Milestone1" />
+              <option name="myItemId" value="Edusty" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Milestone1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EdustyProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Milestone1" />
+              <option name="myItemId" value="Edusty" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="EdustyProject" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Milestone1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Milestone1" />
+              <option name="myItemId" value="Edusty" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -509,14 +434,10 @@
               <option name="myItemId" value="Milestone1" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Adapters" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Milestone1" />
+              <option name="myItemId" value="Edusty" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -530,7 +451,7 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Milestone1" />
+              <option name="myItemId" value="Edusty" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -542,8 +463,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
+              <option name="myItemId" value="menu" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Edusty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Edusty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -558,8 +503,8 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="115" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="ExportedApkPath" value="C:\Users\Руслан\AndroidAPK's\Edusty.apk" />
-    <property name="ExportedModule" value="Milestone1" />
+    <property name="ExportedApkPath" value="C:\Users\Руслан\AndroidStudioProjects\EdustyProject\Edusty.apk" />
+    <property name="ExportedModule" value="Edusty" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="84" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="505" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="417" />
@@ -576,8 +521,8 @@
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="AndroidRunProguardForReleaseBuild" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="AndroidRunProguardForReleaseBuild" value="false" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="LayoutCode.rearrangeEntriesXML" value="false" />
@@ -602,7 +547,7 @@
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.STATE" value="ToolWindow" />
     <property name="AndroidLayoutSelectedEditor" value="text-editor" />
     <property name="LayoutCode.rearrangeEntriesJava" value="false" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.56.101:5555" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="015d256875382216" />
     <property name="Groovy.Shell.LastModule" value="Milestone1" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteToolWindowManager.STATE" value="ToolWindow" />
@@ -772,7 +717,7 @@
       <method />
     </configuration>
     <configuration default="false" name="Milestone1" type="AndroidRunConfigurationType" factoryName="Android Application">
-      <module name="Milestone1" />
+      <module name="Edusty" />
       <option name="ACTIVITY_CLASS" value="" />
       <option name="MODE" value="default_activity" />
       <option name="DEPLOY" value="true" />
@@ -935,7 +880,43 @@
       <created>1392720642912</created>
       <updated>1392720642912</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="apk work, menu files updates, search complete">
+      <created>1394175751442</created>
+      <updated>1394175751442</updated>
+    </task>
+    <task id="LOCAL-00027" summary="apk work, menu files updates, search complete">
+      <created>1394175765562</created>
+      <updated>1394175765562</updated>
+    </task>
+    <task id="LOCAL-00028" summary="apk work, menu files updates, search complete">
+      <created>1394175775679</created>
+      <updated>1394175775679</updated>
+    </task>
+    <task id="LOCAL-00029" summary="apk work, menu files updates, search complete">
+      <created>1394176027372</created>
+      <updated>1394176027372</updated>
+    </task>
+    <task id="LOCAL-00030" summary="apk work, menu files updates, search complete">
+      <created>1394176046688</created>
+      <updated>1394176046688</updated>
+    </task>
+    <task id="LOCAL-00031" summary="apk work, menu files updates, search complete">
+      <created>1394176054993</created>
+      <updated>1394176054993</updated>
+    </task>
+    <task id="LOCAL-00032" summary="apk work, menu files updates, search complete">
+      <created>1394176085471</created>
+      <updated>1394176085471</updated>
+    </task>
+    <task id="LOCAL-00033" summary="apk work, menu files updates, search complete">
+      <created>1394176093657</created>
+      <updated>1394176093657</updated>
+    </task>
+    <task id="LOCAL-00034" summary="apk work, menu files updates, search complete">
+      <created>1394176099786</created>
+      <updated>1394176099786</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -965,10 +946,9 @@
     <frame x="54" y="-8" width="1634" height="1066" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24492386" sideWeight="0.4682676" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24492386" sideWeight="0.46884736" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32017544" sideWeight="0.5031726" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21637055" sideWeight="0.71565497" order="1" side_tool="false" content_ui="tabs" x="72" y="315" width="193" height="643" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3282989" sideWeight="0.76555026" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21538462" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3607456" sideWeight="0.7645939" order="3" side_tool="false" content_ui="tabs" />
@@ -984,7 +964,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24554707" sideWeight="0.46263736" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24492386" sideWeight="0.53001714" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24492386" sideWeight="0.529595" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28179824" sideWeight="0.5742386" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.32951653" sideWeight="0.6938326" order="12" side_tool="false" content_ui="tabs" x="700" y="233" width="684" height="207" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
@@ -999,6 +979,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3282989" sideWeight="0.76555026" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32488987" sideWeight="0.49265605" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="RESTClient" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32819384" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1071,7 +1052,8 @@
     <MESSAGE value="test1" />
     <MESSAGE value="edit authorization activity" />
     <MESSAGE value="first" />
-    <option name="LAST_COMMIT_MESSAGE" value="first" />
+    <MESSAGE value="apk work, menu files updates, search complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="apk work, menu files updates, search complete" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1087,425 +1069,367 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/LicenseActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="202" selection-end="202" vertical-scroll-proportion="-0.61206895" vertical-offset="474" max-vertical-offset="1411">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/menu/main_menu.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="38" selection-start="153" selection-end="153" vertical-scroll-proportion="-2.04" vertical-offset="0" max-vertical-offset="425" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/Classes/ListSearchResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="377" selection-end="377" vertical-scroll-proportion="0.4793233" vertical-offset="0" max-vertical-offset="532" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/Classes/UserResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="4" selection-start="92" selection-end="189" vertical-scroll-proportion="-2.04" vertical-offset="0" max-vertical-offset="255" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/Classes/GroupResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="19" selection-start="135" selection-end="191" vertical-scroll-proportion="-5.44" vertical-offset="0" max-vertical-offset="289" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/CreateMarksJournalActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="52" selection-start="5892" selection-end="5892" vertical-scroll-proportion="-3.177264" vertical-offset="3366" max-vertical-offset="4063">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/Classes/SearchResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="17" selection-start="165" selection-end="165" vertical-scroll-proportion="0.15977444" vertical-offset="68" max-vertical-offset="1853">
-          <folding>
-            <element signature="e#358#359#0" expanded="false" />
-            <element signature="e#383#384#0" expanded="false" />
-            <element signature="e#417#418#0" expanded="false" />
-            <element signature="e#445#446#0" expanded="false" />
-            <element signature="e#478#479#0" expanded="false" />
-            <element signature="e#507#508#0" expanded="false" />
-            <element signature="e#551#552#0" expanded="false" />
-            <element signature="e#587#588#0" expanded="false" />
-            <element signature="e#623#624#0" expanded="false" />
-            <element signature="e#655#656#0" expanded="false" />
-            <element signature="e#705#706#0" expanded="false" />
-            <element signature="e#742#743#0" expanded="false" />
-            <element signature="e#777#778#0" expanded="false" />
-            <element signature="e#808#809#0" expanded="false" />
-            <element signature="e#856#857#0" expanded="false" />
-            <element signature="e#891#892#0" expanded="false" />
-            <element signature="e#922#923#0" expanded="false" />
-            <element signature="e#949#950#0" expanded="false" />
-            <element signature="e#989#990#0" expanded="false" />
-            <element signature="e#1016#1017#0" expanded="false" />
-            <element signature="e#1050#1051#0" expanded="false" />
-            <element signature="e#1080#1081#0" expanded="false" />
-            <element signature="e#1126#1127#0" expanded="false" />
-            <element signature="e#1159#1160#0" expanded="false" />
-            <element signature="e#1195#1196#0" expanded="false" />
-            <element signature="e#1227#1228#0" expanded="false" />
-            <element signature="e#1277#1278#0" expanded="false" />
-            <element signature="e#1314#1315#0" expanded="false" />
-            <element signature="e#1345#1346#0" expanded="false" />
-            <element signature="e#1372#1373#0" expanded="false" />
-            <element signature="e#1412#1413#0" expanded="false" />
-            <element signature="e#1439#1440#0" expanded="false" />
-            <element signature="e#1477#1478#0" expanded="false" />
-            <element signature="e#1511#1512#0" expanded="false" />
-            <element signature="e#1565#1566#0" expanded="false" />
-            <element signature="e#1606#1607#0" expanded="false" />
-            <element signature="e#1640#1641#0" expanded="false" />
-            <element signature="e#1670#1671#0" expanded="false" />
-            <element signature="e#1716#1717#0" expanded="false" />
-            <element signature="e#1749#1750#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/EditMarksJournalActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="46" selection-start="2928" selection-end="2928" vertical-scroll-proportion="-8.72" vertical-offset="632" max-vertical-offset="3774">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/Adapters/CreateMarksJournalAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="17" selection-start="2578" selection-end="2578" vertical-scroll-proportion="-29.24" vertical-offset="510" max-vertical-offset="3281">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/Adapters/EditMarksJournalAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="46" selection-start="2071" selection-end="2071" vertical-scroll-proportion="-24.0" vertical-offset="522" max-vertical-offset="3706">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/widget/AbsListView.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5440" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/search.xml">
-      <provider editor-type-id="text-editor">
-        <state line="31" column="46" selection-start="1197" selection-end="1197" vertical-scroll-proportion="0.0" vertical-offset="527" max-vertical-offset="1037">
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/search_list_item.xml">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/SearchActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="0" selection-start="4435" selection-end="4435" vertical-scroll-proportion="0.0" vertical-offset="1972" max-vertical-offset="2295">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/profile.xml">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1258">
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/menu/profile.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="44" selection-start="862" selection-end="862" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="510" />
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/app/Instrumentation.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="16" selection-start="5963" selection-end="5963" vertical-scroll-proportion="0.0" vertical-offset="1904" max-vertical-offset="2737" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values-ru/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="18" selection-start="70" selection-end="70" vertical-scroll-proportion="0.09586466" vertical-offset="0" max-vertical-offset="2516">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="18" selection-start="69" selection-end="69" vertical-scroll-proportion="0.06390978" vertical-offset="0" max-vertical-offset="2193">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/UserCoursesFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="183" column="64" selection-start="6584" selection-end="6584" vertical-scroll-proportion="0.0" vertical-offset="3111" max-vertical-offset="3451">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/EditGroupActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="13" selection-start="1060" selection-end="1060" vertical-scroll-proportion="-3.2274437" vertical-offset="1836" max-vertical-offset="2397">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/GroupMembersFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="28" selection-start="4401" selection-end="4401" vertical-scroll-proportion="2.7653847" vertical-offset="109" max-vertical-offset="2023">
-          <folding>
-            <element signature="e#2617#2640#0" expanded="false" />
-            <element signature="e#4662#4685#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/UserFeedFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="177" column="43" selection-start="7329" selection-end="7329" vertical-scroll-proportion="10.2" vertical-offset="2550" max-vertical-offset="6086">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/AuthorizationActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="18" selection-start="3718" selection-end="3718" vertical-scroll-proportion="-47.12" vertical-offset="131" max-vertical-offset="1836">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/event_list_item.xml">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1768">
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="43" selection-start="3198" selection-end="3198" vertical-scroll-proportion="1.7800338" vertical-offset="70" max-vertical-offset="1360">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/GroupFragmentActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="13" selection-start="444" selection-end="444" vertical-scroll-proportion="0.0067681894" vertical-offset="64" max-vertical-offset="680">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/UserEventsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="0" selection-start="1587" selection-end="1587" vertical-scroll-proportion="-9.52" vertical-offset="0" max-vertical-offset="2074">
-          <folding>
-            <element signature="e#4751#4774#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/EventActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="78" selection-start="5923" selection-end="5923" vertical-scroll-proportion="3.825719" vertical-offset="0" max-vertical-offset="3366">
-          <folding>
-            <element signature="e#7602#7625#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/GroupFeedFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="188" column="12" selection-start="7353" selection-end="7353" vertical-scroll-proportion="-29.64" vertical-offset="1690" max-vertical-offset="5627">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/GroupEventsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="134" column="28" selection-start="5425" selection-end="5425" vertical-scroll-proportion="0.6635338" vertical-offset="1313" max-vertical-offset="2567">
-          <folding>
-            <element signature="e#6408#6431#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/Adapters/SearchAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="69" selection-start="2074" selection-end="2131" vertical-scroll-proportion="1.0917537" vertical-offset="46" max-vertical-offset="1258">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/Adapters/GroupsTitleAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="13" selection-start="532" selection-end="532" vertical-scroll-proportion="-2.72" vertical-offset="0" max-vertical-offset="680">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/user_groups_list_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="43" selection-start="921" selection-end="921" vertical-scroll-proportion="0.52870816" vertical-offset="0" max-vertical-offset="836">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/GroupInformationFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="91" selection-start="2618" selection-end="2618" vertical-scroll-proportion="0.7593985" vertical-offset="140" max-vertical-offset="3910">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/os/AsyncTask.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="952">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/os/Handler.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="16" selection-start="564" selection-end="564" vertical-scroll-proportion="-7.4" vertical-offset="87" max-vertical-offset="1411">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/os/Looper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="37" selection-start="662" selection-end="662" vertical-scroll-proportion="-10.72" vertical-offset="72" max-vertical-offset="629">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/Adapters/FeedAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="5" selection-start="2024" selection-end="2024" vertical-scroll-proportion="1.9172932" vertical-offset="0" max-vertical-offset="1802">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/groups_list_item.xml">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/view/Choreographer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="557">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/widget/ListView.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="7" selection-start="4708" selection-end="4708" vertical-scroll-proportion="-41.48" vertical-offset="816" max-vertical-offset="2278">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/UserGroupsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="79" column="28" selection-start="2511" selection-end="2511" vertical-scroll-proportion="-1.1729324" vertical-offset="1389" max-vertical-offset="2584">
           <folding>
-            <element signature="e#5016#5039#0" expanded="true" />
+            <element signature="e#5016#5039#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/Adapters/GroupsAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="44" selection-start="2441" selection-end="2441" vertical-scroll-proportion="2.0770676" vertical-offset="0" max-vertical-offset="1666">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/UserActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="24" selection-start="2416" selection-end="2416" vertical-scroll-proportion="0.09210526" vertical-offset="563" max-vertical-offset="4505">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/GroupsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="48" selection-start="1665" selection-end="1665" vertical-scroll-proportion="0.2556391" vertical-offset="255" max-vertical-offset="2533">
-          <folding>
-            <element signature="e#4731#4762#0" expanded="true" />
-            <element signature="e#5282#5305#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="82" column="44" selection-start="2441" selection-end="2441" vertical-scroll-proportion="2.0770676" vertical-offset="0" max-vertical-offset="1666" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/Adapters/FriendsAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="57" selection-start="2013" selection-end="2013" vertical-scroll-proportion="1.0" vertical-offset="420" max-vertical-offset="1207">
+        <state line="71" column="57" selection-start="2013" selection-end="2013" vertical-scroll-proportion="1.0" vertical-offset="420" max-vertical-offset="1207" />
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/app/Activity.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="174" column="0" selection-start="6969" selection-end="6969" vertical-scroll-proportion="0.0" vertical-offset="2958" max-vertical-offset="7582" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/Adapters/EventAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="34" selection-start="1148" selection-end="1148" vertical-scroll-proportion="-0.37434095" vertical-offset="638" max-vertical-offset="1207" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-mdpi/ic_action_undo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/UserJournalsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="114" column="20" selection-start="4415" selection-end="4415" vertical-scroll-proportion="0.92618626" vertical-offset="867" max-vertical-offset="2210">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/gson-2.2.2.jar!/com/google/gson/Gson.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="18" selection-start="4567" selection-end="4567" vertical-scroll-proportion="0.46172538" vertical-offset="725" max-vertical-offset="1598" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/GroupMembersFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="43" selection-start="3656" selection-end="3656" vertical-scroll-proportion="-12.84" vertical-offset="750" max-vertical-offset="1904">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="23" selection-start="2270" selection-end="2270" vertical-scroll-proportion="0.36817655" vertical-offset="499" max-vertical-offset="1360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/group_information.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1105">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/UserFriendsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="42" selection-start="2670" selection-end="2670" vertical-scroll-proportion="9.52" vertical-offset="918" max-vertical-offset="2312">
+        <state line="53" column="24" selection-start="1687" selection-end="1687" vertical-scroll-proportion="0.67105263" vertical-offset="0" max-vertical-offset="2227">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/Adapters/EventAdapter.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/GroupFeedFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="34" selection-start="1148" selection-end="1148" vertical-scroll-proportion="9.08" vertical-offset="907" max-vertical-offset="1462">
+        <state line="104" column="22" selection-start="3911" selection-end="3911" vertical-scroll-proportion="-5.5588236" vertical-offset="4233" max-vertical-offset="5474">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#4807#4830#0" expanded="false" />
+            <element signature="e#6412#6435#0" expanded="false" />
+            <element signature="e#9722#9745#0" expanded="false" />
+            <element signature="e#10651#10682#0" expanded="false" />
+            <element signature="e#11177#11200#0" expanded="false" />
+            <element signature="e#12352#12375#0" expanded="false" />
+            <element signature="e#13755#13778#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/app/Activity.class">
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/UserFeedFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="174" column="0" selection-start="6969" selection-end="6969" vertical-scroll-proportion="-2.48" vertical-offset="2879" max-vertical-offset="7565">
+        <state line="309" column="17" selection-start="11646" selection-end="11646" vertical-scroll-proportion="5.2639594" vertical-offset="1428" max-vertical-offset="5576">
+          <folding>
+            <element signature="e#11937#11960#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/create_event_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="48" selection-start="387" selection-end="387" vertical-scroll-proportion="0.28764805" vertical-offset="0" max-vertical-offset="591">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/create_journal_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="37" selection-start="347" selection-end="347" vertical-scroll-proportion="0.25888324" vertical-offset="0" max-vertical-offset="591">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/event_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="3" selection-start="157" selection-end="157" vertical-scroll-proportion="0.14382403" vertical-offset="0" max-vertical-offset="591">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/feed_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="36" selection-start="244" selection-end="244" vertical-scroll-proportion="0.20135364" vertical-offset="0" max-vertical-offset="591">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/GroupInformationFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="108" column="9" selection-start="4239" selection-end="4239" vertical-scroll-proportion="0.008460237" vertical-offset="1253" max-vertical-offset="3876">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/GroupsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="108" column="0" selection-start="3778" selection-end="3778" vertical-scroll-proportion="0.4890017" vertical-offset="1105" max-vertical-offset="2499">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/groups_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="34" selection-start="275" selection-end="275" vertical-scroll-proportion="0.20135364" vertical-offset="0" max-vertical-offset="591">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/journal_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/main_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="9" selection-start="293" selection-end="293" vertical-scroll-proportion="0.20135364" vertical-offset="0" max-vertical-offset="591">
+          <folding>
+            <element signature="e#265#281#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/marks_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="7" selection-start="286" selection-end="286" vertical-scroll-proportion="0.23011844" vertical-offset="0" max-vertical-offset="591">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/edit_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="36" selection-start="241" selection-end="241" vertical-scroll-proportion="0.17258883" vertical-offset="0" max-vertical-offset="591">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/profile_edit_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="65" selection-start="105" selection-end="105" vertical-scroll-proportion="-1.36" vertical-offset="0" max-vertical-offset="238">
+          <folding>
+            <element signature="e#265#279#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/user_courses_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="5" selection-start="338" selection-end="338" vertical-scroll-proportion="-6.8" vertical-offset="0" max-vertical-offset="323">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/user_events_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="4" selection-start="337" selection-end="337" vertical-scroll-proportion="-6.8" vertical-offset="0" max-vertical-offset="323">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/user_friends_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="3" selection-start="159" selection-end="159" vertical-scroll-proportion="-3.4" vertical-offset="0" max-vertical-offset="255">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/user_groups_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/user_journals_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="7" selection-start="463" selection-end="463" vertical-scroll-proportion="-8.84" vertical-offset="0" max-vertical-offset="323">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/profile_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="38" selection-start="646" selection-end="646" vertical-scroll-proportion="0.4890017" vertical-offset="0" max-vertical-offset="591">
+          <folding>
+            <element signature="e#270#284#0" expanded="false" />
+            <element signature="e#457#473#0" expanded="false" />
+            <element signature="e#632#646#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/UserActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="180" column="55" selection-start="6783" selection-end="6783" vertical-scroll-proportion="1.0135363" vertical-offset="1849" max-vertical-offset="4165">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/UserEditActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="258" column="129" selection-start="9903" selection-end="9903" vertical-scroll-proportion="0.5972927" vertical-offset="3285" max-vertical-offset="4165">
+          <folding>
+            <element signature="e#9751#9793#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/SearchActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="53" selection-start="1207" selection-end="1207" vertical-scroll-proportion="0.25888324" vertical-offset="102" max-vertical-offset="1734">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/AuthorizationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="13" selection-start="815" selection-end="815" vertical-scroll-proportion="-1.7834179" vertical-offset="1122" max-vertical-offset="1836">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/CreateCourseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="33" selection-start="2575" selection-end="2575" vertical-scroll-proportion="0.5109983" vertical-offset="497" max-vertical-offset="1496">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/CreateJournalActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="13" selection-start="1131" selection-end="1131" vertical-scroll-proportion="-3.681895" vertical-offset="2295" max-vertical-offset="2975">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/CreateMarksJournalActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="13" selection-start="1290" selection-end="1290" vertical-scroll-proportion="-5.0" vertical-offset="3009" max-vertical-offset="4063">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/EditEventActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="13" selection-start="1267" selection-end="1267" vertical-scroll-proportion="-6.6159053" vertical-offset="4029" max-vertical-offset="5338">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/EditGroupActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="159" column="23" selection-start="6036" selection-end="6036" vertical-scroll-proportion="2.0930626" vertical-offset="990" max-vertical-offset="2397">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/EditMarksJournalActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="203" column="29" selection-start="8313" selection-end="8313" vertical-scroll-proportion="0.25211507" vertical-offset="2775" max-vertical-offset="3774">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/CreateEventActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="316" column="30" selection-start="11755" selection-end="11755" vertical-scroll-proportion="0.23684211" vertical-offset="4430" max-vertical-offset="5763">
-          <folding>
-            <element signature="e#8824#8859#0" expanded="true" />
-            <element signature="e#12450#12473#0" expanded="true" />
-            <element signature="e#13697#13720#0" expanded="true" />
-          </folding>
+        <state line="305" column="63" selection-start="11408" selection-end="11408" vertical-scroll-proportion="0.19458544" vertical-offset="4254" max-vertical-offset="5763">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/RegistrationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="13" selection-start="722" selection-end="722" vertical-scroll-proportion="0.14382403" vertical-offset="0" max-vertical-offset="1428">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/MyMarksActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="13" selection-start="884" selection-end="884" vertical-scroll-proportion="0.20588236" vertical-offset="0" max-vertical-offset="2329">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="14" selection-start="391" selection-end="391" vertical-scroll-proportion="0.23011844" vertical-offset="0" max-vertical-offset="591" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Edusty.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="13" selection-start="160" selection-end="160" vertical-scroll-proportion="0.11505922" vertical-offset="0" max-vertical-offset="1734">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Milestone1/CreateGroupActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="31" selection-start="2790" selection-end="2790" vertical-scroll-proportion="1.516696" vertical-offset="106" max-vertical-offset="1921">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/group_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="41" selection-start="243" selection-end="243" vertical-scroll-proportion="0.17926186" vertical-offset="0" max-vertical-offset="569">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1563,7 +1487,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Milestone1</last-edited>
+          <last-edited>Edusty</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1587,7 +1511,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>gson-2.2.2-sources</last-edited>
+          <last-edited>gson-2.2.2</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -17,8 +17,8 @@
       </options>
     </properties>
     <root id="archive" name="Edusty.apk">
-      <element id="android-final-package" facet="Milestone1/android/Android" />
-      <element id="module-output" name="Milestone1" />
+      <element id="android-final-package" facet="Edusty/android/Android" />
+      <element id="module-output" name="Edusty" />
       <element id="dir-copy" path="$PROJECT_DIR$" />
     </root>
   </artifact>

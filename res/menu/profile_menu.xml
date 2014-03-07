@@ -5,21 +5,15 @@
         android:id="@+id/action_edit"
         android:icon="@drawable/ic_action_edit"
         android:showAsAction="never|withText"
-        android:title="@string/edit"></item>
+        android:title="@string/edit" />
     <item
         android:id="@+id/action_follow"
         android:icon="@drawable/ic_action_accept"
         android:showAsAction="always|withText"
-        android:title="@string/follow"></item>
+        android:title="@string/follow" />
     <item
         android:id="@+id/action_quit"
         android:icon="@drawable/ic_action_undo"
-        android:showAsAction="never|withText"
-        android:title="@string/quit"></item>
-    <item
-        android:id="@+id/action_apply"
-        android:icon="@drawable/ic_action_save"
-        android:showAsAction="always|withText"
-        android:title="@string/save"></item>
-
+        android:showAsAction="never"
+        android:title="@string/quit" />
 </menu>
