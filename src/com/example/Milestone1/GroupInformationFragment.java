@@ -90,8 +90,6 @@ public class GroupInformationFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.group_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
-    }
-    public void onPrepareOptionsMenu(Menu menu) {
         try {
             groupInfo = (Groups) result.getItem();
             menu.getItem(0).setVisible(false);

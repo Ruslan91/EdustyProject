@@ -3,6 +3,7 @@ package com.example.Milestone1;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -15,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.Milestone1.Classes.Response;
 import com.example.Milestone1.Classes.User;
@@ -32,14 +34,12 @@ import org.apache.http.protocol.HTTP;
 
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Руслан on 19.11.13.
@@ -61,6 +61,7 @@ public class UserEditActivity extends Activity {
     private int year;
     private int month;
     private int day;
+    private Exception exception;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,12 +119,8 @@ public class UserEditActivity extends Activity {
             spCountry.setAdapter(arrayAdapter);
 
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            this.exception = e;
         }
 
     }
@@ -168,8 +165,7 @@ public class UserEditActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.edit_menu, menu);
-
+        getMenuInflater().inflate(R.menu.profile_edit_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -188,19 +184,7 @@ public class UserEditActivity extends Activity {
                 userWrite.setCity(etCity.getText().toString());
                 userWrite.setCountry(spCountry.getSelectedItem().toString());
 
-                PostUserWrite postUserWrite = new PostUserWrite();
-                postUserWrite.execute();
-                try {
-                    result = postUserWrite.get();
-                    if (result.getItem() == Boolean.TRUE) {
-                        startActivity(new Intent(this, UserActivity.class));
-                        finish();
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
+                new PostUserWrite().execute();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -250,8 +234,32 @@ public class UserEditActivity extends Activity {
     }
 
     public class PostUserWrite extends AsyncTask<UserWrite, Void, Response> {
-
+        ProgressDialog progressDialog = new ProgressDialog(UserEditActivity.this);
         private Exception exception;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            try {
+                if (response.getItem() == Boolean.TRUE) {
+                    progressDialog.dismiss();
+                    startActivity(new Intent(UserEditActivity.this, UserActivity.class));
+                    finish();
+                } else {
+                    progressDialog.dismiss();
+                    Toast.makeText(UserEditActivity.this, getString(R.string.error_please_try_again), Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                this.exception = e;
+            }
+        }
 
         protected Response doInBackground(UserWrite... params) {
 

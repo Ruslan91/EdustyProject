@@ -36,12 +36,10 @@ public class GroupMembersFragment extends Fragment {
     Members[] members;
     Exception exception;
     ListView listMembers;
-    UUID token, groupID, memberID;
+    UUID token, groupID;
     Integer offset;
     Integer count;
     private Response result;
-    private FriendsAdapter sAdapter;
-    private ArrayList<Map<String, String>> data;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,12 +58,12 @@ public class GroupMembersFragment extends Fragment {
         try {
             members = (Members[]) response.getItem();
 
-            data = new ArrayList<Map<String, String>>(
+            ArrayList<Map<String, String>> data = new ArrayList<>(
                     members.length);
 
             Map<String, String> m;
             for (Members member : members) {
-                m = new HashMap<String, String>();
+                m = new HashMap<>();
                 m.put("name", member.getFirstName());
                 m.put("lastName", member.getLastName());
                 if (member.getPictureID() != null && member.getPictureID().compareTo(new UUID(0, 0)) != 0) {
@@ -77,7 +75,7 @@ public class GroupMembersFragment extends Fragment {
                     "picture"};
             int[] to = {R.id.firstName, R.id.lastName, R.id.userImage};
 
-            sAdapter = new FriendsAdapter(getActivity(), data, R.layout.friend_list_item,
+            FriendsAdapter sAdapter = new FriendsAdapter(getActivity(), data, R.layout.friend_list_item,
                     from, to);
 
             // определяем список и присваиваем ему адаптер
@@ -87,16 +85,11 @@ public class GroupMembersFragment extends Fragment {
 
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-                    int pos;
-
                     try {
-                        pos = position;
-                        memberID = members[pos].Id;
-                        Intent intent = new Intent(getActivity().getApplicationContext(), UserActivity.class);
-                        intent.putExtra("memberID", memberID.toString());
+                        Intent intent = new Intent(getActivity(), UserActivity.class);
+                        intent.putExtra("userID", members[position].getId().toString());
                         startActivity(intent);
                         onDestroy();
-
                     } catch (Exception e) {
                         this.ex = e;
                     }

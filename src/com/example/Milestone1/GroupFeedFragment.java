@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -56,26 +55,19 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
     GetGroupFeed getGroupFeed;
     GroupFeedRead[] feed;
     Response result;
-    GroupFeedRead[] newFeed;
     String timeOffset;
     ListView listFeed;
     UUID token, groupID;
     Integer offset;
     Integer count;
     EditText editSendMessage;
-    ImageView userImage;
     SendGroupMessage send = new SendGroupMessage();
     Response success;
-    Response<Boolean> sent;
-    SendMessageToGroupFeed sendmessage;
     public Exception exception;
     SimpleAdapter sAdapter;
-    GetNewGroupFeed getNewFeed;
     Map<String, String> m;
     private ArrayList<Map<String, String>> data;
     private Date[] datetime;
-    private GetNewGroupFeed updateFeed;
-    private String[] times;
     private UUID messageID;
     private boolean groupOwner;
 
@@ -96,7 +88,6 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
             groupOwner = getActivity().getIntent().getExtras().getBoolean("groupOwner");
             getGroupFeed = new GetGroupFeed();
             getGroupFeed.execute();
-            //result = getGroupFeed.get();
             listFeed = (ListView) myView.findViewById(R.id.listFeed);
             listFeed.setClickable(true);
             registerForContextMenu(listFeed);
@@ -118,12 +109,12 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
         try {
             feed = (GroupFeedRead[]) response.getItem();
             datetime = new Date[feed.length];
-            data = new ArrayList<Map<String, String>>(
+            data = new ArrayList<>(
                     feed.length);
             data.clear();
             for (int i = 0; i < feed.length; i++) {
                 datetime[i] = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(feed[i].getTime());
-                m = new HashMap<String, String>();
+                m = new HashMap<>();
                 m.put(ATTRIBUTE_NAME_TEXTF, feed[i].getFirstName() + " " + feed[i].getLastName());
                 m.put(ATTRIBUTE_NAME_MESSAGE, feed[i].getMessage());
                 m.put(ATTRIBUTE_NAME_TIME, new SimpleDateFormat("EEE, dd MMMM yyyy" + " " + "HH:mm").format(datetime[i]));
@@ -132,7 +123,6 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
                 }
                 data.add(m);
             }
-
             String[] from = {ATTRIBUTE_NAME_TEXTF,
                     ATTRIBUTE_NAME_IMAGE, ATTRIBUTE_NAME_MESSAGE, ATTRIBUTE_NAME_TIME};
 
@@ -142,6 +132,31 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
                     from, to);
 
             listFeed.setAdapter(sAdapter);
+        } catch (Exception e) {
+            this.exception = e;
+        }
+    }
+
+    public void updateData(Response response) {
+        try {
+            GroupFeedRead[] newFeed = (GroupFeedRead[]) response.getItem();
+            if (newFeed.length == 0) {
+                Toast.makeText(getActivity(), "New messages not found", Toast.LENGTH_SHORT).show();
+            } else {
+                feed = newFeed;
+                for (int i = 0; i < feed.length; i++) {
+                    datetime[i] = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(feed[i].getTime());
+                    m = new HashMap<>();
+                    m.put(ATTRIBUTE_NAME_TEXTF, feed[i].getFirstName() + " " + feed[i].getLastName());
+                    m.put(ATTRIBUTE_NAME_MESSAGE, feed[i].getMessage());
+                    m.put(ATTRIBUTE_NAME_TIME, new SimpleDateFormat("EEE, dd MMMM yyyy" + " " + "HH:mm").format(datetime[i]));
+                    if (feed[i].getPictureID() != null && feed[i].getPictureID().compareTo(new UUID(0, 0)) != 0) {
+                        m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + feed[i].getPictureID());
+                    }
+                    data.add(0, m);
+                }
+            }
+            sAdapter.notifyDataSetChanged();
         } catch (Exception e) {
             this.exception = e;
         }
@@ -180,37 +195,8 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
         boolean ret;
         if (item.getItemId() == R.id.action_update) {
             ret = true;
-            if (feed != null) {
-                timeOffset = feed[0].getTime().toString();
-            } else timeOffset = null;
-
-            updateFeed = new GetNewGroupFeed();
-            updateFeed.execute();
-            try {
-                result = updateFeed.get();
-                newFeed = (GroupFeedRead[]) result.getItem();
-                if (newFeed.length == 0) {
-                    Toast.makeText(getActivity(), getString(R.string.new_messages_not_found), Toast.LENGTH_SHORT).show();
-                } else {
-                    feed = newFeed;
-                    for (int i = 0; i < feed.length; i++) {
-                        m = new HashMap<String, String>();
-                        m.put(ATTRIBUTE_NAME_TEXTF, feed[i].getFirstName() + " " + feed[i].getLastName());
-                        m.put(ATTRIBUTE_NAME_MESSAGE, feed[i].getMessage());
-                        datetime[i] = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").parse(feed[i].getTime());
-                        m.put(ATTRIBUTE_NAME_TIME, new SimpleDateFormat("EEE, dd MMMM yyyy" + " " + "HH:mm").format(datetime[i]));
-                        if (feed[i].getPictureID() != null) {
-                            m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + feed[i].getPictureID());
-                        }
-                        data.add(0, m);
-                    }
-                    // уведомляем, что данные изменились
-                    sAdapter.notifyDataSetChanged();
-                }
-            } catch (Exception e) {
-
-            }
-
+            timeOffset = feed[0].getTime();
+            new GetNewGroupFeed().execute(timeOffset);
         } else {
             ret = super.onOptionsItemSelected(item);
         }
@@ -226,32 +212,9 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
                     editSendMessage.setText("");
                     send.Token = token;
                     send.GroupID = groupID;
-                    sendmessage = new SendMessageToGroupFeed();
-                    sendmessage.execute();
-                    sent = sendmessage.get();
-                    sAdapter.notifyDataSetChanged();
-
-                    timeOffset = feed[0].Time.toString();
-                    getNewFeed = new GetNewGroupFeed();
-                    getNewFeed.execute();
-                    result = getNewFeed.get();
-                    newFeed = (GroupFeedRead[]) result.getItem();
-                    if (newFeed.length == 0) {
-                        Toast.makeText(getActivity(), getString(R.string.new_messages_not_found), Toast.LENGTH_SHORT).show();
-                    } else {
-                        feed = newFeed;
-                        for (int i = 0; i < feed.length; i++) {
-                            m = new HashMap<String, String>();
-                            m.put(ATTRIBUTE_NAME_TEXTF, feed[i].getFirstName() + " " + feed[i].getLastName());
-                            m.put(ATTRIBUTE_NAME_IMAGE, getString(R.string.url) + "File?token=" + token + "&fileID=" + feed[i].getPictureID());
-                            m.put(ATTRIBUTE_NAME_MESSAGE, feed[i].getMessage());
-                            datetime[i] = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").parse(feed[i].getTime());
-                            m.put(ATTRIBUTE_NAME_TIME, new SimpleDateFormat("EEE, dd MMMM yyyy" + " " + "HH:mm").format(datetime[i]));
-                            data.add(0, m);
-                        }
-                        // уведомляем, что данные изменились
-                        sAdapter.notifyDataSetChanged();
-                    }
+                    new SendMessageToGroupFeed().execute();
+                    timeOffset = feed[0].getTime();
+                    new GetNewGroupFeed().execute(timeOffset);
                 } catch (Exception e) {
                     this.exception = e;
                 }
@@ -272,8 +235,8 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
-            pdLoading.dismiss();
             setData(response);
+            pdLoading.dismiss();
         }
 
         @Override
@@ -295,12 +258,27 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
         }
     }
 
-    public class GetNewGroupFeed extends AsyncTask<UUID, Void, Response> {
-        public Exception ex;
+    public class GetNewGroupFeed extends AsyncTask<String, Void, Response> {
+        Exception exception;
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        String timeOffset = null;
 
         @Override
-        protected Response doInBackground(UUID... params) {
+        protected void onPreExecute() {
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            updateData(response);
+            progressDialog.dismiss();
+        }
+
+        @Override
+        protected Response doInBackground(String... times) {
             try {
+                timeOffset = times[0];
                 HttpClient httpclient = new DefaultHttpClient();
                 Gson gson = new Gson();
                 HttpGet request = new HttpGet(getString(R.string.url) + "GroupMessages?token=" + token + "&groupID=" + groupID + "&timeOffset=" + timeOffset);
@@ -311,7 +289,7 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
                 }.getType();
                 result = gson.fromJson(reader, fooType);
             } catch (Exception e) {
-                this.ex = e;
+                this.exception = e;
             }
             return result;
         }
@@ -320,6 +298,16 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
     public class SendMessageToGroupFeed extends AsyncTask<SendGroupMessage, Void, Response> {
 
         private Exception ex;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+        }
 
         protected Response doInBackground(SendGroupMessage... params) {
 
@@ -342,6 +330,8 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
     }
 
     public class RemoveMessage extends AsyncTask<Void, Void, Response> {
+        private Exception exception;
+
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
@@ -363,7 +353,7 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
                         .getContent(), HTTP.UTF_8);
                 result = gson.fromJson(reader, Response.class);
             } catch (Exception e) {
-
+                this.exception = e;
             }
             return result;
         }

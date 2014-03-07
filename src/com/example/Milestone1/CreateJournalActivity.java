@@ -82,7 +82,7 @@ public class CreateJournalActivity extends Activity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.create_event, menu);
+        getMenuInflater().inflate(R.menu.create_event_menu, menu);
         return true;
     }
 
@@ -159,6 +159,7 @@ public class CreateJournalActivity extends Activity {
 
         private Exception ex;
         ProgressDialog progressDialog = new ProgressDialog(CreateJournalActivity.this);
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();

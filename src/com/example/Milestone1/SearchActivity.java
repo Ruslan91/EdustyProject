@@ -12,14 +12,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.Milestone1.Adapters.SearchAdapter;
-import com.example.Milestone1.Classes.Feed;
-import com.example.Milestone1.Classes.GroupResult;
-import com.example.Milestone1.Classes.Groups;
-import com.example.Milestone1.Classes.ListSearchResult;
 import com.example.Milestone1.Classes.Response;
 import com.example.Milestone1.Classes.SearchResult;
-import com.example.Milestone1.Classes.User;
-import com.example.Milestone1.Classes.UserResult;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -31,8 +25,6 @@ import org.apache.http.protocol.HTTP;
 
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -63,9 +55,11 @@ public class SearchActivity extends Activity {
             new GetSearchResults().execute();
         }
     }
+
     public class GetSearchResults extends AsyncTask<Void, Void, Response> {
         public Exception ex;
         ProgressDialog progressDialog = new ProgressDialog(SearchActivity.this);
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -113,7 +107,7 @@ public class SearchActivity extends Activity {
                 try {
                     if (searchresult[position].get__type().equals("UserSearchResult")) {
                         Intent intent = new Intent(SearchActivity.this, UserActivity.class);
-                        intent.putExtra("friendID", searchresult[position].getId().toString());
+                        intent.putExtra("userID", searchresult[position].getId().toString());
                         startActivity(intent);
                     } else if (searchresult[position].get__type().equals("GroupSearchResult")) {
                         Intent intent = new Intent(SearchActivity.this, GroupFragmentActivity.class);

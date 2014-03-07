@@ -97,9 +97,7 @@ public class GroupsActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.group_menu, menu);
-        menu.getItem(1).setVisible(false);
-        menu.getItem(2).setVisible(false);
+        getMenuInflater().inflate(R.menu.groups_menu, menu);
         return true;
     }
 

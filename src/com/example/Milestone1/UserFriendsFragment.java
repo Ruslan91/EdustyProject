@@ -63,14 +63,9 @@ public class UserFriendsFragment extends Fragment {
 
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-                    int pos;
-
                     try {
-                        pos = position;
-                        friendID = friends[pos].Id;
-                        friend_string = friendID.toString();
                         Intent intent = new Intent(getActivity().getApplicationContext(), UserActivity.class);
-                        intent.putExtra("friendID", friendID.toString());
+                        intent.putExtra("userID", friends[position].getId().toString());
                         startActivity(intent);
                         onDestroy();
 

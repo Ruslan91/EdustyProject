@@ -40,7 +40,7 @@ import java.util.UUID;
 
 public class UserActivity extends Activity {
     private static final int DIALOG_BIRTHDATE = 0;
-    UUID token, MemberID, FriendID, userID;
+    UUID token, userID;
     Response result;
     PostFriend followTask;
     GetUserInformation getUser;
@@ -48,12 +48,9 @@ public class UserActivity extends Activity {
     public Exception exception;
     private Date userDate;
     private String BirthDate;
-    private Menu menu;
-    private Response<User> response;
     private TextView tvName;
     private TextView tvCity;
     private ListView listView;
-    private boolean visible;
     private Intent intent;
     private ImageView image;
     private User user;
@@ -71,13 +68,10 @@ public class UserActivity extends Activity {
         try {
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
-                if (extras.getString("memberID") != null) {
-                    userID = UUID.fromString(extras.getString("memberID"));
-                } else if (extras.getString("friendID") != null) {
-                    userID = UUID.fromString(extras.getString("friendID"));
-                } else {
+                if (extras.getString("userID") != null)
                     userID = UUID.fromString(extras.getString("userID"));
-                }
+            } else {
+                userID = null;
             }
             getUser = new GetUserInformation();
             getUser.execute();
@@ -126,7 +120,7 @@ public class UserActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         try {
-            getMenuInflater().inflate(R.menu.profile, menu);
+            getMenuInflater().inflate(R.menu.profile_menu, menu);
             if (getIntent().getExtras() != null) {
                 menu.getItem(0).setVisible(false);
                 user = (User) result.getItem();
@@ -140,12 +134,10 @@ public class UserActivity extends Activity {
                     menu.getItem(1).setIcon(R.drawable.ic_action_accept);
                 }
                 menu.getItem(2).setVisible(false);
-                menu.getItem(3).setVisible(false);
             } else {
                 menu.getItem(0).setVisible(true);
                 menu.getItem(1).setVisible(false);
                 menu.getItem(2).setVisible(true);
-                menu.getItem(3).setVisible(false);
             }
         } catch (Exception e) {
             this.exception = e;
@@ -159,60 +151,48 @@ public class UserActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean ret;
-        switch (item.getItemId()) {
-            case R.id.action_quit:
-                ret = true;
-                SharedPreferences userDetails = getSharedPreferences("userdetails", MODE_PRIVATE);
-                SharedPreferences.Editor edit = userDetails.edit();
-                edit.remove("token");
-                edit.commit();
-                intent = new Intent(this, AuthorizationActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-                break;
-
-            case R.id.action_follow:
-                ret = true;
-                friend.FriendID = userID;
-                friend.Token = token;
-                try {
-                    followTask = new PostFriend();
-                    followTask.execute();
-                    result = followTask.get();
-                    if (result.getItem() == Boolean.TRUE) {
-                        if (item.getTitle().toString() == getString(R.string.follow)) {
-                            item.setTitle(R.string.unfollow);
-                            item.setIcon(R.drawable.ic_action_cancel);
-                        } else {
-                            item.setTitle(R.string.follow);
-                            item.setIcon(R.drawable.ic_action_accept);
-                        }
+        if (item.getItemId() == R.id.action_edit) {
+            ret = true;
+            startActivity(new Intent(this, UserEditActivity.class));
+            finish();
+        } else if (item.getItemId() == R.id.action_follow) {
+            ret = true;
+            friend.FriendID = userID;
+            friend.Token = token;
+            try {
+                followTask = new PostFriend();
+                followTask.execute();
+                result = followTask.get();
+                if (result.getItem() == Boolean.TRUE) {
+                    if (item.getTitle().toString() == getString(R.string.follow)) {
+                        item.setTitle(R.string.unfollow);
+                        item.setIcon(R.drawable.ic_action_cancel);
                     } else {
-                        Toast.makeText(this, "Не удалось подписаться на пользователя", Toast.LENGTH_SHORT).show();
+                        item.setTitle(R.string.follow);
+                        item.setIcon(R.drawable.ic_action_accept);
                     }
-
-                } catch (Exception e) {
-                    this.exception = e;
+                } else {
+                    Toast.makeText(this, "Не удалось подписаться на пользователя", Toast.LENGTH_SHORT).show();
                 }
-                break;
-            case R.id.action_edit:
-                ret = true;
-                startActivity(new Intent(this, UserEditActivity.class));
-                finish();
-                break;
 
-            default:
-                return super.onOptionsItemSelected(item);
+            } catch (Exception e) {
+                this.exception = e;
+            }
+        } else if (item.getItemId() == R.id.action_quit) {
+            ret = true;
+            SharedPreferences userDetails = getSharedPreferences("userdetails", MODE_PRIVATE);
+            SharedPreferences.Editor edit = userDetails.edit();
+            edit.remove("token");
+            edit.commit();
+            intent = new Intent(this, AuthorizationActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        } else {
+            return super.onOptionsItemSelected(item);
         }
         return ret;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-
-        return true;
     }
 
     public class GetUserInformation extends AsyncTask<UUID, Void, Response> {

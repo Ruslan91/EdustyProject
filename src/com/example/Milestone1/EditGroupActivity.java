@@ -139,11 +139,11 @@ public class EditGroupActivity extends Activity {
         }
     }
 
-    public class GetGroupInformation extends AsyncTask<UUID, Void, Response<Groups>> {
+    public class GetGroupInformation extends AsyncTask<UUID, Void, Response> {
         public Exception ex;
 
         @Override
-        protected Response<Groups> doInBackground(UUID... params) {
+        protected Response doInBackground(UUID... params) {
             try {
                 HttpClient httpclient = new DefaultHttpClient();
                 Gson gson = new Gson();

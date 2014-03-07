@@ -125,44 +125,12 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
                     new int[]{R.id.tvName, R.id.tvMessage, R.id.tvTime, R.id.tvTitle}
             );
             listFeed.setAdapter(sAdapter);
-        /*if (feed != null) {
-            timeOffset = feed[0].getTime().toString();
-        } else timeOffset = null;
-        GetNewFeed updateFeed = new GetNewFeed();
-        updateFeed.execute();
-        try {
-            result = updateFeed.get();
-            newFeed = (Feed[]) result.getItem();
-            if (newFeed.length == 0) {
-                Toast.makeText(getActivity(), "New messages not found", Toast.LENGTH_SHORT).show();
-            } else {
-                feed = newFeed;
-                for (int i = 0; i < feed.length; i++) {
-                    m = new HashMap<String, String>();
-                    if (feed[i].getTitle() != null) {
-                        m.put("names", feed[i].getFirstName() + " " + feed[i].getLastName());
-                        m.put("titles", feed[i].getTitle());
-                    } else {
-                        m.put("names", "");
-                        m.put("titles", feed[i].getFirstName() + " " + feed[i].getLastName());
-
-                    }
-                    m.put("messages", feed[i].getBody());
-                    datetime[i] = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").parse(feed[i].getTime());
-                    m.put("times", new SimpleDateFormat("EEE, dd MMMM yyyy" + " " + "HH:mm").format(datetime[i]));
-                    if (feed[i].getPictureID() != null && feed[i].getPictureID().compareTo(new UUID(0, 0)) != 0) {
-                        m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + feed[i].getPictureID());
-                    }
-                    data.add(0, m);
-                }
-                sAdapter.notifyDataSetChanged();
-            }*/
         } catch (Exception e) {
             this.exception = e;
         }
     }
 
-    public void updateFeed(Response response) {
+    public void updateData(Response response) {
         try {
             Feed[] newFeed = (Feed[]) response.getItem();
             if (newFeed.length == 0) {
@@ -204,6 +172,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
                     send.Token = token;
                     timeOffset = feed[0].getTime();
                     new SendMessageToFeed().execute();
+                    new GetNewFeed().execute(timeOffset);
                 } catch (Exception e) {
                     this.exception = e;
                 }
@@ -244,6 +213,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
         boolean ret;
         if (item.getItemId() == R.id.action_update) {
             ret = true;
+            timeOffset = feed[0].getTime();
             new GetNewFeed().execute(timeOffset);
         } else {
             ret = super.onOptionsItemSelected(item);
@@ -302,7 +272,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(Response response) {
-            updateFeed(response);
+            updateData(response);
             progressDialog.dismiss();
         }
 
@@ -338,7 +308,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
-            new GetNewFeed().execute();
+            //new GetNewFeed().execute();
         }
 
         @Override
