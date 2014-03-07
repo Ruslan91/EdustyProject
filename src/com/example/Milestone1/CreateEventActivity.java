@@ -258,10 +258,10 @@ public class CreateEventActivity extends Activity {
                 if (spInterval.getSelectedItemPosition() != 7) {
                     createEvent.setTimeInterval(spInterval.getSelectedItemPosition());
                 } else createEvent.setTimeInterval(null);
-                if (groupID == null){
-                if (spGroup.getSelectedItemPosition() != 0){
-                    createEvent.setGroupID(groups[spGroup.getSelectedItemPosition() - 1].getId());
-                } else createEvent.setGroupID(null);
+                if (groupID == null) {
+                    if (spGroup.getSelectedItemPosition() != 0) {
+                        createEvent.setGroupID(groups[spGroup.getSelectedItemPosition() - 1].getId());
+                    } else createEvent.setGroupID(null);
                 } else createEvent.setGroupID(groupID);
                 CreateUserEvent createUserEvent = new CreateUserEvent();
                 createUserEvent.execute();
@@ -279,7 +279,7 @@ public class CreateEventActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.create_event, menu);
+        getMenuInflater().inflate(R.menu.create_event_menu, menu);
         return true;
     }
 
@@ -303,7 +303,7 @@ public class CreateEventActivity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pdLoading.setMessage("\tЗагрузка...");
+            pdLoading.setMessage(getString(R.string.please_wait));
             pdLoading.setCancelable(false);
             pdLoading.show();
         }
