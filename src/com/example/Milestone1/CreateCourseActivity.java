@@ -44,7 +44,7 @@ public class CreateCourseActivity extends Activity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.create_event, menu);
+        getMenuInflater().inflate(R.menu.create_event_menu, menu);
         return true;
     }
 
@@ -67,7 +67,7 @@ public class CreateCourseActivity extends Activity {
                         Intent intent = new Intent(this, MainActivity.class);
                         intent.putExtra("tab", 5);
                         startActivity(intent);
-                        onDestroy();
+                        finish();
                     } else
                         Toast.makeText(this, getString(R.string.error_please_try_again), Toast.LENGTH_SHORT).show();
                 }
