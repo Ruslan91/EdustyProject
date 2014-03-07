@@ -30,7 +30,6 @@ public class CreateGroupActivity extends Activity {
     GroupWrite create = new GroupWrite();
     public UUID success, groupID;
     EditText groupName, groupDescription, groupWebSite;
-    CreateGroup createGroup;
     Exception exception;
     private Response result;
     private Spinner spFree;
@@ -75,33 +74,39 @@ public class CreateGroupActivity extends Activity {
             if (spFree.getSelectedItemPosition() == 0) {
                 create.Free = true;
             } else create.Free = false;
+            new CreateGroup().execute();
 
-            createGroup = new CreateGroup();
-            createGroup.execute();
-            result = createGroup.get();
-            if (result.getItem() != null) {
-
-                Intent intent = new Intent(this.getApplicationContext(), GroupsActivity.class);
-                if (level != 0) {
-                    intent.putExtra("level", level);
-                    intent.putExtra("ParentID", parentID.toString());
-                } else {
-                    intent.putExtra("level", level);
-                }
-
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(this, getString(R.string.please_set_text), Toast.LENGTH_SHORT).show();
-            }
         } catch (Exception e) {
-
+            this.exception = e;
         }
     }
 
     public class CreateGroup extends AsyncTask<GroupWrite, Void, Response> {
 
         private Exception ex;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            if (response.getItem() != null) {
+                Intent intent = new Intent(CreateGroupActivity.this, GroupsActivity.class);
+                if (level != 0) {
+                    intent.putExtra("level", level);
+                    intent.putExtra("ParentID", parentID.toString());
+                } else {
+                    intent.putExtra("level", level);
+                }
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(CreateGroupActivity.this, getString(R.string.please_set_text), Toast.LENGTH_SHORT).show();
+            }
+        }
 
         protected Response doInBackground(GroupWrite... params) {
 
