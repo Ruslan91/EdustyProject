@@ -11,6 +11,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.Milestone1.R;
+import com.example.Milestone1.ServerConnect.DownloadImagesTask;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -73,7 +74,7 @@ public class FriendsAdapter extends SimpleAdapter {
         if (results.get(position).get("picture") != null) {
             String URL = results.get(position).get("picture");
             image.setTag(URL);
-            //task = new DownloadImagesTask().execute(image);
+            task = new DownloadImagesTask().execute(image);
         }
         return v;
     }

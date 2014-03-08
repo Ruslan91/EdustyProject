@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <string name="url">http://89.222.166.108/api/</string>
+    <string name="url">http://edusty.azurewebsites.net/api/</string>
     <!--http://89.222.166.108/api/-->
     <!--http://edusty.azurewebsites.net/api/-->
 

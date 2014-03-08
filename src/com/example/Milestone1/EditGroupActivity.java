@@ -1,6 +1,7 @@
 package com.example.Milestone1;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,7 +29,6 @@ import org.apache.http.protocol.HTTP;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Руслан on 15.11.13.
@@ -39,9 +39,7 @@ public class EditGroupActivity extends Activity {
     private EditText groupDescription;
     private EditText groupWebSite;
     private UUID token;
-    private int level;
-    private UUID parentID;
-    private Exception exception;
+    Exception exception;
     private Response result;
     private UUID groupID;
     private Groups groupInformation;
@@ -63,22 +61,25 @@ public class EditGroupActivity extends Activity {
             if (extras != null) {
                 groupID = UUID.fromString(extras.getString("groupID"));
             }
-            GetGroupInformation getGroupInformation = new GetGroupInformation();
-            getGroupInformation.execute();
-            result = getGroupInformation.get();
-            groupInformation = (Groups) result.getItem();
+            new GetGroupInformation().execute();
+        } catch (Exception e) {
+            this.exception = e;
+        }
 
+    }
+
+    public void setData(Response response) {
+        try {
+            groupInformation = (Groups) response.getItem();
             groupName.setText(groupInformation.getName());
             groupDescription.setText(groupInformation.getDescription());
             groupWebSite.setText(groupInformation.getWebSite());
             if (groupInformation.getFree() == Boolean.TRUE) {
                 spFree.setSelection(0);
             } else spFree.setSelection(1);
-
         } catch (Exception e) {
             this.exception = e;
         }
-
     }
 
     public void onClickBtnEditGroup(View view) {
@@ -91,33 +92,37 @@ public class EditGroupActivity extends Activity {
         editGroup.GroupLevel = groupInformation.getGroupLevel();
         editGroup.Token = token;
         editGroup.PictureID = groupInformation.getPictureID();
-        if (spFree.getSelectedItemPosition() == 0) {
-            editGroup.Free = true;
-        } else editGroup.Free = false;
-
-        EditGroup edit = new EditGroup();
-        edit.execute();
-        try {
-            result = edit.get();
-            if (result.getStatusCode() == 0) {
-                Intent intent = new Intent(this, GroupFragmentActivity.class);
-                intent.putExtra("groupID", groupID.toString());
-                startActivity(intent);
-                finish();
-            } else
-                Toast.makeText(this, "StatusCode:" + result.getStatusCode(), Toast.LENGTH_SHORT).show();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-
+        editGroup.Free = spFree.getSelectedItemPosition() == 0;
+        new EditGroup().execute();
     }
 
     public class EditGroup extends AsyncTask<GroupWrite, Void, Response> {
+        ProgressDialog progressDialog = new ProgressDialog(EditGroupActivity.this);
+        Exception exception;
 
-        private Exception ex;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            try {
+                if (response.getStatusCode() == 0) {
+                    Intent intent = new Intent(EditGroupActivity.this, GroupFragmentActivity.class);
+                    intent.putExtra("groupID", groupID.toString());
+                    startActivity(intent);
+                    finish();
+                } else
+                    Toast.makeText(EditGroupActivity.this, "StatusCode:" + result.getStatusCode(), Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            } catch (Exception e) {
+                this.exception = e;
+            }
+        }
 
         protected Response doInBackground(GroupWrite... params) {
 
@@ -133,14 +138,29 @@ public class EditGroupActivity extends Activity {
                 result = new Gson().fromJson(reader, Response.class);
 
             } catch (Exception e) {
-                this.ex = e;
+                this.exception = e;
             }
             return result;
         }
     }
 
     public class GetGroupInformation extends AsyncTask<UUID, Void, Response> {
-        public Exception ex;
+        ProgressDialog progressDialog = new ProgressDialog(EditGroupActivity.this);
+        Exception exception;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            setData(response);
+            progressDialog.dismiss();
+        }
 
         @Override
         protected Response doInBackground(UUID... params) {
@@ -155,7 +175,7 @@ public class EditGroupActivity extends Activity {
                 }.getType();
                 result = gson.fromJson(reader, fooType);
             } catch (Exception e) {
-                this.ex = e;
+                this.exception = e;
             }
             return result;
         }

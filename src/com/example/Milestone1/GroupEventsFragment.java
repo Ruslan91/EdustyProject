@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import com.example.Milestone1.Adapters.EventAdapter;
 import com.example.Milestone1.Classes.Event;
@@ -30,34 +29,18 @@ import org.apache.http.protocol.HTTP;
 
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.UUID;
 
 /**
  * Created by Руслан on 03.10.13.
  */
 public class GroupEventsFragment extends Fragment {
-    private static final String TITLE = "title";
-    private static final String STARTTIME = "starttime";
-    private static final String ENDTIME = "endtime";
-    private static final String LOCATION = "location";
     private UUID token;
     private Response<Event[]> result;
-    private EventAdapter sAdapter;
     private Event[] events;
-    private String[] titles, startTimes, endTimes, locations;
-    private Date[] datetime, timedate;
     private ListView listEvents;
     private UUID groupID;
-    private Exception exception;
-    private ArrayList<HashMap<String, String>> data;
-    private Comparator<HashMap<String, String>> comparator;
-    private String eventID;
+    Exception exception;
 
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -81,30 +64,7 @@ public class GroupEventsFragment extends Fragment {
     public void setData(Response response) {
         try {
             events = (Event[]) response.getItem();
-            /*datetime = new Date[events.length];
-            timedate = new Date[events.length];
-            data = new ArrayList<HashMap<String, String>>(
-                    events.length);
-            data.clear();
-            for (int i = 0; i < events.length; i++) {
-                HashMap<String, String> m = new HashMap<String, String>();
-                m.put(TITLE, events[i].getTitle());
-                datetime[i] = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(events[i].getStartTime());
-                m.put(STARTTIME, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(datetime[i]));
-                timedate[i] = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(events[i].getEndTime());
-                m.put(ENDTIME, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(timedate[i]));
-                m.put(LOCATION, events[i].getLocation());
-                m.put("eventID", events[i].getEventID().toString());
-                data.add(m);
-            }
-            comparator = new Comparator<HashMap<String, String>>() {
-                @Override
-                public int compare(HashMap<String, String> object1, HashMap<String, String> object2) {
-                    return object1.get(STARTTIME).compareToIgnoreCase(object2.get(STARTTIME));
-                }
-            };
-            Collections.sort(data, comparator);*/
-            sAdapter = new EventAdapter(getActivity(), events);
+            EventAdapter sAdapter = new EventAdapter(getActivity(), events);
             listEvents.setAdapter(sAdapter);
             listEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public Exception exception;
@@ -122,7 +82,7 @@ public class GroupEventsFragment extends Fragment {
                 }
             });
         } catch (Exception e) {
-
+            this.exception = e;
         }
     }
 
@@ -145,7 +105,7 @@ public class GroupEventsFragment extends Fragment {
 
     public class GetGroupEvents extends AsyncTask<UUID, Void, Response<Event[]>> {
 
-        private Exception ex;
+        Exception ex;
 
         @Override
         protected void onPreExecute() {

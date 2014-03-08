@@ -84,24 +84,28 @@ public class UserJournalsFragment extends Fragment {
         return myView;
     }
 
-    public void SetJournals(Response response) {
-        journals = (Journals[]) response.getItem();
-        data = new ArrayList<Map<String, String>>(
-                journals.length);
-        data.clear();
-        for (int i = 0; i < journals.length; i++) {
-            m = new HashMap<String, String>();
-            m.put("titles", journals[i].getTitle());
-            m.put("courses", journals[i].getCourseName());
-            m.put("groups", journals[i].getGroupName());
-            m.put("owners", journals[i].getOwnerName());
-            data.add(m);
+    public void setData(Response response) {
+        try {
+            journals = (Journals[]) response.getItem();
+            data = new ArrayList<Map<String, String>>(
+                    journals.length);
+            data.clear();
+            for (Journals journal : journals) {
+                m = new HashMap<String, String>();
+                m.put("titles", journal.getTitle());
+                m.put("courses", journal.getCourseName());
+                m.put("groups", journal.getGroupName());
+                m.put("owners", journal.getOwnerName());
+                data.add(m);
+            }
+            sAdapter = new SimpleAdapter(getActivity(), data, R.layout.user_journals_list_item,
+                    new String[]{"titles", "courses", "groups", "owners"},
+                    new int[]{R.id.tvJournalTitle, R.id.tvJournalCourse, R.id.tvJournalGroup, R.id.tvJournalOwner}
+            );
+            listJournals.setAdapter(sAdapter);
+        } catch (Exception e) {
+            this.exception = e;
         }
-        sAdapter = new SimpleAdapter(getActivity(), data, R.layout.user_journals_list_item,
-                new String[]{"titles", "courses", "groups", "owners"},
-                new int[]{R.id.tvJournalTitle, R.id.tvJournalCourse, R.id.tvJournalGroup, R.id.tvJournalOwner}
-        );
-        listJournals.setAdapter(sAdapter);
 
     }
 
@@ -129,7 +133,7 @@ public class UserJournalsFragment extends Fragment {
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
-            SetJournals(result);
+            setData(response);
         }
 
         @Override

@@ -80,7 +80,7 @@ public class EditEventActivity extends Activity {
     private int endMonths;
     private int days;
     private int endDays;
-    private Response success;
+    private Response result;
     private UUID eventID;
     private Exception exception;
     private UUID groupID;
@@ -100,16 +100,18 @@ public class EditEventActivity extends Activity {
                 interval = extras.getInt("interval");
                 location = extras.getString("location");
                 description = extras.getString("description");
-                groupID = UUID.fromString(extras.getString("groupID"));
                 eventID = UUID.fromString(extras.getString("eventID"));
+                if (extras.getString("groupID") != null) {
+                    groupID = UUID.fromString(extras.getString("groupID"));
+            } else groupID = null;
             }
         } catch (Exception e) {
-
+            this.exception = e;
         }
 
         spInterval = (Spinner) findViewById(R.id.spInterval);
-        cbAllDay = (CheckBox) findViewById(R.id.cbAllDay);
-
+        //cbAllDay = (CheckBox) findViewById(R.id.cbAllDay);
+        spInterval.setSelection(interval);
         etTitle = (EditText) findViewById(R.id.etTitle);
         etDescription = (EditText) findViewById(R.id.etDescription);
         etLocation = (EditText) findViewById(R.id.etLocation);
@@ -119,7 +121,9 @@ public class EditEventActivity extends Activity {
         tvEndDate = (TextView) findViewById(R.id.tvEndDate);
 
         try {
-
+            etTitle.setText(title);
+            etDescription.setText(description);
+            etLocation.setText(location);
             eventStartTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(startTime);
             eventEndTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(endTime);
             /*eventEndDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(endDate);
@@ -144,10 +148,7 @@ public class EditEventActivity extends Activity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        etTitle.setText(title);
-        etDescription.setText(description);
-        etLocation.setText(location);
-        spInterval.setSelection(interval);
+
     }
 
     public void onClickStartTimePick(View v) {
@@ -265,6 +266,7 @@ public class EditEventActivity extends Activity {
         boolean ret = false;
         if (item.getItemId() == R.id.action_apply) {
             try {
+                ret = true;
                 eventEdit = new Event();
                 eventEdit.setToken(token);
                 eventEdit.setEventID(eventID);
@@ -282,7 +284,6 @@ public class EditEventActivity extends Activity {
                 Toast.makeText(this, "Edit date!", Toast.LENGTH_SHORT);
             }*/
                 eventEdit.setEndTime(tvEndDate.getText().toString() + "T" + tvEndTime.getText().toString());
-
                 new EventEdit().execute();
             } catch (Exception e) {
                 this.exception = e;
@@ -292,38 +293,8 @@ public class EditEventActivity extends Activity {
         return ret;
 
     }
-
-    /*public void onClickBtnApply(View v) throws ExecutionException, InterruptedException {
-        try {
-            eventEdit = new Event();
-            eventEdit.setToken(token);
-            eventEdit.setEventID(eventID);
-            eventEdit.setTitle(etTitle.getText().toString());
-            eventEdit.setDescription(etDescription.getText().toString());
-            eventEdit.setLocation(etLocation.getText().toString());
-            eventEdit.setTimeInterval(spInterval.getSelectedItemId() + 1);
-            eventEdit.setStartTime(tvDate.getText().toString() + "T" + tvTime.getText().toString());
-            if (years <= endYears) {
-                eventEdit.setEndDate(tvEndDate.getText().toString() + "T" + tvEndTime.getText().toString());
-            } else {
-                Toast.makeText(this, "Edit date!", Toast.LENGTH_SHORT);
-            }
-            eventEdit.setEndTime(tvEndDate.getText().toString() + "T" + tvEndTime.getText().toString());
-
-            EventEdit event = new EventEdit();
-            event.execute();
-            success = event.get();
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("current_fragment", 1);
-            startActivity(intent);
-            finish();
-        } catch (Exception e) {
-            this.exception = e;
-        }
-    }*/
-
     public class EventEdit extends AsyncTask<Void, Void, Response> {
-        ProgressDialog progressDialog = new ProgressDialog(getApplicationContext());
+        ProgressDialog progressDialog = new ProgressDialog(EditEventActivity.this);
 
         private Exception ex;
 
@@ -338,7 +309,7 @@ public class EditEventActivity extends Activity {
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
             if (response.getItem().equals(true)) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(EditEventActivity.this, MainActivity.class);
                 intent.putExtra("tab", 1);
                 startActivity(intent);
                 finish();
@@ -356,12 +327,12 @@ public class EditEventActivity extends Activity {
                 request.setEntity(entity);
                 HttpResponse response = httpclient.execute(request);
                 InputStreamReader reader = new InputStreamReader(response.getEntity().getContent());
-                success = new Gson().fromJson(reader, Response.class);
+                result = new Gson().fromJson(reader, Response.class);
 
             } catch (Exception e) {
                 this.ex = e;
             }
-            return success;
+            return result;
         }
     }
 }

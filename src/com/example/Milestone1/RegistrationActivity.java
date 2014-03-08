@@ -1,6 +1,7 @@
 package com.example.Milestone1;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,20 +21,14 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 
 import java.io.InputStreamReader;
-
-@SuppressWarnings("ConstantConditions")
 public class RegistrationActivity extends Activity {
     EditText editEmail, editPasswd, editName, editLastName;
-    userRegistration userRegistration = new userRegistration();
-    Registration registration;
-    Response response;
-    Intent intent;
     Response result;
+    userRegistration userRegistration = new userRegistration();
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
-        //getActionBar().setTitle(getString(R.string.registration));
         editEmail = (EditText) findViewById(R.id.editEmail);
         editPasswd = (EditText) findViewById(R.id.editPasswd);
         editName = (EditText) findViewById(R.id.editName);
@@ -46,36 +41,42 @@ public class RegistrationActivity extends Activity {
         userRegistration.FirstName = editName.getText().toString();
         userRegistration.LastName = editLastName.getText().toString();
         try {
-            registration = new Registration();
-            registration.execute();
-
-            response = registration.get();
-            if (response.getItem() != Boolean.FALSE) {
-                Toast.makeText(this, getString(R.string.registration_complete),
-                        Toast.LENGTH_SHORT).show();
-                intent = new Intent(this, AuthorizationActivity.class);
-                intent.putExtra("email", editEmail.getText().toString());
-                startActivity(intent);
-                finish();
-
-            } else {
-                Toast.makeText(this, getString(R.string.error_please_try_again),
-                        Toast.LENGTH_SHORT).show();
-            }
-
-
+            new Registration().execute();
         } catch (Exception ignored) {
 
         }
     }
 
-    public void onClickLicenseString(View view) {
+    public void onClickLicenseString(View v) {
         startActivity(new Intent(this, LicenseActivity.class));
     }
-
     public class Registration extends AsyncTask<userRegistration, Void, Response> {
         public Exception exeption;
+        ProgressDialog progressDialog = new ProgressDialog(RegistrationActivity.this);
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            if (response.getItem().equals(true)) {
+                Toast.makeText(getApplicationContext(), getString(R.string.registration_complete),
+                        Toast.LENGTH_SHORT).show();
+                 Intent intent = new Intent(RegistrationActivity.this, AuthorizationActivity.class);
+                intent.putExtra("email", editEmail.getText().toString());
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(RegistrationActivity.this, getString(R.string.error_please_try_again),
+                        Toast.LENGTH_SHORT).show();
+            }
+            progressDialog.dismiss();
 
+        }
         protected Response doInBackground(userRegistration... params) {
 
             try {

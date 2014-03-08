@@ -51,7 +51,6 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
     final String ATTRIBUTE_NAME_IMAGE = "picture";
     final String ATTRIBUTE_NAME_MESSAGE = "messages";
     final String ATTRIBUTE_NAME_TIME = "times";
-    int img = R.drawable.icon;
     GetGroupFeed getGroupFeed;
     GroupFeedRead[] feed;
     Response result;
@@ -195,8 +194,9 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
         boolean ret;
         if (item.getItemId() == R.id.action_update) {
             ret = true;
-            timeOffset = feed[0].getTime();
-            new GetNewGroupFeed().execute(timeOffset);
+            /*timeOffset = feed[0].getTime();
+            new GetNewGroupFeed().execute(timeOffset);*/
+            new GetGroupFeed().execute();
         } else {
             ret = super.onOptionsItemSelected(item);
         }
@@ -213,8 +213,9 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
                     send.Token = token;
                     send.GroupID = groupID;
                     new SendMessageToGroupFeed().execute();
-                    timeOffset = feed[0].getTime();
-                    new GetNewGroupFeed().execute(timeOffset);
+                    /*timeOffset = feed[0].getTime();
+                    new GetNewGroupFeed().execute(timeOffset);*/
+                    new GetGroupFeed().execute();
                 } catch (Exception e) {
                     this.exception = e;
                 }
@@ -297,7 +298,7 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
 
     public class SendMessageToGroupFeed extends AsyncTask<SendGroupMessage, Void, Response> {
 
-        private Exception ex;
+        Exception exception;
 
         @Override
         protected void onPreExecute() {
@@ -323,14 +324,14 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
                 success = new Gson().fromJson(jsonreader, Response.class);
 
             } catch (Exception e) {
-                this.ex = e;
+                this.exception = e;
             }
             return success;
         }
     }
 
     public class RemoveMessage extends AsyncTask<Void, Void, Response> {
-        private Exception exception;
+        Exception exception;
 
         @Override
         protected void onPostExecute(Response response) {

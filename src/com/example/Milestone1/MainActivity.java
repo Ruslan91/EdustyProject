@@ -18,18 +18,19 @@ import java.util.UUID;
 public class MainActivity extends FragmentActivity {
     UUID token;
     Exception exception;
+    private SharedPreferences sharedpreferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        SharedPreferences sharedpreferences = getSharedPreferences("userdetails", MODE_PRIVATE);
+        sharedpreferences = getSharedPreferences("userdetails", MODE_PRIVATE);
         if (sharedpreferences.getString("token", "").equals("")) {
             startActivity(new Intent(this, AuthorizationActivity.class));
             finish();
         } else {
             Bundle extras = getIntent().getExtras();
-            int current_fragment;
+            Integer current_fragment;
             if (extras != null) {
                 current_fragment = extras.getInt("tab");
             } else {
@@ -51,7 +52,6 @@ public class MainActivity extends FragmentActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
-
         return true;
     }
 
@@ -63,14 +63,10 @@ public class MainActivity extends FragmentActivity {
             startActivity(new Intent(this, UserActivity.class));
         } else if (item.getItemId() == R.id.action_quit) {
             ret = true;
-            SharedPreferences userDetails = getSharedPreferences("userdetails", MODE_PRIVATE);
-            SharedPreferences.Editor edit = userDetails.edit();
+            SharedPreferences.Editor edit = sharedpreferences.edit();
             edit.remove("token");
             edit.commit();
-            Intent intent = new Intent(this, AuthorizationActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            startActivity(new Intent(getApplicationContext(),AuthorizationActivity.class));
             finish();
         } else if (item.getItemId() == R.id.action_settings) {
             ret = true;

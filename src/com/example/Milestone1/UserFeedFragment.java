@@ -170,9 +170,13 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
                     send.Message = editSendMessage.getText().toString();
                     editSendMessage.setText("");
                     send.Token = token;
-                    timeOffset = feed[0].getTime();
+/*                    if (feed[0] == null) {
+                        timeOffset = null;
+                    }
+                    timeOffset = feed[0].getTime();*/
                     new SendMessageToFeed().execute();
-                    new GetNewFeed().execute(timeOffset);
+                    new GetFeed().execute();
+                    //new GetNewFeed().execute(timeOffset);
                 } catch (Exception e) {
                     this.exception = e;
                 }
@@ -196,8 +200,7 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
             // получаем инфу о пункте списка
             AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
             messageID = feed[acmi.position].getId();
-            RemoveMessage removeMessage = new RemoveMessage();
-            removeMessage.execute();
+            new RemoveMessage().execute();
             return true;
         }
         return super.onContextItemSelected(item);
@@ -213,8 +216,9 @@ public class UserFeedFragment extends Fragment implements View.OnClickListener {
         boolean ret;
         if (item.getItemId() == R.id.action_update) {
             ret = true;
-            timeOffset = feed[0].getTime();
-            new GetNewFeed().execute(timeOffset);
+/*            timeOffset = feed[0].getTime();
+            new GetNewFeed().execute(timeOffset);*/
+            new GetFeed().execute();
         } else {
             ret = super.onOptionsItemSelected(item);
         }

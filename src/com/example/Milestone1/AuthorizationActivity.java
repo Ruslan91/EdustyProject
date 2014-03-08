@@ -88,7 +88,8 @@ public class AuthorizationActivity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pdLoading.setMessage("\tЗагрузка...");
+            pdLoading.setMessage(getString(R.string.please_wait));
+            //pdLoading.setCancelable(false);
             pdLoading.show();
         }
 

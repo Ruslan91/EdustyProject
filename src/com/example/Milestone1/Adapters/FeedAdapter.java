@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.Milestone1.R;
+import com.example.Milestone1.ServerConnect.DownloadImagesTask;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -95,7 +96,7 @@ public class FeedAdapter extends SimpleAdapter {
         if (results.get(position).get("picture") != null) {
             String URL = results.get(position).get("picture");
             image.setTag(URL);
-            //task = new DownloadImagesTask().execute(image);
+            task = new DownloadImagesTask().execute(image);
         }
         /*try {
             Bitmap bit = task.get();

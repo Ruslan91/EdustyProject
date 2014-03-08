@@ -49,6 +49,7 @@ public class UserEventsFragment extends Fragment {
     ArrayList<HashMap<String, String>> data;
     private Event[] events;
     HashMap<String, String> m;
+    Exception exception;
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,7 @@ public class UserEventsFragment extends Fragment {
                 }
             });
         } catch (Exception e) {
-
+    this.exception = e;
         }
     }
 
@@ -108,7 +109,7 @@ public class UserEventsFragment extends Fragment {
             ret = true;
             new GetUserEvents().execute();
         }
-        if (item.getItemId() == R.id.action_add) {
+        else if (item.getItemId() == R.id.action_add) {
             ret = true;
             String token_string = token.toString();
             Intent intent = new Intent(getActivity().getApplicationContext(), CreateEventActivity.class);

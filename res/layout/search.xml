@@ -18,7 +18,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_message"
+            android:hint="@string/search"
             android:id="@+id/etSearch"
             android:focusableInTouchMode="true"
             android:layout_margin="5dp"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:src="@drawable/ic_action_send_now"
+            android:src="@drawable/ic_action_search"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="#20ffffff"

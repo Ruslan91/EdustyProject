@@ -202,8 +202,8 @@ public class UserActivity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pdLoading.setMessage("\tЗагрузка...");
-            pdLoading.setCancelable(false);
+            pdLoading.setMessage(getString(R.string.please_wait));
+            //pdLoading.setCancelable(false);
             pdLoading.show();
         }
 

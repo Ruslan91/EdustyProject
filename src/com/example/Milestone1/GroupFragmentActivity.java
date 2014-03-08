@@ -15,18 +15,12 @@ import java.util.UUID;
 
 public class GroupFragmentActivity extends FragmentActivity {
 
-    private int current_fragment;
-    private UUID token;
-    private TabHost mTabHost;
-    private ViewPager mViewPager;
-    private String[] titles;
-    private TabsAdapter mTabsAdapter;
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         SharedPreferences userDetails = getSharedPreferences("userdetails", MODE_PRIVATE);
         Bundle extras = getIntent().getExtras();
+        int current_fragment;
         if (extras != null) {
             current_fragment = extras.getInt("tab");
         } else {

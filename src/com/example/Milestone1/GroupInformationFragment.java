@@ -75,15 +75,19 @@ public class GroupInformationFragment extends Fragment {
     }
 
     public void setData(Response response) {
-        groupInfo = (Groups) response.getItem();
+        try {
+            groupInfo = (Groups) response.getItem();
 
-        groupName.setText(groupInfo.getName());
-        groupDescription.setText(groupInfo.getDescription());
-        if (groupInfo.getWebSite() == null) {
-            groupWebSite.setVisibility(View.GONE);
-            textViewWebSite.setVisibility(View.GONE);
-        } else {
-            groupWebSite.setText(groupInfo.WebSite);
+            groupName.setText(groupInfo.getName());
+            groupDescription.setText(groupInfo.getDescription());
+            if (groupInfo.getWebSite() == null) {
+                groupWebSite.setVisibility(View.GONE);
+                textViewWebSite.setVisibility(View.GONE);
+            } else {
+                groupWebSite.setText(groupInfo.WebSite);
+            }
+        } catch (Exception e) {
+            this.exception = e;
         }
     }
 
@@ -92,17 +96,16 @@ public class GroupInformationFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         try {
             groupInfo = (Groups) result.getItem();
-            menu.getItem(0).setVisible(false);
             if (groupInfo.getMember() == Boolean.FALSE || groupInfo.getMember() == null) {
-                menu.getItem(1).setVisible(false);
-                menu.getItem(2).setTitle(R.string.join);
-                menu.getItem(2).setIcon(R.drawable.ic_action_accept);
+                menu.getItem(0).setVisible(false);
+                menu.getItem(1).setTitle(R.string.join);
+                menu.getItem(1).setIcon(R.drawable.ic_action_accept);
             } else {
-                menu.getItem(1).setVisible(true);
+                menu.getItem(0).setVisible(true);
                 if (groupInfo.getIsOwner()) {
-                    menu.getItem(2).setTitle(getString(R.string.delete));
-                } else menu.getItem(2).setTitle(R.string.leave);
-                menu.getItem(2).setIcon(R.drawable.ic_action_cancel);
+                    menu.getItem(1).setTitle(getString(R.string.delete));
+                } else menu.getItem(1).setTitle(R.string.leave);
+                menu.getItem(1).setIcon(R.drawable.ic_action_cancel);
             }
         } catch (Exception e) {
             this.exception = e;

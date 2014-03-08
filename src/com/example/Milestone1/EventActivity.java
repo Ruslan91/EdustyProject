@@ -127,20 +127,23 @@ public class EventActivity extends Activity {
         boolean ret = false;
         if (item.getItemId() == R.id.action_edit) {
             ret = true;
-
-            Intent intent = new Intent();
-            intent.setClass(EventActivity.this.getApplicationContext(), EditEventActivity.class);
-            intent.putExtra("title", event.getTitle());
-            intent.putExtra("startTime", event.getStartTime());
-            intent.putExtra("endTime", event.getEndTime());
-            intent.putExtra("endDate", event.getEndDate());
-            intent.putExtra("location", event.getLocation());
-            intent.putExtra("interval", event.getTimeInterval());
-            intent.putExtra("description", event.getDescription());
-            intent.putExtra("groupID", event.getGroupID().toString());
-            intent.putExtra("eventID", eventID.toString());
-
-            startActivity(intent);
+            try {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), EditEventActivity.class);
+                intent.putExtra("title", event.getTitle());
+                intent.putExtra("startTime", event.getStartTime());
+                intent.putExtra("endTime", event.getEndTime());
+                intent.putExtra("endDate", event.getEndDate());
+                intent.putExtra("location", event.getLocation());
+                intent.putExtra("interval", event.getTimeInterval());
+                intent.putExtra("description", event.getDescription());
+                intent.putExtra("eventID", eventID.toString());
+                if (event.getGroupID() != null)
+                    intent.putExtra("groupID", event.getGroupID().toString());
+                startActivity(intent);
+            } catch (Exception e) {
+                this.exception = e;
+            }
         }
 
         if (item.getItemId() == R.id.action_delete) {
@@ -193,7 +196,7 @@ public class EventActivity extends Activity {
     }
 
     public class DeleteEvent extends AsyncTask<Void, Void, Response> {
-        ProgressDialog progressDialog = new ProgressDialog(getApplicationContext());
+        ProgressDialog progressDialog = new ProgressDialog(EventActivity.this);
         private Exception ex;
 
         @Override
@@ -207,11 +210,12 @@ public class EventActivity extends Activity {
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
             if (response.getItem().equals(true)) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(EventActivity.this, MainActivity.class);
                 intent.putExtra("tab", 1);
                 startActivity(intent);
                 finish();
             }
+            progressDialog.dismiss();
         }
 
         protected Response doInBackground(Void... params) {

@@ -16,7 +16,6 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:hint="@string/eMail"
-        android:textColor="@android:color/white"
         android:layout_margin="10dp" />
 
     <EditText
@@ -27,7 +26,6 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/edEmail"
         android:hint="@string/password"
-        android:textColor="@android:color/white"
         android:layout_margin="10dp" />
 
     <Button

@@ -1,6 +1,7 @@
 package com.example.Milestone1;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -32,7 +33,7 @@ public class CreateCourseActivity extends Activity {
     private EditText etCourseName;
     private Response result;
     private CreateCourse createCourse;
-    private Exception exception;
+    Exception exception;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,14 +63,6 @@ public class CreateCourseActivity extends Activity {
                     createCourse.setToken(token);
                     PostCreateCourse postCreateCourse = new PostCreateCourse();
                     postCreateCourse.execute();
-                    result = postCreateCourse.get();
-                    if (result.getItem() != null) {
-                        Intent intent = new Intent(this, MainActivity.class);
-                        intent.putExtra("tab", 5);
-                        startActivity(intent);
-                        finish();
-                    } else
-                        Toast.makeText(this, getString(R.string.error_please_try_again), Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception e) {
                 this.exception = e;
@@ -79,8 +72,27 @@ public class CreateCourseActivity extends Activity {
     }
 
     public class PostCreateCourse extends AsyncTask<Void, Void, Response> {
+        ProgressDialog progressDialog = new ProgressDialog(CreateCourseActivity.this);
+        Exception exception;
 
-        private Exception ex;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            if (result.getItem() != null) {
+                Intent intent = new Intent(CreateCourseActivity.this, MainActivity.class);
+                intent.putExtra("tab", 5);
+                startActivity(intent);
+                finish();
+            } else Toast.makeText(CreateCourseActivity.this, getString(R.string.error_please_try_again), Toast.LENGTH_SHORT).show();
+            progressDialog.dismiss();
+        }
 
         protected Response doInBackground(Void... params) {
 
@@ -96,7 +108,7 @@ public class CreateCourseActivity extends Activity {
                 result = new Gson().fromJson(reader, Response.class);
 
             } catch (Exception e) {
-                this.ex = e;
+                this.exception = e;
             }
             return result;
         }

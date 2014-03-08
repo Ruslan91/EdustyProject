@@ -1,6 +1,7 @@
 package com.example.Milestone1;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -82,12 +83,14 @@ public class CreateGroupActivity extends Activity {
     }
 
     public class CreateGroup extends AsyncTask<GroupWrite, Void, Response> {
-
+        ProgressDialog progressDialog = new ProgressDialog(CreateGroupActivity.this);
         private Exception ex;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
         }
 
         @Override
@@ -106,6 +109,7 @@ public class CreateGroupActivity extends Activity {
             } else {
                 Toast.makeText(CreateGroupActivity.this, getString(R.string.please_set_text), Toast.LENGTH_SHORT).show();
             }
+            progressDialog.dismiss();
         }
 
         protected Response doInBackground(GroupWrite... params) {
