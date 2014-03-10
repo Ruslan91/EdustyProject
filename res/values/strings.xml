@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="url">http://edusty.azurewebsites.net/api/</string>
+    <string name="url">http://89.222.166.108/api/</string>
     <!--http://89.222.166.108/api/-->
     <!--http://edusty.azurewebsites.net/api/-->
 
@@ -32,11 +32,11 @@
     <string name="follow">Follow</string>
     <string name="unfollow">Unfollow</string>
     <string name="title">Title</string>
-    <string name="starttime">Start:</string>
-    <string name="endtime">End:</string>
-    <string name="location">Location:</string>
-    <string name="interval">Interval:</string>
-    <string name="group">Group:</string>
+    <string name="starttime">Start</string>
+    <string name="endtime">End</string>
+    <string name="location">Location</string>
+    <string name="interval">Interval</string>
+    <string name="group">Group</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
     <string name="add">add</string>
@@ -62,7 +62,7 @@
     <string name="mark">Mark</string>
     <string name="lesson">Lesson</string>
     <string name="type">Тип</string>
-    <string name="repeat">Repeat:</string>
+    <string name="repeat">Repeat</string>
     <string name="license">By clicking "Sign Up", You are agreeing to </string>
     <string name="terms_of_service"><u>Terms of Service</u>.</string>
     <string name="registration">Registration</string>
@@ -80,7 +80,8 @@
     </string-array>
 
     <string-array name="titles">
-        <item>FRIENDS</item>
+        <item>SEARCH</item>
+        <item>FOLLOWS</item>
         <item>EVENTS</item>
         <item>FEED</item>
         <item>GROUPS</item>
@@ -121,4 +122,20 @@
         <item>Passing</item>
         <item>Exam</item>
     </string-array>
+
+
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
 </resources>

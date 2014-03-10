@@ -315,7 +315,7 @@ public class CreateEventActivity extends Activity {
                 pdLoading.dismiss();
                 UUID eventID = UUID.fromString((String) result.getItem());
                 if (eventID.compareTo(new UUID(0, 0)) != 0) {
-                    Intent intent = new Intent(CreateEventActivity.this, MainActivity.class);
+                    Intent intent = new Intent(CreateEventActivity.this, OtherMainActivity.class);
                     intent.putExtra("tab", 1);
                     startActivity(intent);
                     finish();

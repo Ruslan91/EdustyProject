@@ -309,7 +309,7 @@ public class EditEventActivity extends Activity {
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
             if (response.getItem().equals(true)) {
-                Intent intent = new Intent(EditEventActivity.this, MainActivity.class);
+                Intent intent = new Intent(EditEventActivity.this, OtherMainActivity.class);
                 intent.putExtra("tab", 1);
                 startActivity(intent);
                 finish();

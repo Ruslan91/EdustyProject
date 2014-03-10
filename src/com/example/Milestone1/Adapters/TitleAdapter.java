@@ -25,13 +25,13 @@ public class TitleAdapter extends FragmentStatePagerAdapter {
         Resources resources = context.getResources();
         titles = resources.getStringArray(R.array.titles);
         frags = new Fragment[titles.length];
-        frags[0] = new UserFriendsFragment();
+/*        frags[0] = new UserFriendsFragment();
         frags[1] = new UserEventsFragment();
         frags[2] = new UserFeedFragment();
         frags[3] = new UserGroupsFragment();
         frags[4] = new UserJournalsFragment();
         frags[5] = new UserMarksFragment();
-        frags[6] = new UserCoursesFragment();
+        frags[6] = new UserCoursesFragment();*/
     }
 
     @Override

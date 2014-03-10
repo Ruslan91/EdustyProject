@@ -71,9 +71,6 @@ public class MainActivity extends FragmentActivity {
         } else if (item.getItemId() == R.id.action_settings) {
             ret = true;
             Toast.makeText(this, getString(R.string.secIsDev), Toast.LENGTH_SHORT).show();
-        } else if (item.getItemId() == R.id.action_search) {
-            ret = true;
-            startActivity(new Intent(this, SearchActivity.class));
         } else {
             ret = super.onOptionsItemSelected(item);
         }

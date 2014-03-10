@@ -1,93 +1,176 @@
 package com.example.Milestone1;
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TabHost;
-import android.widget.Toast;
-
-import com.example.Milestone1.Adapters.TabsAdapter;
-
-import java.util.UUID;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 /**
  * Created by Руслан on 15.11.13.
  */
-public class OtherMainActivity extends FragmentActivity {
-    private ViewPager mViewPager;
-    private TabHost mTabHost;
-    private TabsAdapter mTabsAdapter;
-    private String[] titles;
-    private UUID token;
+public class OtherMainActivity extends Activity {
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+    private ActionBarDrawerToggle mDrawerToggle;
 
-    public void onCreate(Bundle savedInstanceState) {
+    private CharSequence mDrawerTitle;
+    private CharSequence mTitle;
+    private String[] mPlanetTitles;
+    private SharedPreferences sharedpreferences;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SharedPreferences userDetails = getSharedPreferences("userdetails", MODE_PRIVATE);
-        int tab = 0;
-        if (getIntent().getExtras() != null) {
-            tab = getIntent().getExtras().getInt("tab");
-        }
-        //getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        token = UUID.fromString(userDetails.getString("token", ""));
-        mTabHost = (TabHost) findViewById(android.R.id.tabhost);
-        mTabHost.setup();
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        titles = getResources().getStringArray(R.array.titles);
-        mTabsAdapter = new TabsAdapter(this, mTabHost, mViewPager);
-        mTabsAdapter.addTab(mTabHost.newTabSpec("friends").setIndicator(titles[0]), UserFriendsFragment.class, null);
-        mTabsAdapter.addTab(mTabHost.newTabSpec("events").setIndicator(titles[1]), UserEventsFragment.class, null);
-        mTabsAdapter.addTab(mTabHost.newTabSpec("feed").setIndicator(titles[2]), UserFeedFragment.class, null);
-        mTabsAdapter.addTab(mTabHost.newTabSpec("groups").setIndicator(titles[3]), UserGroupsFragment.class, null);
-        mTabsAdapter.addTab(mTabHost.newTabSpec("journals").setIndicator(titles[4]), UserJournalsFragment.class, null);
-        mTabsAdapter.addTab(mTabHost.newTabSpec("courses").setIndicator(titles[5]), UserCoursesFragment.class, null);
+        sharedpreferences = getSharedPreferences("userdetails", MODE_PRIVATE);
+        if (sharedpreferences.getString("token", "").equals("")) {
+            startActivity(new Intent(this, AuthorizationActivity.class));
+            finish();
+        } else {
+            mTitle = mDrawerTitle = getTitle();
+            mPlanetTitles = getResources().getStringArray(R.array.titles);
+            mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+            mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
-        if (savedInstanceState != null) {
-            mTabHost.setCurrentTabByTag(savedInstanceState.getString("tab"));
+            // set a custom shadow that overlays the main content when the drawer opens
+            mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+            // set up the drawer's list view with items and click listener
+            mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+                    R.layout.drawer_list_item, mPlanetTitles));
+            mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+            // enable ActionBar app icon to behave as action to toggle nav drawer
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+            getActionBar().setHomeButtonEnabled(true);
+
+            // ActionBarDrawerToggle ties together the the proper interactions
+            // between the sliding drawer and the action bar app icon
+            mDrawerToggle = new ActionBarDrawerToggle(
+                    this,                  /* host Activity */
+                    mDrawerLayout,         /* DrawerLayout object */
+                    R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
+                    R.string.drawer_open,  /* "open drawer" description for accessibility */
+                    R.string.drawer_close  /* "close drawer" description for accessibility */
+            ) {
+                public void onDrawerClosed(View view) {
+                    getActionBar().setTitle(mTitle);
+                    invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                }
+
+                public void onDrawerOpened(View drawerView) {
+                    getActionBar().setTitle(mDrawerTitle);
+                    invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                }
+            };
+            mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+            if (savedInstanceState == null) {
+                selectItem(3);
+            }
         }
-        mViewPager.setCurrentItem(tab);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-        return true;
+    /* Called whenever we call invalidateOptionsMenu() */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // If the nav drawer is open, hide action items related to the content view
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        boolean ret;
-        /*if (item.getItemId() == R.id.action_update) {
-            Intent intent = new Intent(getIntent());
-            intent.putExtra("tab", mViewPager.getCurrentItem());
-            startActivity(intent);
-            finish();
-        }*/
-        if (item.getItemId() == R.id.action_profile) {
-            ret = true;
-            startActivity(new Intent(this, UserActivity.class));
-        } else if (item.getItemId() == R.id.action_quit) {
-            ret = true;
-            SharedPreferences userDetails = getSharedPreferences("userdetails", MODE_PRIVATE);
-            SharedPreferences.Editor edit = userDetails.edit();
-            edit.remove("token");
-            edit.commit();
-            Intent intent = new Intent(this, AuthorizationActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-        } else if (item.getItemId() == R.id.action_settings) {
-            ret = true;
-            Toast.makeText(this, getString(R.string.secIsDev), Toast.LENGTH_SHORT).show();
-        } else {
-            ret = super.onOptionsItemSelected(item);
+        // The action bar home/up action should open or close the drawer.
+        // ActionBarDrawerToggle will take care of this.
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
         }
-        return ret;
+        // Handle action buttons
+        switch(item.getItemId()) {
+            case R.id.action_profile:
+                startActivity(new Intent(this, UserActivity.class));
+                return true;
+            case R.id.action_quit:
+                SharedPreferences.Editor edit = sharedpreferences.edit();
+                edit.remove("token");
+                edit.commit();
+                startActivity(new Intent(this, AuthorizationActivity.class));
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /* The click listner for ListView in the navigation drawer */
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItem(position);
+        }
+    }
+
+    private void selectItem(int position) {
+        // update the main content by replacing fragments
+
+        Fragment[] frags = new Fragment[mPlanetTitles.length];
+        frags[0] = new SearchActivity();
+        frags[1] = new UserFriendsFragment();
+        frags[2] = new UserEventsFragment();
+        frags[3] = new UserFeedFragment();
+        frags[4] = new UserGroupsFragment();
+        frags[5] = new UserJournalsFragment();
+        frags[6] = new UserMarksFragment();
+        frags[7] = new UserCoursesFragment();
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, frags[position]).commit();
+        // update selected item and title, then close the drawer
+        mDrawerList.setItemChecked(position, true);
+        setTitle(mPlanetTitles[position]);
+        mDrawerLayout.closeDrawer(mDrawerList);
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        mTitle = title;
+        getActionBar().setTitle(mTitle);
+    }
+
+    /**
+     * When using the ActionBarDrawerToggle, you must call it during
+     * onPostCreate() and onConfigurationChanged()...
+     */
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Pass any configuration change to the drawer toggls
+        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 }

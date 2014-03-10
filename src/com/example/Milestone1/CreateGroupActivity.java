@@ -38,7 +38,6 @@ public class CreateGroupActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_create);
-        spFree = (Spinner) findViewById(R.id.spFree);
         groupName = (EditText) findViewById(R.id.tvName);
         groupDescription = (EditText) findViewById(R.id.tvDescription);
         groupWebSite = (EditText) findViewById(R.id.groupWebSite);
@@ -72,9 +71,6 @@ public class CreateGroupActivity extends Activity {
             create.Token = token;
             create.Parent = parentID;
             create.GroupLevel = level;
-            if (spFree.getSelectedItemPosition() == 0) {
-                create.Free = true;
-            } else create.Free = false;
             new CreateGroup().execute();
 
         } catch (Exception e) {

@@ -172,7 +172,7 @@ public class CreateJournalActivity extends Activity {
             super.onPostExecute(response);
             if (response.getItem() != null) {
                 progressDialog.dismiss();
-                startActivity(new Intent(CreateJournalActivity.this, MainActivity.class));
+                startActivity(new Intent(CreateJournalActivity.this, OtherMainActivity.class));
                 finish();
             } else {
                 Toast.makeText(CreateJournalActivity.this, getString(R.string.error_please_try_again), Toast.LENGTH_SHORT).show();

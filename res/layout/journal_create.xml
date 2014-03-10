@@ -8,27 +8,32 @@
     style="@style/EdustyBackground">
 
     <EditText
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/etJournalName"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:hint="Название" />
+        android:hint="@string/title"
+        android:layout_margin="10dp" />
 
     <Spinner
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spJournalGroup"
         android:spinnerMode="dialog"
         android:layout_below="@+id/spJournalCourse"
-        android:layout_alignLeft="@+id/spJournalCourse" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10dp" />
 
     <Spinner
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spJournalCourse"
         android:spinnerMode="dialog"
         android:layout_below="@+id/etJournalName"
-        android:layout_alignLeft="@+id/etJournalName" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10dp" />
 
 </RelativeLayout>

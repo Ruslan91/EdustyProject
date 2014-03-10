@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -70,7 +70,7 @@ public class UserCoursesFragment extends Fragment {
 
     public void setData(Response response) {
 
-        if (response != null) {
+        if (response.getItem() != null) {
 
             courses = (Courses[]) response.getItem();
             ArrayList<Map<String, String>> data = new ArrayList<Map<String, String>>(

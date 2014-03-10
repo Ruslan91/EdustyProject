@@ -13,10 +13,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="android-support-v4" level="project" />
     <orderEntry type="library" name="gson-2.2.2-javadoc" level="project" />
     <orderEntry type="library" exported="" name="gson-2.2.2" level="project" />
     <orderEntry type="library" name="gson-2.2.2-sources" level="project" />
+    <orderEntry type="library" name="android-support-v13" level="project" />
   </component>
 </module>
 

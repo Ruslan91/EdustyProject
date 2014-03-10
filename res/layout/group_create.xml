@@ -8,44 +8,39 @@
     style="@style/EdustyBackground">
 
     <EditText
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvName"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:hint="Название" />
+        android:hint="@string/title"
+        android:layout_margin="10dp" />
 
     <EditText
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvDescription"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/tvName"
-        android:hint="Описание" />
+        android:hint="@string/description"
+        android:layout_margin="10dp" />
 
     <EditText
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/groupWebSite"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/tvDescription"
-        android:hint="Веб-сайт" />
+        android:hint="@string/website"
+        android:layout_margin="10dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Создать"
+        android:text="@string/create"
         android:id="@+id/btnCreate"
         android:onClick="onClickBtnCreateGroup"
-        android:layout_below="@+id/spFree"
-        android:layout_centerHorizontal="true" />
-
-    <Spinner
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/spFree"
-        android:layout_below="@+id/groupWebSite"
         android:layout_centerHorizontal="true"
-        android:spinnerMode="dropdown"
-        android:entries="@array/group_free" />
+        android:layout_below="@+id/groupWebSite" />
+
 </RelativeLayout>

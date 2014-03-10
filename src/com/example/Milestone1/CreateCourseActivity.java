@@ -86,7 +86,7 @@ public class CreateCourseActivity extends Activity {
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
             if (result.getItem() != null) {
-                Intent intent = new Intent(CreateCourseActivity.this, MainActivity.class);
+                Intent intent = new Intent(CreateCourseActivity.this, OtherMainActivity.class);
                 intent.putExtra("tab", 5);
                 startActivity(intent);
                 finish();

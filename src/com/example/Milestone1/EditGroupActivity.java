@@ -48,7 +48,6 @@ public class EditGroupActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_edit);
-        spFree = (Spinner) findViewById(R.id.spFree);
         groupName = (EditText) findViewById(R.id.tvName);
         groupDescription = (EditText) findViewById(R.id.tvDescription);
         groupWebSite = (EditText) findViewById(R.id.groupWebSite);

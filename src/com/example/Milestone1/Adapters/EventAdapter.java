@@ -25,7 +25,7 @@ public class EventAdapter extends BaseAdapter {
     private final LayoutInflater lInflater;
     private Exception exception;
 
-    public  EventAdapter(FragmentActivity activity, Event[] events) {
+    public  EventAdapter(Activity activity, Event[] events) {
         results = events;
         lInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <string name="url">http://edusty.azurewebsites.net/api/</string>
+    <string name="url">http://89.222.166.108/api/</string>
     <!--http://89.222.166.108/api/-->
     <!--http://edusty.azurewebsites.net/api/-->
 
@@ -33,9 +33,9 @@
     <string name="follow">Подписаться</string>
     <string name="unfollow">Отписаться</string>
     <string name="title">Название</string>
-    <string name="starttime">Начало:</string>
-    <string name="endtime">Окончание:</string>
-    <string name="location">Место:</string>
+    <string name="starttime">Начало</string>
+    <string name="endtime">Окончание</string>
+    <string name="location">Место</string>
     <string name="date">Дата</string>
     <string name="time">Время</string>
     <string name="add">Добавить</string>
@@ -43,10 +43,10 @@
     <string name="cancel">Отмена</string>
     <string name="at">в</string>
     <string name="delete">Удалить</string>
-    <string name="website">Сайт:</string>
+    <string name="website">Сайт</string>
     <string name="groupImage">groupImage</string>
     <string name="description">Описание</string>
-    <string name="group">Группа:</string>
+    <string name="group">Группа</string>
     <string name="interval">Периодичность:</string>
     <string name="secIsDev">Раздел в разработке</string>
     <string name="update">Обновить</string>
@@ -63,7 +63,7 @@
     <string name="mark">Оценка</string>
     <string name="lesson">Занятие</string>
     <string name="type">Тип</string>
-    <string name="repeat">Повторять:</string>
+    <string name="repeat">Повторять</string>
     <string name="license">Нажимая "Зарегистрироваться", Вы принимаете условия </string>
     <string name="terms_of_service"><u>Соглашения</u>.</string>
     <string name="registration">Регистрация</string>
@@ -81,7 +81,8 @@
     </string-array>
 
     <string-array name="titles">
-        <item>ДРУЗЬЯ</item>
+        <item>ПОИСК</item>
+        <item>ПОДПИСКИ</item>
         <item>СОБЫТИЯ</item>
         <item>ЛЕНТА</item>
         <item>ГРУППЫ</item>
@@ -140,4 +141,20 @@
         <item>Такой E-Mail уже зарегистрирован</item>
         <item>Не заполнены обязательные поля‏</item>
     </string-array>
+
+
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
 </resources>

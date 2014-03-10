@@ -28,7 +28,7 @@
 
         <ImageButton
             android:text="@string/send"
-            android:id="@+id/btnSend"
+            android:id="@+id/btnSearch"
             android:onClick="onClickBtnSendForSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

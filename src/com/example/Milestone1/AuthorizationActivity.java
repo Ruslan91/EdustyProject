@@ -50,7 +50,7 @@ public class AuthorizationActivity extends Activity {
                 assert edit != null;
                 edit.putString("token", response.getItem().toString());
                 edit.commit();
-                startActivity(new Intent(AuthorizationActivity.this, MainActivity.class));
+                startActivity(new Intent(AuthorizationActivity.this, OtherMainActivity.class));
                 finish();
             } else {
                 Toast.makeText(AuthorizationActivity.this, getString(R.string.error_please_try_again),
