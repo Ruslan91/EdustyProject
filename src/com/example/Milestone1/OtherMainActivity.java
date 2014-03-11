@@ -78,7 +78,7 @@ public class OtherMainActivity extends Activity {
             mDrawerLayout.setDrawerListener(mDrawerToggle);
 
             if (savedInstanceState == null) {
-                selectItem(3);
+                selectItem(1);
             }
         }
     }
@@ -105,7 +105,7 @@ public class OtherMainActivity extends Activity {
             return true;
         }
         // Handle action buttons
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.action_profile:
                 startActivity(new Intent(this, UserActivity.class));
                 return true;
@@ -115,6 +115,7 @@ public class OtherMainActivity extends Activity {
                 edit.commit();
                 startActivity(new Intent(this, AuthorizationActivity.class));
                 finish();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -133,13 +134,13 @@ public class OtherMainActivity extends Activity {
 
         Fragment[] frags = new Fragment[mPlanetTitles.length];
         frags[0] = new SearchActivity();
-        frags[1] = new UserFriendsFragment();
+        frags[1] = new UserFeedFragment();
         frags[2] = new UserEventsFragment();
-        frags[3] = new UserFeedFragment();
+        frags[3] = new UserFriendsFragment();
         frags[4] = new UserGroupsFragment();
-        frags[5] = new UserJournalsFragment();
+        frags[5] = new UserCoursesFragment();
         frags[6] = new UserMarksFragment();
-        frags[7] = new UserCoursesFragment();
+        frags[7] = new UserJournalsFragment();
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, frags[position]).commit();

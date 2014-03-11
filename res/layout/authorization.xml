@@ -6,7 +6,8 @@
     android:gravity="center"
     android:layout_gravity="left"
     android:focusableInTouchMode="false"
-    style="@style/EdustyBackground">
+    style="@style/EdustyBackground"
+    android:focusable="true">
 
     <EditText
         android:layout_width="match_parent"
@@ -16,7 +17,8 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:hint="@string/eMail"
-        android:layout_margin="10dp" />
+        android:layout_margin="5dp"
+        android:focusableInTouchMode="false" />
 
     <EditText
         android:layout_width="match_parent"
@@ -26,7 +28,8 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/edEmail"
         android:hint="@string/password"
-        android:layout_margin="10dp" />
+        android:layout_margin="5dp"
+        android:focusableInTouchMode="false" />
 
     <Button
         android:layout_width="wrap_content"

@@ -7,5 +7,8 @@
         android:icon="@drawable/ic_action_refresh"
         android:showAsAction="always"
         android:title="@string/update" />
-
+    <item
+        android:id="@+id/action_add_message"
+        android:icon="@drawable/ic_action_chat"
+        android:showAsAction="always" />
 </menu>

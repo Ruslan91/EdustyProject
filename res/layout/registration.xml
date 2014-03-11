@@ -7,17 +7,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/EdustyBackground">
+    style="@style/EdustyBackground"
+    android:focusable="true">
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editEmail"
-        android:hint="Email"
+        android:hint="@string/eMail"
         android:inputType="textEmailAddress"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp" />
+        android:layout_margin="5dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
         android:layout_below="@+id/editEmail"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:layout_margin="10dp" />
+        android:layout_margin="5dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -37,7 +38,7 @@
         android:layout_below="@+id/editPasswd"
         android:hint="@string/firstName"
         android:inputType="textPersonName"
-        android:layout_margin="10dp" />
+        android:layout_margin="5dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -47,7 +48,7 @@
         android:layout_below="@+id/editName"
         android:hint="@string/lastName"
         android:inputType="text|textPersonName"
-        android:layout_margin="10dp" />
+        android:layout_margin="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,7 +59,7 @@
         android:layout_below="@+id/editLastName"
         android:layout_alignParentLeft="true"
         android:paddingTop="10dp"
-        android:layout_margin="10dp" />
+        android:layout_margin="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -68,8 +69,8 @@
         android:onClick="onClickLicenseString"
         android:clickable="true"
         android:textIsSelectable="true"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView" />
+        android:layout_alignBottom="@+id/textView"
+        android:layout_toRightOf="@+id/textView" />
 
     <Button
         android:layout_width="wrap_content"
@@ -79,8 +80,8 @@
         android:onClick="OnClickBtnReg"
         android:gravity="center"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout><!--

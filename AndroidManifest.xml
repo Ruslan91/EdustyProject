@@ -52,7 +52,7 @@
             android:name=".CreateMarksJournalActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".LicenseActivity" />
-        <activity android:name=".SearchActivity" />
+        <activity android:name=".CreateFeedMessageActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

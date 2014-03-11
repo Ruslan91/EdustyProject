@@ -1,38 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:gravity="center"
-    style="@style/EdustyBackground">
+    style="@style/EdustyBackground"
+    android:gravity="center_horizontal"
+    android:focusable="true">
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvName"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
         android:hint="@string/title"
-        android:layout_margin="10dp" />
+        android:inputType="none"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="false"
+        android:layout_margin="5dp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvDescription"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/tvName"
         android:hint="@string/description"
-        android:layout_margin="10dp" />
+        android:inputType="textMultiLine"
+        android:layout_below="@+id/tvName"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/groupWebSite"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/tvDescription"
         android:hint="@string/website"
-        android:layout_margin="10dp" />
+        android:inputType="textWebEditText"
+        android:layout_below="@+id/tvDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp" />
 
     <Button
         android:layout_width="wrap_content"

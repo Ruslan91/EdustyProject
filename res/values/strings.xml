@@ -81,13 +81,13 @@
 
     <string-array name="titles">
         <item>SEARCH</item>
-        <item>FOLLOWS</item>
-        <item>EVENTS</item>
         <item>FEED</item>
+        <item>EVENTS</item>
+        <item>FOLLOWS</item>
         <item>GROUPS</item>
-        <item>JOURNALS</item>
-        <item>MARKS</item>
         <item>COURSES</item>
+        <item>MARKS</item>
+        <item>JOURNALS</item>
     </string-array>
 
     <string-array name="group_titles">
@@ -138,4 +138,5 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_websearch">Web search</string>
     <string name="app_not_available">Sorry, there\'s no web browser available</string>
+    <string name="enter_course_title">Enter Course Title</string>
 </resources>

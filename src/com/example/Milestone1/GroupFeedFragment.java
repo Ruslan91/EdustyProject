@@ -2,6 +2,7 @@ package com.example.Milestone1;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -31,13 +31,10 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,7 +43,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class GroupFeedFragment extends Fragment implements View.OnClickListener {
+public class GroupFeedFragment extends Fragment {
     final String ATTRIBUTE_NAME_TEXTF = "titles";
     final String ATTRIBUTE_NAME_IMAGE = "picture";
     final String ATTRIBUTE_NAME_MESSAGE = "messages";
@@ -96,8 +93,6 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
 
                 }
             });
-            ImageButton btnSend = (ImageButton) myView.findViewById(R.id.btnSend);
-            btnSend.setOnClickListener(this);
         } catch (Exception e) {
             this.exception = e;
         }
@@ -191,34 +186,18 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        boolean ret;
-        if (item.getItemId() == R.id.action_update) {
-            ret = true;
-            /*timeOffset = feed[0].getTime();
-            new GetNewGroupFeed().execute(timeOffset);*/
-            new GetGroupFeed().execute();
-        } else {
-            ret = super.onOptionsItemSelected(item);
-        }
-        return ret;
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnSend:
-                try {
-                    send.Message = editSendMessage.getText().toString();
-                    editSendMessage.setText("");
-                    send.Token = token;
-                    send.GroupID = groupID;
-                    new SendMessageToGroupFeed().execute();
-                    /*timeOffset = feed[0].getTime();
-                    new GetNewGroupFeed().execute(timeOffset);*/
-                    new GetGroupFeed().execute();
-                } catch (Exception e) {
-                    this.exception = e;
-                }
+        switch (item.getItemId()) {
+            case R.id.action_add_message:
+                Intent intent = new Intent(getActivity(), CreateFeedMessageActivity.class);
+                intent.putExtra("type", "groupFeed");
+                intent.putExtra("groupID", groupID.toString());
+                startActivity(intent);
+                return true;
+            case R.id.action_update:
+                new GetGroupFeed().execute();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -293,40 +272,6 @@ public class GroupFeedFragment extends Fragment implements View.OnClickListener 
                 this.exception = e;
             }
             return result;
-        }
-    }
-
-    public class SendMessageToGroupFeed extends AsyncTask<SendGroupMessage, Void, Response> {
-
-        Exception exception;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Response response) {
-            super.onPostExecute(response);
-        }
-
-        protected Response doInBackground(SendGroupMessage... params) {
-
-            try {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost request = new HttpPost(getString(R.string.url) + "GroupMessages");
-                StringEntity entity = new StringEntity(new Gson().toJson(send),
-                        HTTP.UTF_8);
-                entity.setContentType("application/json");
-                request.setEntity(entity);
-                HttpResponse response = httpclient.execute(request);
-                Reader jsonreader = new InputStreamReader(response.getEntity().getContent());
-                success = new Gson().fromJson(jsonreader, Response.class);
-
-            } catch (Exception e) {
-                this.exception = e;
-            }
-            return success;
         }
     }
 

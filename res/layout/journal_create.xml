@@ -4,36 +4,41 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:gravity="center"
-    style="@style/EdustyBackground">
+    style="@style/EdustyBackground"
+    android:gravity="center_horizontal"
+    android:focusable="true">
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/etJournalName"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
         android:hint="@string/title"
-        android:layout_margin="10dp" />
+        android:singleLine="true"
+        android:inputType="none"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="false"
+        android:layout_margin="5dp" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spJournalGroup"
         android:spinnerMode="dialog"
+        android:ems="15"
         android:layout_below="@+id/spJournalCourse"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="10dp" />
+        android:layout_alignLeft="@+id/spJournalCourse"
+        android:layout_alignStart="@+id/spJournalCourse"
+        android:layout_margin="5dp" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spJournalCourse"
         android:spinnerMode="dialog"
+        android:ems="15"
         android:layout_below="@+id/etJournalName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="10dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp" />
 
 </RelativeLayout>
