@@ -16,8 +16,8 @@ import android.widget.Toast;
 
 import com.example.Milestone1.Adapters.CreateMarksJournalAdapter;
 import com.example.Milestone1.Classes.EditMark;
+import com.example.Milestone1.Classes.Follows;
 import com.example.Milestone1.Classes.MarksRead;
-import com.example.Milestone1.Classes.Members;
 import com.example.Milestone1.Classes.Response;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -48,7 +48,7 @@ public class CreateMarksJournalActivity extends Activity {
     private ArrayList<Map<String, String>> data;
     private Exception exception;
     private MarksRead[] marksReads;
-    private Members[] members;
+    private Follows[] members;
     private EditMark createMarks;
     private int item_pos;
     private ListView listMarks;
@@ -149,7 +149,7 @@ public class CreateMarksJournalActivity extends Activity {
     }
 
     private void setData(Response response) {
-        members = (Members[]) response.getItem();
+        members = (Follows[]) response.getItem();
         data = new ArrayList<Map<String, String>>();
 
         listMarks = (ListView) findViewById(R.id.listMarks);
@@ -210,7 +210,7 @@ public class CreateMarksJournalActivity extends Activity {
                 HttpResponse response = httpclient.execute(request);
                 InputStreamReader reader = new InputStreamReader(response.getEntity()
                         .getContent(), HTTP.UTF_8);
-                Type fooType = new TypeToken<Response<Members[]>>() {
+                Type fooType = new TypeToken<Response<Follows[]>>() {
                 }.getType();
                 result = gson.fromJson(reader, fooType);
             } catch (Exception e) {

@@ -852,7 +852,7 @@ com.example.Milestone1.Adapters.FeedAdapter:
     private android.os.AsyncTask task
     54:54:public java.lang.Object getAppName(int)
 com.example.Milestone1.Adapters.FeedAdapter$ViewHolder
-com.example.Milestone1.Adapters.FriendsAdapter:
+com.example.Milestone1.Adapters.FollowsAdapter:
     private android.os.AsyncTask task
     48:48:public java.lang.Object getAppName(int)
 com.example.Milestone1.Adapters.GroupsAdapter:
@@ -935,7 +935,7 @@ com.example.Milestone1.Classes.GroupFeedRead:
     69:70:public void setUserID(java.util.UUID)
     77:78:public void setTime(java.lang.String)
     85:86:public void setMessage(java.lang.String)
-com.example.Milestone1.Classes.GroupFollow:
+com.example.Milestone1.Classes.GroupJoin:
     12:12:public java.util.UUID getGroupID()
     20:20:public java.util.UUID getToken()
 com.example.Milestone1.Classes.Groups:
@@ -988,7 +988,7 @@ com.example.Milestone1.Classes.MarksRead:
     32:32:public java.lang.Integer getType()
     40:40:public java.lang.String getDescription()
     48:48:public java.util.UUID getUserID()
-com.example.Milestone1.Classes.Members:
+com.example.Milestone1.Classes.Follows:
     public java.lang.String MiddleName
     17:18:public void setId(java.util.UUID)
     25:26:public void setFirstName(java.lang.String)
@@ -1119,8 +1119,8 @@ com.example.Milestone1.UserEventsFragment:
 com.example.Milestone1.UserFeedFragment:
     java.util.UUID groupID
     private android.widget.TextView tvName
-com.example.Milestone1.UserFriendsFragment:
-    com.example.Milestone1.UserFriendsFragment$GetFriends getFriends
+com.example.Milestone1.UserFollowsFragment:
+    com.example.Milestone1.UserFollowsFragment$GetFriends getFriends
 com.example.Milestone1.UserGroupsFragment:
     android.widget.ImageView groupImage
 com.example.Milestone1.UserJournalsFragment:

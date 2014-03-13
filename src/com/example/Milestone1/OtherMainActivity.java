@@ -1,11 +1,16 @@
 package com.example.Milestone1;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -30,57 +35,87 @@ public class OtherMainActivity extends Activity {
     private CharSequence mTitle;
     private String[] mPlanetTitles;
     private SharedPreferences sharedpreferences;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        sharedpreferences = getSharedPreferences("userdetails", MODE_PRIVATE);
-        if (sharedpreferences.getString("token", "").equals("")) {
-            startActivity(new Intent(this, AuthorizationActivity.class));
-            finish();
+        if (!isOnline()) {
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+            alertDialog.setCancelable(false);
+            alertDialog.setMessage("Интернет соединение отсутсвует!"); // сообщение
+            alertDialog.setPositiveButton("Повторить", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int arg1) {
+                    Intent i = getBaseContext().getPackageManager()
+                            .getLaunchIntentForPackage(getBaseContext().getPackageName());
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+                }
+            });
+            alertDialog.setNegativeButton("Выйти из приложения", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int arg1) {
+                    onDestroy();
+                }
+            });
+            alertDialog.show();
         } else {
-            mTitle = mDrawerTitle = getTitle();
-            mPlanetTitles = getResources().getStringArray(R.array.titles);
-            mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-            mDrawerList = (ListView) findViewById(R.id.left_drawer);
+            sharedpreferences = getSharedPreferences("userdetails", MODE_PRIVATE);
+            if (sharedpreferences.getString("token", "").equals("")) {
+                startActivity(new Intent(this, AuthorizationActivity.class));
+                finish();
+            } else {
+                mTitle = mDrawerTitle = getTitle();
+                mPlanetTitles = getResources().getStringArray(R.array.titles);
+                mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+                mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
-            // set a custom shadow that overlays the main content when the drawer opens
-            mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-            // set up the drawer's list view with items and click listener
-            mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                    R.layout.drawer_list_item, mPlanetTitles));
-            mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+                // set a custom shadow that overlays the main content when the drawer opens
+                mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+                // set up the drawer's list view with items and click listener
+                mDrawerList.setAdapter(new ArrayAdapter<>(this,
+                        R.layout.drawer_list_item, mPlanetTitles));
+                mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-            // enable ActionBar app icon to behave as action to toggle nav drawer
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-            getActionBar().setHomeButtonEnabled(true);
+                // enable ActionBar app icon to behave as action to toggle nav drawer
+                getActionBar().setDisplayHomeAsUpEnabled(true);
+                getActionBar().setHomeButtonEnabled(true);
 
-            // ActionBarDrawerToggle ties together the the proper interactions
-            // between the sliding drawer and the action bar app icon
-            mDrawerToggle = new ActionBarDrawerToggle(
-                    this,                  /* host Activity */
-                    mDrawerLayout,         /* DrawerLayout object */
-                    R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
-                    R.string.drawer_open,  /* "open drawer" description for accessibility */
-                    R.string.drawer_close  /* "close drawer" description for accessibility */
-            ) {
-                public void onDrawerClosed(View view) {
-                    getActionBar().setTitle(mTitle);
-                    invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                // ActionBarDrawerToggle ties together the the proper interactions
+                // between the sliding drawer and the action bar app icon
+                mDrawerToggle = new ActionBarDrawerToggle(
+                        this,                  /* host Activity */
+                        mDrawerLayout,         /* DrawerLayout object */
+                        R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
+                        R.string.drawer_open,  /* "open drawer" description for accessibility */
+                        R.string.drawer_close  /* "close drawer" description for accessibility */
+                ) {
+                    public void onDrawerClosed(View view) {
+                        getActionBar().setTitle(mTitle);
+                        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                    }
+
+                    public void onDrawerOpened(View drawerView) {
+                        getActionBar().setTitle(mDrawerTitle);
+                        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                    }
+                };
+                mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+                if (savedInstanceState == null) {
+                    if (getIntent().getExtras() == null)
+                        selectItem(1);
+                    else selectItem(getIntent().getIntExtra("tab", 1));
                 }
-
-                public void onDrawerOpened(View drawerView) {
-                    getActionBar().setTitle(mDrawerTitle);
-                    invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-                }
-            };
-            mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-            if (savedInstanceState == null) {
-                selectItem(1);
             }
         }
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
     @Override
@@ -136,7 +171,7 @@ public class OtherMainActivity extends Activity {
         frags[0] = new SearchActivity();
         frags[1] = new UserFeedFragment();
         frags[2] = new UserEventsFragment();
-        frags[3] = new UserFriendsFragment();
+        frags[3] = new UserFollowsFragment();
         frags[4] = new UserGroupsFragment();
         frags[5] = new UserCoursesFragment();
         frags[6] = new UserMarksFragment();

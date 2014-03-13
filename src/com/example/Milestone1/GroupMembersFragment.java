@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.Milestone1.Adapters.FriendsAdapter;
-import com.example.Milestone1.Classes.Members;
+import com.example.Milestone1.Adapters.FollowsAdapter;
+import com.example.Milestone1.Classes.Follows;
 import com.example.Milestone1.Classes.Response;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -26,14 +26,11 @@ import org.apache.http.protocol.HTTP;
 
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 public class GroupMembersFragment extends Fragment {
     GetGroupMembers getGroupMembers;
-    Members[] members;
+    Follows[] members;
     Exception exception;
     ListView listMembers;
     UUID token, groupID;
@@ -56,13 +53,13 @@ public class GroupMembersFragment extends Fragment {
 
     public void setData(Response response) {
         try {
-            members = (Members[]) response.getItem();
+            members = (Follows[]) response.getItem();
 
-            ArrayList<Map<String, String>> data = new ArrayList<>(
+            /*ArrayList<Map<String, String>> data = new ArrayList<>(
                     members.length);
 
             Map<String, String> m;
-            for (Members member : members) {
+            for (Follows member : members) {
                 m = new HashMap<>();
                 m.put("name", member.getFirstName());
                 m.put("lastName", member.getLastName());
@@ -73,10 +70,9 @@ public class GroupMembersFragment extends Fragment {
             }
             String[] from = {"name", "lastName",
                     "picture"};
-            int[] to = {R.id.firstName, R.id.lastName, R.id.userImage};
+            int[] to = {R.id.firstName, R.id.lastName, R.id.userImage};*/
 
-            FriendsAdapter sAdapter = new FriendsAdapter(getActivity(), data, R.layout.friend_list_item,
-                    from, to);
+            FollowsAdapter sAdapter = new FollowsAdapter(getActivity(), members);
 
             // определяем список и присваиваем ему адаптер
             listMembers.setAdapter(sAdapter);
@@ -123,7 +119,7 @@ public class GroupMembersFragment extends Fragment {
                 HttpResponse response = httpclient.execute(request);
                 InputStreamReader reader = new InputStreamReader(response.getEntity()
                         .getContent(), HTTP.UTF_8);
-                Type fooType = new TypeToken<Response<Members[]>>() {
+                Type fooType = new TypeToken<Response<Follows[]>>() {
                 }.getType();
                 result = gson.fromJson(reader, fooType);
             } catch (Exception e) {

@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="#20ffffff">
 
     <ImageView
-        android:id="@+id/userImage"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/icon"
-        android:layout_margin="5dp"></ImageView>
+        android:id="@+id/image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@android:drawable/ic_menu_help"
+        android:layout_margin="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp" />
 
     <TextView
-        android:id="@+id/firstName"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FirstName"
         android:textSize="20sp"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:layout_margin="5dp"></TextView>
+        android:layout_alignTop="@+id/image"
+        android:layout_toRightOf="@+id/image"
+        android:textColor="@android:color/holo_blue_light" />
 
     <TextView
-        android:id="@+id/lastName"
+        android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LastName"
-        android:textSize="20sp"
-        android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:layout_margin="5dp"></TextView>
+        android:layout_below="@+id/tvTitle"
+        android:layout_toRightOf="@+id/image"
+        android:textColor="@android:color/secondary_text_dark"
+        style="@style/EdustyFont" />
 
-</LinearLayout>
+</RelativeLayout>

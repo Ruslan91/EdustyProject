@@ -14,8 +14,8 @@ import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.Milestone1.Classes.Follows;
 import com.example.Milestone1.Classes.JournalDates;
-import com.example.Milestone1.Classes.Members;
 import com.example.Milestone1.Classes.Response;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -36,15 +36,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-/**
- * Created by Руслан on 07.12.13.
- */
 public class JournalActivity extends Activity {
     private UUID token;
     private UUID journalID;
     private Response result;
-    private Exception exception;
-    private ArrayList<Map<String, String>> data;
+    Exception exception;
 
     private ListView listJournalDates;
     private JournalDates[] dates;
@@ -52,7 +48,7 @@ public class JournalActivity extends Activity {
     private UUID groupID;
     private GetJournalMembers getJournalMembers;
     private SimpleAdapter simpleAdapter;
-    private Members[] members;
+    private Follows[] members;
     private Boolean isOwner;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -75,7 +71,6 @@ public class JournalActivity extends Activity {
                     } else if (selectedItemPosition == 1) {
                         getJournalMembers = new GetJournalMembers();
                         getJournalMembers.execute();
-
                     }
                 }
 
@@ -110,13 +105,13 @@ public class JournalActivity extends Activity {
         try {
             if (spJournalTypes.getSelectedItemPosition() == 0) {
                 dates = (JournalDates[]) response.getItem();
-                data = new ArrayList<Map<String, String>>();
+                ArrayList<Map<String, String>> data = new ArrayList<>();
                 data.clear();
-                for (int i = 0; i < dates.length; i++) {
-                    HashMap<String, String> m = new HashMap<String, String>();
-                    Date datetime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(dates[i].getDate());
+                for (JournalDates date : dates) {
+                    HashMap<String, String> m = new HashMap<>();
+                    Date datetime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(date.getDate());
                     m.put("date", new SimpleDateFormat("EEEE, dd MMMM").format(datetime));
-                    m.put("lesson", dates[i].getLessonNumber().toString());
+                    m.put("lesson", date.getLessonNumber().toString());
                     data.add(m);
                     simpleAdapter = new SimpleAdapter(JournalActivity.this, data, R.layout.journal_dates_list_item,
                             new String[]{"date", "lesson"},
@@ -124,18 +119,18 @@ public class JournalActivity extends Activity {
 
                 }
             } else if (spJournalTypes.getSelectedItemPosition() == 1) {
-                members = (Members[]) response.getItem();
-                data = new ArrayList<Map<String, String>>();
+                members = (Follows[]) response.getItem();
+                ArrayList<Map<String, String>> data = new ArrayList<>();
                 data.clear();
-                for (int i = 0; i < members.length; i++) {
-                    HashMap<String, String> m = new HashMap<String, String>();
-                    m.put("name", members[i].getFirstName());
-                    m.put("lastname", members[i].getLastName());
+                for (Follows member : members) {
+                    HashMap<String, String> m = new HashMap<>();
+                    m.put("title", member.getFirstName());
+                    m.put("description", member.getLastName());
                     data.add(m);
                 }
                 simpleAdapter = new SimpleAdapter(JournalActivity.this, data, R.layout.friend_list_item,
-                        new String[]{"name", "lastname"},
-                        new int[]{R.id.firstName, R.id.lastName});
+                        new String[]{"title", "description"},
+                        new int[]{R.id.tvTitle, R.id.tvDescription});
             }
 
             listJournalDates.setAdapter(simpleAdapter);
@@ -156,16 +151,14 @@ public class JournalActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_create) {
-                Intent intent = new Intent(this, CreateMarksJournalActivity.class);
-                intent.putExtra("journalID", journalID.toString());
-                intent.putExtra("groupID", groupID.toString());
-                startActivity(intent);
+            Intent intent = new Intent(this, CreateMarksJournalActivity.class);
+            intent.putExtra("journalID", journalID.toString());
+            intent.putExtra("groupID", groupID.toString());
+            startActivity(intent);
         }
         if (item.getItemId() == R.id.action_delete) {
-                RemoveJournal removeJournal = new RemoveJournal();
-                removeJournal.execute();
-                startActivity(new Intent(this, MainActivity.class));
-                finish();
+            RemoveJournal removeJournal = new RemoveJournal();
+            removeJournal.execute();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -237,7 +230,7 @@ public class JournalActivity extends Activity {
                 HttpResponse response = httpclient.execute(request);
                 InputStreamReader reader = new InputStreamReader(response.getEntity()
                         .getContent(), HTTP.UTF_8);
-                Type fooType = new TypeToken<Response<Members[]>>() {
+                Type fooType = new TypeToken<Response<Follows[]>>() {
                 }.getType();
                 result = gson.fromJson(reader, fooType);
             } catch (Exception e) {
@@ -246,14 +239,22 @@ public class JournalActivity extends Activity {
             return result;
         }
     }
+
     public class RemoveJournal extends AsyncTask<Void, Void, Response> {
+        Exception exception;
+
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
-            /*if (result.getItem() == Boolean.TRUE) {
-
-            } else
-                Toast.makeText(JournalActivity.this, "Только владелец может выполнить это действие", Toast.LENGTH_SHORT).show();*/
+            if (response.getItem().equals(true)) {
+                Intent intent = new Intent(JournalActivity.this, OtherMainActivity.class);
+                intent.putExtra("tab", 7);
+                startActivity(intent);
+                finish();
+            } else {
+                String[] errors = getResources().getStringArray(R.array.status_codes);
+                Toast.makeText(JournalActivity.this, errors[response.getStatusCode()], Toast.LENGTH_SHORT).show();
+            }
         }
 
         @Override
@@ -267,7 +268,7 @@ public class JournalActivity extends Activity {
                         .getContent(), HTTP.UTF_8);
                 result = gson.fromJson(reader, Response.class);
             } catch (Exception e) {
-
+                this.exception = e;
             }
             return result;
         }

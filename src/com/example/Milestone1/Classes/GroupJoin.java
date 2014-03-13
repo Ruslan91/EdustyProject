@@ -5,8 +5,9 @@ import java.util.UUID;
 /**
  * Created by Руслан on 19.10.13.
  */
-public class GroupFollow {
+public class GroupJoin {
     UUID Token;
+    UUID GroupID;
 
     public UUID getGroupID() {
         return GroupID;
@@ -23,6 +24,4 @@ public class GroupFollow {
     public void setToken(UUID token) {
         Token = token;
     }
-
-    UUID GroupID;
 }

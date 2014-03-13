@@ -171,12 +171,14 @@ public class CreateJournalActivity extends Activity {
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
             if (response.getItem() != null) {
-                progressDialog.dismiss();
-                startActivity(new Intent(CreateJournalActivity.this, OtherMainActivity.class));
+                Intent intent = new Intent(CreateJournalActivity.this, OtherMainActivity.class);
+                intent.putExtra("tab", 7);
+                startActivity(intent);
                 finish();
             } else {
                 Toast.makeText(CreateJournalActivity.this, getString(R.string.error_please_try_again), Toast.LENGTH_SHORT).show();
             }
+            progressDialog.dismiss();
         }
 
         protected Response doInBackground(Void... params) {

@@ -12,7 +12,7 @@ public class GetRequest extends AsyncTask<Void, Void, Response> {
     protected Response doInBackground(Void... voids) {
         return null;
     }
-    /*public Exception ex;
+    /*public Exception exception;
 
     @Override
     protected Response<GroupFeedRead[]> doInBackground(UUID... params) {
@@ -26,7 +26,7 @@ public class GetRequest extends AsyncTask<Void, Void, Response> {
             Type fooType = new TypeToken<Response<GroupFeedRead[]>>(){}.getType();
             result = gson.fromJson(reader, fooType);
         } catch (Exception e) {
-            this.ex = e;
+            this.exception = e;
         }
         return result;
     }*/

@@ -1,11 +1,12 @@
 package com.example.Milestone1;
 
+import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,13 +40,7 @@ public class UserJournalsFragment extends Fragment {
     private Response result;
     private UUID token;
     private Journals[] journals;
-    private GetJournalsOwner getJournalsOwner;
-    private ArrayList<Map<String, String>> data;
-    private HashMap<String, String> m;
-    private SimpleAdapter sAdapter;
     private ListView listJournals;
-    private View myView;
-    private Journals[] journalses;
 
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -54,7 +49,7 @@ public class UserJournalsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.user_journals, container, false);
+        View myView = inflater.inflate(R.layout.user_journals, container, false);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userdetails", Context.MODE_PRIVATE);
         token = UUID.fromString(sharedPreferences.getString("token", ""));
         try {
@@ -87,18 +82,18 @@ public class UserJournalsFragment extends Fragment {
     public void setData(Response response) {
         try {
             journals = (Journals[]) response.getItem();
-            data = new ArrayList<Map<String, String>>(
+            ArrayList<Map<String, String>> data = new ArrayList<>(
                     journals.length);
             data.clear();
             for (Journals journal : journals) {
-                m = new HashMap<String, String>();
+                HashMap<String, String> m = new HashMap<>();
                 m.put("titles", journal.getTitle());
                 m.put("courses", journal.getCourseName());
                 m.put("groups", journal.getGroupName());
                 m.put("owners", journal.getOwnerName());
                 data.add(m);
             }
-            sAdapter = new SimpleAdapter(getActivity(), data, R.layout.user_journals_list_item,
+            SimpleAdapter sAdapter = new SimpleAdapter(getActivity(), data, R.layout.user_journals_list_item,
                     new String[]{"titles", "courses", "groups", "owners"},
                     new int[]{R.id.tvJournalTitle, R.id.tvJournalCourse, R.id.tvJournalGroup, R.id.tvJournalOwner}
             );
@@ -128,12 +123,19 @@ public class UserJournalsFragment extends Fragment {
     }
 
     public class GetJournalsOwner extends AsyncTask<Void, Void, Response> {
-        private Exception exception;
+        Exception exception;
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
+        }
 
         @Override
         protected void onPostExecute(Response response) {
-            super.onPostExecute(response);
-            setData(response);
+            setData(result);
+            progressDialog.dismiss();
         }
 
         @Override

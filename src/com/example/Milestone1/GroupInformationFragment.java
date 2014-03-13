@@ -13,11 +13,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.Milestone1.Classes.GroupFollow;
+import com.example.Milestone1.Classes.GroupJoin;
 import com.example.Milestone1.Classes.Groups;
 import com.example.Milestone1.Classes.Response;
 import com.google.gson.Gson;
@@ -39,15 +38,12 @@ import java.util.UUID;
 public class GroupInformationFragment extends Fragment {
     UUID token, groupID;
     Response result;
-    public Groups groupInfo;
+    public Groups group;
     GetGroupInformation getGroupInformation;
-    ImageButton btnJoin;
     TextView groupName, groupDescription, groupWebSite;
-    Exception exception;
-    private GroupFollow groupFollow;
-    private Response followResult;
-    private PostGroupFollow postGroupFollow;
-    private TextView textViewWebSite;
+    public Exception exception;
+    private GroupJoin groupJoin;
+    private TextView tvCount;
 
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -60,7 +56,7 @@ public class GroupInformationFragment extends Fragment {
         groupName = (TextView) myView.findViewById(R.id.tvGroupName);
         groupDescription = (TextView) myView.findViewById(R.id.tvGroupDescription);
         groupWebSite = (TextView) myView.findViewById(R.id.tvGroupWebSite);
-        textViewWebSite = (TextView) myView.findViewById(R.id.textViewWebSite);
+        tvCount = (TextView) myView.findViewById(R.id.tvCount);
         try {
             SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userdetails", Context.MODE_PRIVATE);
             token = UUID.fromString(sharedPreferences.getString("token", ""));
@@ -76,15 +72,15 @@ public class GroupInformationFragment extends Fragment {
 
     public void setData(Response response) {
         try {
-            groupInfo = (Groups) response.getItem();
+            group = (Groups) response.getItem();
 
-            groupName.setText(groupInfo.getName());
-            groupDescription.setText(groupInfo.getDescription());
-            if (groupInfo.getWebSite() == null) {
+            groupName.setText(group.getName());
+            groupDescription.setText(group.getDescription());
+            tvCount.setText("Members" + " " + group.getCount().toString());
+            if (group.getWebSite() == null) {
                 groupWebSite.setVisibility(View.GONE);
-                textViewWebSite.setVisibility(View.GONE);
             } else {
-                groupWebSite.setText(groupInfo.WebSite);
+                groupWebSite.setText(group.WebSite);
             }
         } catch (Exception e) {
             this.exception = e;
@@ -95,17 +91,17 @@ public class GroupInformationFragment extends Fragment {
         inflater.inflate(R.menu.group_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
         try {
-            groupInfo = (Groups) result.getItem();
-            if (groupInfo.getMember() == Boolean.FALSE || groupInfo.getMember() == null) {
+            group = (Groups) result.getItem();
+            if (group.getMember() == Boolean.FALSE || group.getMember() == null) {
                 menu.getItem(0).setVisible(false);
                 menu.getItem(1).setTitle(R.string.join);
-                menu.getItem(1).setIcon(R.drawable.ic_action_accept);
+                menu.getItem(2).setTitle(R.string.follow);
             } else {
                 menu.getItem(0).setVisible(true);
-                if (groupInfo.getIsOwner()) {
+                if (group.getIsOwner()) {
                     menu.getItem(1).setTitle(getString(R.string.delete));
                 } else menu.getItem(1).setTitle(R.string.leave);
-                menu.getItem(1).setIcon(R.drawable.ic_action_cancel);
+                menu.getItem(2).setTitle(R.string.unfollow);
             }
         } catch (Exception e) {
             this.exception = e;
@@ -114,28 +110,29 @@ public class GroupInformationFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        boolean ret;
-        if (item.getItemId() == R.id.action_edit) {
-            ret = true;
-            Intent intent = new Intent(getActivity().getApplicationContext(), EditGroupActivity.class);
-            intent.putExtra("groupID", groupID.toString());
-            startActivity(intent);
-            getActivity().finish();
-        } else if (item.getItemId() == R.id.action_follow) {
-            ret = true;
-            if (groupInfo.getIsOwner()) {
-                new RemoveGroup().execute();
-            } else {
-                groupFollow = new GroupFollow();
-                groupFollow.setToken(token);
-                groupFollow.setGroupID(groupID);
+        boolean ret = false;
+        try {
+            if (item.getItemId() == R.id.action_edit) {
+                ret = true;
+                Intent intent = new Intent(getActivity().getApplicationContext(), EditGroupActivity.class);
+                intent.putExtra("groupID", groupID.toString());
+                startActivity(intent);
+                getActivity().finish();
+            } else if (item.getItemId() == R.id.action_join) {
+                ret = true;
+                if (group.getIsOwner()) {
+                    new RemoveGroup().execute();
+                } else {
+                    groupJoin = new GroupJoin();
+                    groupJoin.setToken(token);
+                    groupJoin.setGroupID(groupID);
 
-                postGroupFollow = new PostGroupFollow();
-                postGroupFollow.execute();
-                try {
-                    result = postGroupFollow.get();
+                    JoinGroup joinGroup = new JoinGroup();
+                    joinGroup.execute();
+
+                    result = joinGroup.get();
                     if (result.getItem() == Boolean.TRUE) {
-                        if (item.getTitle().toString() == getString(R.string.join)) {
+                        if (item.getTitle().toString().equals(getString(R.string.join))) {
                             item.setTitle(R.string.leave);
                             item.setIcon(R.drawable.ic_action_cancel);
                         } else {
@@ -144,31 +141,53 @@ public class GroupInformationFragment extends Fragment {
                         }
 
                     }
-                } catch (Exception ignored) {
 
                 }
+            } else if (item.getItemId() == R.id.action_follow) {
+                ret = true;
+                groupJoin = new GroupJoin();
+                groupJoin.setToken(token);
+                groupJoin.setGroupID(groupID);
+
+                FollowGroup followGroup = new FollowGroup();
+                followGroup.execute();
+
+                result = followGroup.get();
+                if (result.getItem() == Boolean.TRUE) {
+                    if (item.getTitle().toString().equals(getString(R.string.follow))) {
+                        item.setTitle(R.string.unfollow);
+                        item.setIcon(R.drawable.ic_action_cancel);
+                    } else {
+                        item.setTitle(R.string.follow);
+                        item.setIcon(R.drawable.ic_action_accept);
+                    }
+
+                }
+            } else {
+                ret = super.onOptionsItemSelected(item);
             }
-        } else {
-            ret = super.onOptionsItemSelected(item);
+        } catch (Exception ignored) {
+
         }
         return ret;
+
     }
 
-    public class PostGroupFollow extends AsyncTask<Void, Void, Response> {
-
+    public class JoinGroup extends AsyncTask<Void, Void, Response> {
+        Exception exception;
         ProgressDialog pdLoading = new ProgressDialog(getActivity());
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-           /*pdLoading.setMessage("\tЗагрузка...");
-           pdLoading.show();*/
+           /*progressDialog.setMessage("\tЗагрузка...");
+           progressDialog.show();*/
         }
 
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
-            //pdLoading.dismiss();
+            //progressDialog.dismiss();
         }
 
         protected Response doInBackground(Void... params) {
@@ -176,7 +195,7 @@ public class GroupInformationFragment extends Fragment {
             try {
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost request = new HttpPost(getString(R.string.url) + "GroupJoin");
-                StringEntity entity = new StringEntity(new Gson().toJson(groupFollow),
+                StringEntity entity = new StringEntity(new Gson().toJson(groupJoin),
                         HTTP.UTF_8);
                 entity.setContentType("application/json");
                 request.setEntity(entity);
@@ -185,29 +204,65 @@ public class GroupInformationFragment extends Fragment {
                 result = new Gson().fromJson(reader, Response.class);
 
             } catch (Exception e) {
+                this.exception = e;
+            }
+            return result;
+        }
+    }
 
+    public class FollowGroup extends AsyncTask<Void, Void, Response> {
+        Exception exception;
+        ProgressDialog pdLoading = new ProgressDialog(getActivity());
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+           /*progressDialog.setMessage("\tЗагрузка...");
+           progressDialog.show();*/
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            //progressDialog.dismiss();
+        }
+
+        protected Response doInBackground(Void... params) {
+
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost request = new HttpPost(getString(R.string.url) + "GroupJoin");
+                StringEntity entity = new StringEntity(new Gson().toJson(groupJoin),
+                        HTTP.UTF_8);
+                entity.setContentType("application/json");
+                request.setEntity(entity);
+                HttpResponse response = httpclient.execute(request);
+                InputStreamReader reader = new InputStreamReader(response.getEntity().getContent());
+                result = new Gson().fromJson(reader, Response.class);
+
+            } catch (Exception e) {
+                this.exception = e;
             }
             return result;
         }
     }
 
     public class GetGroupInformation extends AsyncTask<UUID, Void, Response> {
-        public Exception ex;
-
+        Exception exception;
         ProgressDialog pdLoading = new ProgressDialog(getActivity());
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            /*pdLoading.setMessage("\tЗагрузка...");
-            pdLoading.show();*/
+            /*progressDialog.setMessage("\tЗагрузка...");
+            progressDialog.show();*/
         }
 
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
             setData(response);
-            //pdLoading.dismiss();
+            //progressDialog.dismiss();
         }
 
 
@@ -224,18 +279,22 @@ public class GroupInformationFragment extends Fragment {
                 }.getType();
                 result = gson.fromJson(reader, fooType);
             } catch (Exception e) {
-                this.ex = e;
+                this.exception = e;
             }
             return result;
         }
     }
 
     public class RemoveGroup extends AsyncTask<Void, Void, Response> {
+        Exception exception;
+
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
             if (result.getItem() == Boolean.TRUE) {
-                startActivity(new Intent(getActivity(), MainActivity.class));
+                Intent intent = new Intent(getActivity(), OtherMainActivity.class);
+                intent.putExtra("tab", 4);
+                startActivity(intent);
                 getActivity().finish();
             } else
                 Toast.makeText(getActivity(), "Только владелец может выполнить это действие", Toast.LENGTH_SHORT).show();
@@ -252,7 +311,7 @@ public class GroupInformationFragment extends Fragment {
                         .getContent(), HTTP.UTF_8);
                 result = gson.fromJson(reader, Response.class);
             } catch (Exception e) {
-
+                this.exception = e;
             }
             return result;
         }

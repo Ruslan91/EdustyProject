@@ -1,12 +1,12 @@
 package com.example.Milestone1;
 
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import com.example.Milestone1.Adapters.GroupsAdapter;
 import com.example.Milestone1.Classes.Groups;
@@ -31,8 +30,6 @@ import org.apache.http.protocol.HTTP;
 
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -73,23 +70,9 @@ public class UserGroupsFragment extends Fragment {
         return myView;
     }
 
-    void SetData(Response response) {
+    void setData(Response response) {
         try {
             groups = (Groups[]) response.getItem();
-
-            /*ArrayList<Map<String, String>> data = new ArrayList<>(
-                    groups.length);
-            data.clear();
-            for (Groups group : groups) {
-                m = new HashMap<>();
-                m.put(ATTRIBUTE_NAME_TEXTN, group.getName());
-                m.put(ATTRIBUTE_NAME_TEXTD, group.getDescription());
-                if (group.getPictureID() != null && group.getPictureID().compareTo(new UUID(0, 0)) != 0) {
-                    m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + group.getPictureID());
-                }
-                m.put("layout", "user_groups");
-                data.add(m);
-            }*/
             GroupsAdapter sAdapter = new GroupsAdapter(getActivity(), groups, "user_groups");
             listGroups.setAdapter(sAdapter);
             listGroups.setClickable(true);
@@ -116,22 +99,18 @@ public class UserGroupsFragment extends Fragment {
     }
 
     public class GetUserGroups extends AsyncTask<UUID, Void, Response> {
-        public Exception ex;
-        ProgressDialog pdLoading = new ProgressDialog(getActivity());
-
+        Exception exception;
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            /*pdLoading.setMessage("\tЗагрузка...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();*/
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
         }
-
         @Override
         protected void onPostExecute(Response response) {
-            SetData(result);
-            //pdLoading.dismiss();
-
+            setData(response);
+            progressDialog.dismiss();
         }
 
         @Override
@@ -147,7 +126,7 @@ public class UserGroupsFragment extends Fragment {
                 }.getType();
                 result = gson.fromJson(reader, fooType);
             } catch (Exception e) {
-                this.ex = e;
+                this.exception = e;
             }
             return result;
         }

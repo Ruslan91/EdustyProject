@@ -8,13 +8,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 import com.example.Milestone1.R;
-import com.example.Milestone1.UserCoursesFragment;
-import com.example.Milestone1.UserEventsFragment;
-import com.example.Milestone1.UserFeedFragment;
-import com.example.Milestone1.UserFriendsFragment;
-import com.example.Milestone1.UserGroupsFragment;
-import com.example.Milestone1.UserJournalsFragment;
-import com.example.Milestone1.UserMarksFragment;
 
 public class TitleAdapter extends FragmentStatePagerAdapter {
     private final String[] titles;
@@ -25,7 +18,7 @@ public class TitleAdapter extends FragmentStatePagerAdapter {
         Resources resources = context.getResources();
         titles = resources.getStringArray(R.array.titles);
         frags = new Fragment[titles.length];
-/*        frags[0] = new UserFriendsFragment();
+/*        frags[0] = new UserFollowsFragment();
         frags[1] = new UserEventsFragment();
         frags[2] = new UserFeedFragment();
         frags[3] = new UserGroupsFragment();

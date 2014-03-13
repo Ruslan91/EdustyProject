@@ -1,12 +1,12 @@
 package com.example.Milestone1;
 
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,8 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import com.example.Milestone1.Adapters.EventAdapter;
 import com.example.Milestone1.Classes.Event;
@@ -32,18 +30,13 @@ import org.apache.http.protocol.HTTP;
 
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class UserEventsFragment extends Fragment {
     UUID token;
     private Response result;
-    private GetUserEvents getUserEvents;
     private ListView listEvents;
     EventAdapter sAdapter;
     ArrayList<HashMap<String, String>> data;
@@ -64,8 +57,7 @@ public class UserEventsFragment extends Fragment {
         setRetainInstance(true);
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userdetails", Context.MODE_PRIVATE);
         token = UUID.fromString(sharedPreferences.getString("token", ""));
-        getUserEvents = new GetUserEvents();
-        getUserEvents.execute();
+        new GetUserEvents().execute();
         listEvents = (ListView) myView.findViewById(R.id.listEvents);
 
         return myView;
@@ -93,7 +85,7 @@ public class UserEventsFragment extends Fragment {
                 }
             });
         } catch (Exception e) {
-    this.exception = e;
+            this.exception = e;
         }
     }
 
@@ -108,8 +100,7 @@ public class UserEventsFragment extends Fragment {
         if (item.getItemId() == R.id.action_update) {
             ret = true;
             new GetUserEvents().execute();
-        }
-        else if (item.getItemId() == R.id.action_add) {
+        } else if (item.getItemId() == R.id.action_add) {
             ret = true;
             String token_string = token.toString();
             Intent intent = new Intent(getActivity().getApplicationContext(), CreateEventActivity.class);
@@ -122,19 +113,25 @@ public class UserEventsFragment extends Fragment {
         return ret;
     }
 
-    public class GetUserEvents extends AsyncTask<Void, Void, Void> {
-        public Exception ex;
-
-        ProgressDialog pdLoading = new ProgressDialog(getActivity());
+    public class GetUserEvents extends AsyncTask<Void, Void, Response> {
+        Exception exception;
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
 
         @Override
-        protected void onPostExecute(Void v) {
-            //pdLoading.dismiss();
-            setData(result);
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
         }
 
         @Override
-        protected Void doInBackground(Void... params) {
+        protected void onPostExecute(Response response) {
+            setData(response);
+            progressDialog.dismiss();
+        }
+
+        @Override
+        protected Response doInBackground(Void... params) {
             try {
                 HttpClient httpclient = new DefaultHttpClient();
                 Gson gson = new Gson();
@@ -147,9 +144,9 @@ public class UserEventsFragment extends Fragment {
                 result = gson.fromJson(reader, fooType);
 
             } catch (Exception e) {
-                this.ex = e;
+                this.exception = e;
             }
-            return null;
+            return result;
         }
     }
 }

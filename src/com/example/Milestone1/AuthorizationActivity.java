@@ -1,7 +1,6 @@
 package com.example.Milestone1;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,7 +26,7 @@ import java.util.UUID;
 
 public class AuthorizationActivity extends Activity {
     Response result;
-    EditText edEmail, edPasswd;
+    EditText etEmail, etPassword;
     public Response response;
     Exception exception;
     private userAuthorization user;
@@ -36,10 +35,10 @@ public class AuthorizationActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authorization);
-        //statusCodes = getResources().getStringArray(R.array.status_codes);
-        edEmail = (EditText) findViewById(R.id.edEmail);
-        edEmail.setText(getIntent().getStringExtra("email"));
-        edPasswd = (EditText) findViewById(R.id.edPasswd);
+        statusCodes = getResources().getStringArray(R.array.status_codes);
+        etEmail = (EditText) findViewById(R.id.etEmail);
+        etEmail.setText(getIntent().getStringExtra("email"));
+        etPassword = (EditText) findViewById(R.id.etPassword);
     }
 
     public void setData(Response response) {
@@ -66,11 +65,11 @@ public class AuthorizationActivity extends Activity {
 
         try {
             user = new userAuthorization();
-            if (edEmail.getText().toString().equals("") || edPasswd.getText().toString().equals("")) {
+            if (etEmail.getText().toString().equals("") || etPassword.getText().toString().equals("")) {
                 Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show();
             } else {
-                user.EMail = edEmail.getText().toString();
-                user.Password = edPasswd.getText().toString();
+                user.EMail = etEmail.getText().toString();
+                user.Password = etPassword.getText().toString();
                 new Authorization().execute();
             }
         } catch (Exception e1) {
@@ -84,24 +83,29 @@ public class AuthorizationActivity extends Activity {
 
     public class Authorization extends AsyncTask<userAuthorization, Void, Response> {
         ProgressDialog pdLoading = new ProgressDialog(AuthorizationActivity.this);
+        Exception exception;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             pdLoading.setMessage(getString(R.string.please_wait));
-            //pdLoading.setCancelable(false);
+            //progressDialog.setCancelable(false);
             pdLoading.show();
         }
 
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
-            if (response.getStatusCode().equals(0)) {
-            setData(response);
-            } else {
-                //Toast.makeText(AuthorizationActivity.this, statusCodes[response.getStatusCode()], Toast.LENGTH_LONG).show();
+            try {
+                if (response.getStatusCode().equals(0)) {
+                    setData(response);
+                } else {
+                    Toast.makeText(AuthorizationActivity.this, statusCodes[response.getStatusCode()], Toast.LENGTH_LONG).show();
+                }
+                pdLoading.dismiss();
+            } catch (Exception e) {
+                this.exception = e;
             }
-            pdLoading.dismiss();
         }
 
         protected Response doInBackground(userAuthorization... params) {

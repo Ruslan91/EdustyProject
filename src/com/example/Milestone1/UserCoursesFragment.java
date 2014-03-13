@@ -1,13 +1,13 @@
 package com.example.Milestone1;
 
 
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -131,21 +131,20 @@ public class UserCoursesFragment extends Fragment {
     }
 
     public class GetUserCourses extends AsyncTask<UUID, Void, Response> {
-        public Exception ex;
-        ProgressDialog pdLoading = new ProgressDialog(getActivity());
+        Exception exception;
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //pdLoading.setMessage("\tЗагрузка...");
-            //pdLoading.show();
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
         }
 
         @Override
         protected void onPostExecute(Response response) {
-            super.onPostExecute(response);
             setData(response);
-            //pdLoading.dismiss();
+            progressDialog.dismiss();
         }
 
         @Override
@@ -161,7 +160,7 @@ public class UserCoursesFragment extends Fragment {
                 }.getType();
                 result = gson.fromJson(reader, fooType);
             } catch (Exception e) {
-                this.ex = e;
+                this.exception = e;
             }
             return result;
         }

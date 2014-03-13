@@ -51,7 +51,7 @@ public class RegistrationActivity extends Activity {
         startActivity(new Intent(this, LicenseActivity.class));
     }
     public class Registration extends AsyncTask<userRegistration, Void, Response> {
-        public Exception exeption;
+        public Exception exception;
         ProgressDialog progressDialog = new ProgressDialog(RegistrationActivity.this);
         @Override
         protected void onPreExecute() {
@@ -63,19 +63,22 @@ public class RegistrationActivity extends Activity {
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
-            if (response.getItem().equals(true)) {
-                Toast.makeText(getApplicationContext(), getString(R.string.registration_complete),
-                        Toast.LENGTH_SHORT).show();
-                 Intent intent = new Intent(RegistrationActivity.this, AuthorizationActivity.class);
-                intent.putExtra("email", editEmail.getText().toString());
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(RegistrationActivity.this, getString(R.string.error_please_try_again),
-                        Toast.LENGTH_SHORT).show();
+            try {
+                if (response.getItem().equals(true)) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.registration_complete),
+                            Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegistrationActivity.this, AuthorizationActivity.class);
+                    intent.putExtra("email", editEmail.getText().toString());
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(RegistrationActivity.this, getString(R.string.error_please_try_again),
+                            Toast.LENGTH_SHORT).show();
+                }
+                progressDialog.dismiss();
+            } catch (Exception e) {
+                this.exception = e;
             }
-            progressDialog.dismiss();
-
         }
         protected Response doInBackground(userRegistration... params) {
 
@@ -91,7 +94,7 @@ public class RegistrationActivity extends Activity {
                 result = gson.fromJson(reader, Response.class);
 
             } catch (Exception e1) {
-                this.exeption = e1;
+                this.exception = e1;
             }
             return result;
         }

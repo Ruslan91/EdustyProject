@@ -5,42 +5,41 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:layout_gravity="left"
-    android:focusableInTouchMode="false"
     style="@style/EdustyBackground"
     android:focusable="true">
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edEmail"
+        android:id="@+id/etEmail"
         android:inputType="textEmailAddress"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:hint="@string/eMail"
-        android:layout_margin="5dp"
-        android:focusableInTouchMode="false" />
+        android:layout_margin="5dp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edPasswd"
+        android:id="@+id/etPassword"
         android:inputType="textPassword"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/edEmail"
+        android:layout_below="@+id/etEmail"
         android:hint="@string/password"
-        android:layout_margin="5dp"
-        android:focusableInTouchMode="false" />
+        android:layout_margin="5dp" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:shadowRadius="15"
         android:text="@string/sign_in"
         android:id="@+id/btnLogIn"
         android:onClick="OnClickBtnLogIn"
-        android:textColor="@android:color/white"
-        android:layout_below="@+id/edPasswd"
-        android:layout_alignRight="@+id/edPasswd" />
+        android:layout_below="@+id/etPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:background="@android:color/holo_blue_dark"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,9 +49,6 @@
         android:clickable="true"
         android:linksClickable="false"
         android:singleLine="false"
-        android:textColor="@android:color/white"
-        android:autoText="false"
-        android:editable="false"
         android:textSize="18sp"
         android:textStyle="bold"
         android:typeface="normal"

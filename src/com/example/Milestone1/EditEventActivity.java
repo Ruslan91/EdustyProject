@@ -103,7 +103,7 @@ public class EditEventActivity extends Activity {
                 eventID = UUID.fromString(extras.getString("eventID"));
                 if (extras.getString("groupID") != null) {
                     groupID = UUID.fromString(extras.getString("groupID"));
-            } else groupID = null;
+                } else groupID = null;
             }
         } catch (Exception e) {
             this.exception = e;
@@ -293,6 +293,7 @@ public class EditEventActivity extends Activity {
         return ret;
 
     }
+
     public class EventEdit extends AsyncTask<Void, Void, Response> {
         ProgressDialog progressDialog = new ProgressDialog(EditEventActivity.this);
 
@@ -310,7 +311,7 @@ public class EditEventActivity extends Activity {
             super.onPostExecute(response);
             if (response.getItem().equals(true)) {
                 Intent intent = new Intent(EditEventActivity.this, OtherMainActivity.class);
-                intent.putExtra("tab", 1);
+                intent.putExtra("tab", 2);
                 startActivity(intent);
                 finish();
             }

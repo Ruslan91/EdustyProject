@@ -316,7 +316,7 @@ public class CreateEventActivity extends Activity {
                 UUID eventID = UUID.fromString((String) result.getItem());
                 if (eventID.compareTo(new UUID(0, 0)) != 0) {
                     Intent intent = new Intent(CreateEventActivity.this, OtherMainActivity.class);
-                    intent.putExtra("tab", 1);
+                    intent.putExtra("tab", 2);
                     startActivity(intent);
                     finish();
                 } else

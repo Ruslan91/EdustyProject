@@ -13,8 +13,17 @@ public class Groups {
     public String WebSite;
     public UUID PictureID;
     public Boolean IsMember;
-    public Boolean Free;
     public Boolean IsOwner;
+    public Boolean IsFollower;
+    public Boolean Free;
+
+    public Boolean getIsFollower() {
+        return IsFollower;
+    }
+
+    public void setIsFollower(Boolean isFollower) {
+        IsFollower = isFollower;
+    }
 
     public Boolean getIsOwner() {
         return IsOwner;

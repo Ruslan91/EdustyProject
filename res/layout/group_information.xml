@@ -22,10 +22,8 @@
         android:layout_gravity="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_margin="5dp"
-        android:layout_alignTop="@+id/imageGroup"
-        android:layout_alignLeft="@+id/textViewWebSite"
-        android:hint="groupName" />
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageGroup" />
 
 
     <TextView
@@ -33,10 +31,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvGroupDescription"
         android:layout_column="1"
-        android:layout_margin="5dp"
-        android:layout_below="@+id/textViewWebSite"
-        android:layout_toRightOf="@+id/imageGroup"
-        android:hint="Description" />
+        android:layout_below="@+id/tvCount"
+        android:layout_toRightOf="@+id/imageGroup" />
 
 
     <TextView
@@ -45,15 +41,14 @@
         android:id="@+id/tvGroupWebSite"
         android:autoLink="web"
         android:linksClickable="true"
-        android:layout_alignTop="@+id/textViewWebSite"
-        android:layout_toRightOf="@+id/textViewWebSite"
-        android:hint="webSite" />
+        android:layout_below="@+id/tvGroupName"
+        android:layout_toRightOf="@+id/imageGroup" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewWebSite"
-        android:layout_margin="5dp"
-        android:layout_below="@+id/tvGroupName"
+        android:id="@+id/tvCount"
+        android:layout_below="@+id/tvGroupWebSite"
         android:layout_toRightOf="@+id/imageGroup" />
+
 </RelativeLayout>

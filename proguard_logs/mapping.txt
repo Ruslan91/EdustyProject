@@ -1202,7 +1202,7 @@ com.example.Milestone1.Adapters.FeedAdapter -> com.example.Milestone1.a.l:
     long getItemId(int) -> getItemId
     android.content.Context getContext() -> a
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.example.Milestone1.Adapters.FriendsAdapter -> com.example.Milestone1.a.m:
+com.example.Milestone1.Adapters.FollowsAdapter -> com.example.Milestone1.a.m:
     java.util.ArrayList results -> a
     android.content.Context context -> b
     int pos -> c
@@ -1401,7 +1401,7 @@ com.example.Milestone1.Classes.GroupFeedRead -> com.example.Milestone1.b.i:
     java.lang.String getFirstName() -> e
     java.lang.String getTime() -> f
     java.lang.String getMessage() -> g
-com.example.Milestone1.Classes.GroupFollow -> com.example.Milestone1.b.j:
+com.example.Milestone1.Classes.GroupJoin -> com.example.Milestone1.b.j:
     java.util.UUID Token -> a
     java.util.UUID GroupID -> b
     void setGroupID(java.util.UUID) -> a
@@ -1483,7 +1483,7 @@ com.example.Milestone1.Classes.MarksRead -> com.example.Milestone1.b.p:
     void setType(java.lang.Integer) -> b
     void setDescription(java.lang.String) -> a
     void setUserID(java.util.UUID) -> b
-com.example.Milestone1.Classes.Members -> com.example.Milestone1.b.q:
+com.example.Milestone1.Classes.Follows -> com.example.Milestone1.b.q:
     java.util.UUID Id -> a
     java.lang.String FirstName -> b
     java.lang.String LastName -> c
@@ -1728,7 +1728,7 @@ com.example.Milestone1.CreateMarksJournalActivity -> com.example.Milestone1.Crea
     java.util.ArrayList data -> e
     java.lang.Exception exception -> f
     com.example.Milestone1.Classes.MarksRead[] marksReads -> g
-    com.example.Milestone1.Classes.Members[] members -> h
+    com.example.Milestone1.Classes.Follows[] members -> h
     com.example.Milestone1.Classes.EditMark createMarks -> i
     int item_pos -> j
     android.widget.ListView listMarks -> k
@@ -2118,15 +2118,15 @@ com.example.Milestone1.GroupInformationFragment -> com.example.Milestone1.av:
     android.widget.TextView groupDescription -> T
     android.widget.TextView groupWebSite -> U
     java.lang.Exception exception -> V
-    com.example.Milestone1.Classes.GroupFollow groupFollow -> W
-    com.example.Milestone1.GroupInformationFragment$PostGroupFollow postGroupFollow -> X
+    com.example.Milestone1.Classes.GroupJoin groupFollow -> W
+    com.example.Milestone1.GroupInformationFragment$JoinGroup joinGroup -> X
     android.widget.TextView textViewWebSite -> Y
     void onCreate(android.os.Bundle) -> b
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     void setData(com.example.Milestone1.Classes.Response) -> a
     void onCreateOptionsMenu(android.view.Menu,android.view.MenuInflater) -> a
     boolean onOptionsItemSelected(android.view.MenuItem) -> a
-    com.example.Milestone1.Classes.GroupFollow access$000(com.example.Milestone1.GroupInformationFragment) -> a
+    com.example.Milestone1.Classes.GroupJoin access$000(com.example.Milestone1.GroupInformationFragment) -> a
 com.example.Milestone1.GroupInformationFragment$GetGroupInformation -> com.example.Milestone1.aw:
     java.lang.Exception ex -> a
     android.app.ProgressDialog pdLoading -> b
@@ -2138,7 +2138,7 @@ com.example.Milestone1.GroupInformationFragment$GetGroupInformation -> com.examp
     java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
 com.example.Milestone1.GroupInformationFragment$GetGroupInformation$1 -> com.example.Milestone1.ax:
     com.example.Milestone1.GroupInformationFragment$GetGroupInformation this$1 -> a
-com.example.Milestone1.GroupInformationFragment$PostGroupFollow -> com.example.Milestone1.ay:
+com.example.Milestone1.GroupInformationFragment$JoinGroup -> com.example.Milestone1.ay:
     android.app.ProgressDialog pdLoading -> a
     com.example.Milestone1.GroupInformationFragment this$0 -> b
     void onPreExecute() -> onPreExecute
@@ -2154,7 +2154,7 @@ com.example.Milestone1.GroupInformationFragment$RemoveGroup -> com.example.Miles
     java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
 com.example.Milestone1.GroupMembersFragment -> com.example.Milestone1.ba:
     com.example.Milestone1.GroupMembersFragment$GetGroupMembers getGroupMembers -> N
-    com.example.Milestone1.Classes.Members[] members -> O
+    com.example.Milestone1.Classes.Follows[] members -> O
     java.lang.Exception exception -> P
     android.widget.ListView listMembers -> Q
     java.util.UUID token -> R
@@ -2163,7 +2163,7 @@ com.example.Milestone1.GroupMembersFragment -> com.example.Milestone1.ba:
     java.lang.Integer offset -> U
     java.lang.Integer count -> V
     com.example.Milestone1.Classes.Response result -> W
-    com.example.Milestone1.Adapters.FriendsAdapter sAdapter -> X
+    com.example.Milestone1.Adapters.FollowsAdapter sAdapter -> X
     java.util.ArrayList data -> Y
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     com.example.Milestone1.Classes.Response access$002(com.example.Milestone1.GroupMembersFragment,com.example.Milestone1.Classes.Response) -> a
@@ -2222,7 +2222,7 @@ com.example.Milestone1.JournalActivity -> com.example.Milestone1.JournalActivity
     java.util.UUID groupID -> i
     com.example.Milestone1.JournalActivity$GetJournalMembers getJournalMembers -> j
     android.widget.SimpleAdapter simpleAdapter -> k
-    com.example.Milestone1.Classes.Members[] members -> l
+    com.example.Milestone1.Classes.Follows[] members -> l
     void onCreate(android.os.Bundle) -> onCreate
     void setData(com.example.Milestone1.Classes.Response) -> a
     boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
@@ -2233,7 +2233,7 @@ com.example.Milestone1.JournalActivity -> com.example.Milestone1.JournalActivity
     com.example.Milestone1.Classes.JournalDates[] access$200(com.example.Milestone1.JournalActivity) -> c
     java.util.UUID access$300(com.example.Milestone1.JournalActivity) -> d
     java.util.UUID access$400(com.example.Milestone1.JournalActivity) -> e
-    com.example.Milestone1.Classes.Members[] access$500(com.example.Milestone1.JournalActivity) -> f
+    com.example.Milestone1.Classes.Follows[] access$500(com.example.Milestone1.JournalActivity) -> f
     com.example.Milestone1.Classes.Response access$600(com.example.Milestone1.JournalActivity) -> g
     java.util.UUID access$700(com.example.Milestone1.JournalActivity) -> h
     com.example.Milestone1.Classes.Response access$602(com.example.Milestone1.JournalActivity,com.example.Milestone1.Classes.Response) -> a
@@ -2377,7 +2377,7 @@ com.example.Milestone1.UserActivity -> com.example.Milestone1.UserActivity:
     java.util.UUID token -> a
     java.util.UUID userID -> b
     com.example.Milestone1.Classes.Response result -> c
-    com.example.Milestone1.UserActivity$PostFriend followTask -> d
+    com.example.Milestone1.UserActivity$FollowUser followTask -> d
     com.example.Milestone1.UserActivity$GetUserInformation getUser -> e
     com.example.Milestone1.Classes.Friend friend -> f
     java.lang.Exception exception -> g
@@ -2405,7 +2405,7 @@ com.example.Milestone1.UserActivity$GetUserInformation -> com.example.Milestone1
     java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
 com.example.Milestone1.UserActivity$GetUserInformation$1 -> com.example.Milestone1.bv:
     com.example.Milestone1.UserActivity$GetUserInformation this$1 -> a
-com.example.Milestone1.UserActivity$PostFriend -> com.example.Milestone1.bw:
+com.example.Milestone1.UserActivity$FollowUser -> com.example.Milestone1.bw:
     java.lang.Exception exception -> c
     android.app.ProgressDialog pdLoading -> a
     com.example.Milestone1.UserActivity this$0 -> b
@@ -2623,8 +2623,8 @@ com.example.Milestone1.UserFeedFragment$SendMessageToFeed -> com.example.Milesto
     com.example.Milestone1.UserFeedFragment this$0 -> b
     com.example.Milestone1.Classes.Response doInBackground(com.example.Milestone1.Classes.SendGroupMessage[]) -> a
     java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.example.Milestone1.UserFriendsFragment -> com.example.Milestone1.ct:
-    com.example.Milestone1.Classes.Members[] friends -> N
+com.example.Milestone1.UserFollowsFragment -> com.example.Milestone1.ct:
+    com.example.Milestone1.Classes.Follows[] friends -> N
     java.lang.Exception exception -> O
     android.widget.ListView listFriends -> P
     java.util.UUID token -> Q
@@ -2638,21 +2638,21 @@ com.example.Milestone1.UserFriendsFragment -> com.example.Milestone1.ct:
     void SetData(com.example.Milestone1.Classes.Response) -> a
     void onCreateOptionsMenu(android.view.Menu,android.view.MenuInflater) -> a
     boolean onOptionsItemSelected(android.view.MenuItem) -> a
-    com.example.Milestone1.Classes.Response access$000(com.example.Milestone1.UserFriendsFragment) -> a
-    com.example.Milestone1.Classes.Response access$002(com.example.Milestone1.UserFriendsFragment,com.example.Milestone1.Classes.Response) -> a
-com.example.Milestone1.UserFriendsFragment$1 -> com.example.Milestone1.cu:
+    com.example.Milestone1.Classes.Response access$000(com.example.Milestone1.UserFollowsFragment) -> a
+    com.example.Milestone1.Classes.Response access$002(com.example.Milestone1.UserFollowsFragment,com.example.Milestone1.Classes.Response) -> a
+com.example.Milestone1.UserFollowsFragment$1 -> com.example.Milestone1.cu:
     java.lang.Exception ex -> a
-    com.example.Milestone1.UserFriendsFragment this$0 -> b
+    com.example.Milestone1.UserFollowsFragment this$0 -> b
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.example.Milestone1.UserFriendsFragment$GetFriends -> com.example.Milestone1.cv:
+com.example.Milestone1.UserFollowsFragment$GetFriends -> com.example.Milestone1.cv:
     java.lang.Exception ex -> a
-    com.example.Milestone1.UserFriendsFragment this$0 -> b
+    com.example.Milestone1.UserFollowsFragment this$0 -> b
     void onPostExecute(java.lang.Void) -> a
     java.lang.Void doInBackground(java.util.UUID[]) -> a
     void onPostExecute(java.lang.Object) -> onPostExecute
     java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.example.Milestone1.UserFriendsFragment$GetFriends$1 -> com.example.Milestone1.cw:
-    com.example.Milestone1.UserFriendsFragment$GetFriends this$1 -> a
+com.example.Milestone1.UserFollowsFragment$GetFriends$1 -> com.example.Milestone1.cw:
+    com.example.Milestone1.UserFollowsFragment$GetFriends this$1 -> a
 com.example.Milestone1.UserGroupsFragment -> com.example.Milestone1.cx:
     java.lang.String ATTRIBUTE_NAME_TEXTN -> N
     java.lang.String ATTRIBUTE_NAME_TEXTD -> O

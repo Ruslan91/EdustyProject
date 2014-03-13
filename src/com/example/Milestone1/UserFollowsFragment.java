@@ -1,11 +1,12 @@
 package com.example.Milestone1;
 
+import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,8 +16,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.Milestone1.Adapters.FriendsAdapter;
-import com.example.Milestone1.Classes.Members;
+import com.example.Milestone1.Adapters.FollowsAdapter;
+import com.example.Milestone1.Classes.Follows;
 import com.example.Milestone1.Classes.Response;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,17 +30,13 @@ import org.apache.http.protocol.HTTP;
 
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
-public class UserFriendsFragment extends Fragment {
-    Members[] friends;
+public class UserFollowsFragment extends Fragment {
+    Follows[] follows;
     Exception exception;
     ListView listFriends;
-    UUID token, friendID;
-    String friend_string;
+    UUID token;
     private Response result;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -64,10 +61,19 @@ public class UserFriendsFragment extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
                     try {
-                        Intent intent = new Intent(getActivity().getApplicationContext(), UserActivity.class);
-                        intent.putExtra("userID", friends[position].getId().toString());
-                        startActivity(intent);
-                        onDestroy();
+                        try {
+                            if (follows[position].get__type().equals("UserFollow")) {
+                                Intent intent = new Intent(getActivity(), UserActivity.class);
+                                intent.putExtra("userID", follows[position].getId().toString());
+                                startActivity(intent);
+                            } else if (follows[position].get__type().equals("GroupFollow")) {
+                                Intent intent = new Intent(getActivity(), GroupFragmentActivity.class);
+                                intent.putExtra("groupID", follows[position].getId().toString());
+                                startActivity(intent);
+                            }
+                        } catch (Exception e) {
+                            this.ex = e;
+                        }
 
                     } catch (Exception e) {
                         this.ex = e;
@@ -80,11 +86,11 @@ public class UserFriendsFragment extends Fragment {
         return myView;
     }
 
-    void SetData(Response response) {
+    void setData(Response response) {
         try {
-            friends = (Members[]) response.getItem();
-            ArrayList<Map<String, String>> data = new ArrayList<>(friends.length);
-            for (Members friend : friends) {
+            follows = (Follows[]) response.getItem();
+            /*ArrayList<Map<String, String>> data = new ArrayList<>(follows.length);
+            for (Follows friend : follows) {
                 HashMap<String, String> m = new HashMap<>();
                 m.put("name", friend.getFirstName());
                 m.put("lastName", friend.getLastName());
@@ -92,11 +98,8 @@ public class UserFriendsFragment extends Fragment {
                     m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + friend.getPictureID());
                 }
                 data.add(m);
-            }
-            FriendsAdapter sAdapter = new FriendsAdapter(getActivity(), data, R.layout.friend_list_item,
-                    new String[]{"name", "lastName"},
-                    new int[]{R.id.firstName, R.id.lastName}
-            );
+            }*/
+            FollowsAdapter sAdapter = new FollowsAdapter(getActivity(), follows);
             listFriends.setAdapter(sAdapter);
         } catch (Exception e) {
             this.exception = e;
@@ -120,39 +123,38 @@ public class UserFriendsFragment extends Fragment {
         return ret;
     }
 
-    public class GetFriends extends AsyncTask<UUID, Void, Void> {
-        public Exception ex;
-
-        /*ProgressDialog pdLoading = new ProgressDialog(getActivity());
+    public class GetFriends extends AsyncTask<UUID, Void, Response> {
+        Exception exception;
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pdLoading.setMessage("\tЗагрузка...");
-            pdLoading.show();
-        }*/
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
+        }
         @Override
-        protected void onPostExecute(Void v) {
-            //pdLoading.dismiss();
-            SetData(result);
+        protected void onPostExecute(Response response) {
+            setData(response);
+            progressDialog.dismiss();
         }
 
         @Override
-        protected Void doInBackground(UUID... params) {
+        protected Response doInBackground(UUID... params) {
             try {
                 HttpClient httpclient = new DefaultHttpClient();
                 Gson gson = new Gson();
-                HttpGet request = new HttpGet(getString(R.string.url) + "Friends?token=" + token);
+                HttpGet request = new HttpGet(getString(R.string.url) + "Follows?token=" + token);
                 HttpResponse response = httpclient.execute(request);
                 InputStreamReader reader = new InputStreamReader(response.getEntity()
                         .getContent(), HTTP.UTF_8);
-                Type fooType = new TypeToken<Response<Members[]>>() {
+                Type fooType = new TypeToken<Response<Follows[]>>() {
                 }.getType();
                 result = gson.fromJson(reader, fooType);
 
             } catch (Exception e) {
-                this.ex = e;
+                this.exception = e;
             }
-            return null;
+            return result;
         }
     }
 }

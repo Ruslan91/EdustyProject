@@ -2,12 +2,39 @@ package com.example.Milestone1.Classes;
 
 import java.util.UUID;
 
-public class Members {
-    public UUID Id;
-    public String FirstName;
-    public String LastName;
-    public String MiddleName;
-    public UUID PictureID;
+public class Follows {
+    String __type;
+    UUID Id;
+    String Title;
+    String Description;
+    String FirstName;
+    String LastName;
+    String MiddleName;
+    UUID PictureID;
+
+    public String get__type() {
+        return __type;
+    }
+
+    public void set__type(String __type) {
+        this.__type = __type;
+    }
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
 
     public UUID getId() {
         return Id;

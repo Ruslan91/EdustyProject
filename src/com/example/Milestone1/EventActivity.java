@@ -211,7 +211,7 @@ public class EventActivity extends Activity {
             super.onPostExecute(response);
             if (response.getItem().equals(true)) {
                 Intent intent = new Intent(EventActivity.this, OtherMainActivity.class);
-                intent.putExtra("tab", 1);
+                intent.putExtra("tab", 2);
                 startActivity(intent);
                 finish();
             }

@@ -207,23 +207,25 @@ public class UserFeedFragment extends Fragment {
     }
 
     //Получение сообщений ленты
-    public class GetFeed extends AsyncTask<UUID, Void, Void> {
+    public class GetFeed extends AsyncTask<UUID, Void, Response> {
         Exception exception;
-        ProgressDialog pdLoading = new ProgressDialog(getActivity());
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
         }
 
         @Override
-        protected void onPostExecute(Void v) {
-            setData(result);
+        protected void onPostExecute(Response response) {
+            setData(response);
+            progressDialog.dismiss();
         }
 
         @Override
-        protected Void doInBackground(UUID... params) {
+        protected Response doInBackground(UUID... params) {
             try {
                 HttpClient httpclient = new DefaultHttpClient();
                 Gson gson = new Gson();
@@ -239,7 +241,7 @@ public class UserFeedFragment extends Fragment {
             } catch (Exception e) {
                 this.exception = e;
             }
-            return null;
+            return result;
         }
     }
 

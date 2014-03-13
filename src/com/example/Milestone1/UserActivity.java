@@ -42,7 +42,7 @@ public class UserActivity extends Activity {
     private static final int DIALOG_BIRTHDATE = 0;
     UUID token, userID;
     Response result;
-    PostFriend followTask;
+    FollowUser followTask;
     GetUserInformation getUser;
     Friend friend = new Friend();
     public Exception exception;
@@ -75,7 +75,6 @@ public class UserActivity extends Activity {
             }
             getUser = new GetUserInformation();
             getUser.execute();
-
         } catch (Exception e) {
             this.exception = e;
         }
@@ -119,19 +118,18 @@ public class UserActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.profile_menu, menu);
         try {
-            getMenuInflater().inflate(R.menu.profile_menu, menu);
             if (getIntent().getExtras() != null) {
                 menu.getItem(0).setVisible(false);
-                user = (User) result.getItem();
+                //user = (User) result.getItem();
                 if (user.getFollowing() == Boolean.TRUE) {
                     menu.getItem(1).setVisible(true);
                     menu.getItem(1).setTitle(R.string.unfollow);
-                    menu.getItem(1).setIcon(R.drawable.ic_action_cancel);
                 } else {
                     menu.getItem(1).setVisible(true);
                     menu.getItem(1).setTitle(R.string.follow);
-                    menu.getItem(1).setIcon(R.drawable.ic_action_accept);
                 }
                 menu.getItem(2).setVisible(false);
             } else {
@@ -142,10 +140,7 @@ public class UserActivity extends Activity {
         } catch (Exception e) {
             this.exception = e;
         }
-
-
         return true;
-
     }
 
     @Override
@@ -155,12 +150,12 @@ public class UserActivity extends Activity {
             ret = true;
             startActivity(new Intent(this, UserEditActivity.class));
             finish();
-        } else if (item.getItemId() == R.id.action_follow) {
+        } else if (item.getItemId() == R.id.action_join) {
             ret = true;
             friend.FriendID = userID;
             friend.Token = token;
             try {
-                followTask = new PostFriend();
+                followTask = new FollowUser();
                 followTask.execute();
                 result = followTask.get();
                 if (result.getItem() == Boolean.TRUE) {
@@ -203,7 +198,7 @@ public class UserActivity extends Activity {
         protected void onPreExecute() {
             super.onPreExecute();
             pdLoading.setMessage(getString(R.string.please_wait));
-            //pdLoading.setCancelable(false);
+            //progressDialog.setCancelable(false);
             pdLoading.show();
         }
 
@@ -234,15 +229,15 @@ public class UserActivity extends Activity {
         }
     }
 
-    public class PostFriend extends AsyncTask<Friend, Void, Response> {
+    public class FollowUser extends AsyncTask<Friend, Void, Response> {
 
-        private Exception exception;
+        Exception exception;
         ProgressDialog pdLoading = new ProgressDialog(UserActivity.this);
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pdLoading.setMessage("\tЗагрузка...");
+            pdLoading.setMessage(getString(R.string.please_wait));
             pdLoading.show();
         }
 
@@ -256,7 +251,7 @@ public class UserActivity extends Activity {
 
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost request = new HttpPost(getString(R.string.url) + "Friend");
+                HttpPost request = new HttpPost(getString(R.string.url) + "UserFollow");
                 StringEntity entity = new StringEntity(new Gson().toJson(friend),
                         HTTP.UTF_8);
                 entity.setContentType("application/json");

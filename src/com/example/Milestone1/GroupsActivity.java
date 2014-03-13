@@ -30,9 +30,6 @@ import java.util.UUID;
 
 public class GroupsActivity extends Activity {
 
-    final String ATTRIBUTE_NAME_TEXTN = "textN";
-    final String ATTRIBUTE_NAME_TEXTD = "textD";
-    final String ATTRIBUTE_NAME_GROUPID = "groupID";
     public UUID token, parentID;
     public int level = 0;
     Exception exception;
@@ -108,7 +105,7 @@ public class GroupsActivity extends Activity {
             ret = true;
 
             Intent intent = new Intent();
-            intent.setClass(GroupsActivity.this.getApplicationContext(), CreateGroupActivity.class);
+            intent.setClass(GroupsActivity.this, CreateGroupActivity.class);
             intent.putExtra("level", level);
             if (level != 0) {
                 intent.putExtra("ParentID", parentID.toString());

@@ -1,12 +1,13 @@
 package com.example.Milestone1;
 
 
+import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,15 +98,20 @@ public class UserMarksFragment extends Fragment {
     }
 
     public class GetJournalsUser extends AsyncTask<Void, Void, Response> {
-
         Exception exception;
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage(getString(R.string.please_wait));
+            progressDialog.show();
+        }
 
         @Override
         protected void onPostExecute(Response response) {
-            super.onPostExecute(response);
             setData(result);
+            progressDialog.dismiss();
         }
-
         @Override
         protected Response doInBackground(Void... params) {
             HttpClient httpClient = new DefaultHttpClient();
