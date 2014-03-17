@@ -1,9 +1,14 @@
 package com.example.Milestone1;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -35,7 +40,7 @@ public class AuthorizationActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authorization);
-        statusCodes = getResources().getStringArray(R.array.status_codes);
+        //statusCodes = getResources().getStringArray(R.array.status_codes);
         etEmail = (EditText) findViewById(R.id.etEmail);
         etEmail.setText(getIntent().getStringExtra("email"));
         etPassword = (EditText) findViewById(R.id.etPassword);
@@ -61,8 +66,14 @@ public class AuthorizationActivity extends Activity {
         }
     }
 
-    public void OnClickBtnLogIn(View view) {
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
 
+    public void OnClickBtnLogIn(View view) {
         try {
             user = new userAuthorization();
             if (etEmail.getText().toString().equals("") || etPassword.getText().toString().equals("")) {
@@ -70,7 +81,27 @@ public class AuthorizationActivity extends Activity {
             } else {
                 user.EMail = etEmail.getText().toString();
                 user.Password = etPassword.getText().toString();
-                new Authorization().execute();
+                if (!isOnline()) {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                    alertDialog.setCancelable(false);
+                    alertDialog.setMessage("Интернет соединение отсутсвует!"); // сообщение
+                    alertDialog.setPositiveButton("Повторить", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int arg1) {
+/*                            Intent i = getBaseContext().getPackageManager()
+                                    .getLaunchIntentForPackage(getBaseContext().getPackageName());
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i);*/
+                        }
+                    });
+                    alertDialog.setNegativeButton("Выйти из приложения", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int arg1) {
+                            finish();
+                        }
+                    });
+                    AlertDialog dialog = alertDialog.create();
+                    dialog.show();
+                } else
+                    new Authorization().execute();
             }
         } catch (Exception e1) {
             this.exception = e1;
@@ -100,7 +131,7 @@ public class AuthorizationActivity extends Activity {
                 if (response.getStatusCode().equals(0)) {
                     setData(response);
                 } else {
-                    Toast.makeText(AuthorizationActivity.this, statusCodes[response.getStatusCode()], Toast.LENGTH_LONG).show();
+                    //Toast.makeText(AuthorizationActivity.this, statusCodes[response.getStatusCode()], Toast.LENGTH_LONG).show();
                 }
                 pdLoading.dismiss();
             } catch (Exception e) {

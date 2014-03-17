@@ -90,19 +90,28 @@ public class GroupInformationFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.group_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
         try {
             group = (Groups) result.getItem();
             if (group.getMember() == Boolean.FALSE || group.getMember() == null) {
                 menu.getItem(0).setVisible(false);
                 menu.getItem(1).setTitle(R.string.join);
-                menu.getItem(2).setTitle(R.string.follow);
             } else {
-                menu.getItem(0).setVisible(true);
                 if (group.getIsOwner()) {
+                    menu.getItem(0).setVisible(true);
                     menu.getItem(1).setTitle(getString(R.string.delete));
-                } else menu.getItem(1).setTitle(R.string.leave);
-                menu.getItem(2).setTitle(R.string.unfollow);
+                } else {
+                    menu.getItem(0).setVisible(false);
+                    menu.getItem(1).setTitle(R.string.leave);
+                }
             }
+            if (group.getIsFollower() == Boolean.FALSE) {
+                menu.getItem(2).setTitle(R.string.follow);
+            } else menu.getItem(2).setTitle(R.string.unfollow);
         } catch (Exception e) {
             this.exception = e;
         }
@@ -114,7 +123,7 @@ public class GroupInformationFragment extends Fragment {
         try {
             if (item.getItemId() == R.id.action_edit) {
                 ret = true;
-                Intent intent = new Intent(getActivity().getApplicationContext(), EditGroupActivity.class);
+                Intent intent = new Intent(getActivity(), EditGroupActivity.class);
                 intent.putExtra("groupID", groupID.toString());
                 startActivity(intent);
                 getActivity().finish();
@@ -231,7 +240,7 @@ public class GroupInformationFragment extends Fragment {
 
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost request = new HttpPost(getString(R.string.url) + "GroupJoin");
+                HttpPost request = new HttpPost(getString(R.string.url) + "GroupFollow");
                 StringEntity entity = new StringEntity(new Gson().toJson(groupJoin),
                         HTTP.UTF_8);
                 entity.setContentType("application/json");

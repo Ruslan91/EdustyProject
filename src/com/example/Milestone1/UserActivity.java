@@ -118,12 +118,16 @@ public class UserActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.profile_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
         try {
             if (getIntent().getExtras() != null) {
                 menu.getItem(0).setVisible(false);
-                //user = (User) result.getItem();
+                user = (User) result.getItem();
                 if (user.getFollowing() == Boolean.TRUE) {
                     menu.getItem(1).setVisible(true);
                     menu.getItem(1).setTitle(R.string.unfollow);
@@ -140,7 +144,7 @@ public class UserActivity extends Activity {
         } catch (Exception e) {
             this.exception = e;
         }
-        return true;
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override

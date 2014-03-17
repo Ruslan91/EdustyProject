@@ -36,30 +36,12 @@ public class OtherMainActivity extends Activity {
     private String[] mPlanetTitles;
     private SharedPreferences sharedpreferences;
     Context context;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (!isOnline()) {
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-            alertDialog.setCancelable(false);
-            alertDialog.setMessage("Интернет соединение отсутсвует!"); // сообщение
-            alertDialog.setPositiveButton("Повторить", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int arg1) {
-                    Intent i = getBaseContext().getPackageManager()
-                            .getLaunchIntentForPackage(getBaseContext().getPackageName());
-                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(i);
-                }
-            });
-            alertDialog.setNegativeButton("Выйти из приложения", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int arg1) {
-                    onDestroy();
-                }
-            });
-            alertDialog.show();
-        } else {
             sharedpreferences = getSharedPreferences("userdetails", MODE_PRIVATE);
             if (sharedpreferences.getString("token", "").equals("")) {
                 startActivity(new Intent(this, AuthorizationActivity.class));
@@ -108,8 +90,27 @@ public class OtherMainActivity extends Activity {
                     else selectItem(getIntent().getIntExtra("tab", 1));
                 }
             }
+        if (!isOnline()) {
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+            alertDialog.setCancelable(false);
+            alertDialog.setMessage("Интернет соединение отсутсвует!"); // сообщение
+            alertDialog.setPositiveButton("Повторить", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int arg1) {
+                    Intent i = getBaseContext().getPackageManager()
+                            .getLaunchIntentForPackage(getBaseContext().getPackageName());
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+                }
+            });
+            alertDialog.setNegativeButton("Выйти из приложения", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int arg1) {
+                    finish();
+                }
+            });
+            dialog = alertDialog.create();
+            dialog.show();
         }
-    }
+        }
 
     public boolean isOnline() {
         ConnectivityManager cm =
