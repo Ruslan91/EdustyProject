@@ -83,7 +83,6 @@ public class CreateEventActivity extends Activity {
         spInterval.setSelection(7);
         spGroup = (Spinner) findViewById(R.id.spGroup);
         spGroup.setSelection(0);
-        cbAllDay = (CheckBox) findViewById(R.id.cbAllDay);
         etTitle = (EditText) findViewById(R.id.etTitle);
         etDescription = (EditText) findViewById(R.id.etDescription);
         etLocation = (EditText) findViewById(R.id.etLocation);

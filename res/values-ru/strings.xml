@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <string name="url">http://edusty.azurewebsites.net/api/</string>
+    <string name="url">http://89.222.166.108/api/</string>
     <!--http://89.222.166.108/api/-->
     <!--http://edusty.azurewebsites.net/api/-->
 
@@ -64,7 +64,7 @@
     <string name="lesson">Занятие</string>
     <string name="type">Тип</string>
     <string name="repeat">Повторять</string>
-    <string name="license">Нажимая "Зарегистрироваться", Вы принимаете условия </string>
+    <string name="license">Нажимая \"Зарегистрироваться\", Вы принимаете условия \"Соглашения\"</string>
     <string name="terms_of_service"><u>Соглашения</u>.</string>
     <string name="registration">Регистрация</string>
     <string name="send">Send</string>

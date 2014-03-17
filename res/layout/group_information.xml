@@ -9,7 +9,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/imageGroup"
-        android:src="@drawable/icon"
+        android:src="@android:drawable/ic_menu_help"
         android:layout_gravity="center"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"

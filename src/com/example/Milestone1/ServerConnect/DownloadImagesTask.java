@@ -20,9 +20,6 @@ import java.net.URLConnection;
 public class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
 
     ImageView imageView = null;
-        /*public DownloadImagesTask(ImageView bmImage) {
-            this.imageView = bmImage;
-        }*/
 
     @Override
     protected Bitmap doInBackground(ImageView... imageViews) {
@@ -33,11 +30,10 @@ public class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
     @Override
     protected void onPostExecute(Bitmap result) {
         //imageView.findViewById(R.id.imgFeed);
-        Bitmap image = result;
-        if (image != null) {
+        if (result != null) {
             imageView.setImageBitmap(result);
         } else {
-            imageView.setImageResource(R.drawable.icon);
+            imageView.setImageResource(android.R.drawable.ic_menu_help);
         }
     }
 
@@ -52,11 +48,11 @@ public class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
             is = conn.getInputStream();
             bis = new BufferedInputStream(is);
             bm = BitmapFactory.decodeStream(bis);
-            bis.close();
-            is.close();
+/*            bis.close();
+            is.close();*/
         } catch (IOException e) {
             Log.e("Hub", "Error getting the image from server : " + e.getMessage().toString());
-        } /*finally {
+        } finally {
             if (bis != null) {
                 try {
                     bis.close();
@@ -65,7 +61,7 @@ public class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
                     e.printStackTrace();
                 }
             }
-        }*/
+        }
         return bm;
         //---------------------------------------------------
     }

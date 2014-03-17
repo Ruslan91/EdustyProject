@@ -33,17 +33,12 @@
         android:hint="@string/location"
         android:singleLine="true" />
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/starttime"
-            android:layout_gravity="left|center_vertical"
-            android:layout_margin="5dp" />
-    </TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/starttime"
+        android:layout_gravity="left|center_vertical"
+        android:layout_margin="5dp" />
 
     <TableRow
         android:layout_width="wrap_content"
@@ -71,17 +66,11 @@
             android:layout_weight="1" />
     </TableRow>
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/endtime"
-            android:layout_column="0"
-            android:layout_margin="5dp" />
-    </TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/endtime"
+        android:layout_margin="5dp" />
 
     <TableRow
         android:layout_width="fill_parent"
@@ -123,10 +112,18 @@
         android:layout_margin="5dp"
         android:spinnerMode="dialog" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_margin="5dp"
+        android:text="@string/group" />
+
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spGroup"
-        android:spinnerMode="dialog" />
+        android:spinnerMode="dialog"
+        android:layout_margin="5dp" />
 
 </TableLayout>

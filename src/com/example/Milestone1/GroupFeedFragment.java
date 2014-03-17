@@ -75,8 +75,6 @@ public class GroupFeedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View myView = inflater.inflate(R.layout.feed, container, false);
-
-        editSendMessage = (EditText) myView.findViewById(R.id.editSendMessage);
         try {
             SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userdetails", Context.MODE_PRIVATE);
             token = UUID.fromString(sharedPreferences.getString("token", ""));

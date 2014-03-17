@@ -35,7 +35,7 @@ public class RegistrationActivity extends Activity {
         editLastName = (EditText) findViewById(R.id.editLastName);
     }
 
-    public void OnClickBtnReg(View v) {
+    public void onClickBtnRegistration(View v) {
         userRegistration.EMail = editEmail.getText().toString();
         userRegistration.Password = editPasswd.getText().toString();
         userRegistration.FirstName = editName.getText().toString();
@@ -47,7 +47,7 @@ public class RegistrationActivity extends Activity {
         }
     }
 
-    public void onClickLicenseString(View v) {
+    public void onClickBtnLicense(View v) {
         startActivity(new Intent(this, LicenseActivity.class));
     }
     public class Registration extends AsyncTask<userRegistration, Void, Response> {

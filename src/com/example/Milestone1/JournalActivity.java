@@ -128,7 +128,7 @@ public class JournalActivity extends Activity {
                     m.put("description", member.getLastName());
                     data.add(m);
                 }
-                simpleAdapter = new SimpleAdapter(JournalActivity.this, data, R.layout.friend_list_item,
+                simpleAdapter = new SimpleAdapter(JournalActivity.this, data, R.layout.follows_list_item,
                         new String[]{"title", "description"},
                         new int[]{R.id.tvTitle, R.id.tvDescription});
             }

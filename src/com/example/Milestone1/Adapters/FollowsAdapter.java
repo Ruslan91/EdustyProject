@@ -48,7 +48,7 @@ public class FollowsAdapter extends BaseAdapter {
         final ViewHolder viewHolder;
         View v = view;
         if (v == null) {
-            v = lInflater.inflate(R.layout.friend_list_item, null);
+            v = lInflater.inflate(R.layout.follows_list_item, null);
             viewHolder = new ViewHolder();
             viewHolder.Title = (TextView) v.findViewById(R.id.tvTitle);
             viewHolder.Description = (TextView) v.findViewById(R.id.tvDescription);

@@ -46,7 +46,7 @@ public class UserFollowsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View myView = inflater.inflate(R.layout.friends, container, false);
+        View myView = inflater.inflate(R.layout.follows, container, false);
         setRetainInstance(true);
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userdetails", Context.MODE_PRIVATE);
         token = UUID.fromString(sharedPreferences.getString("token", ""));

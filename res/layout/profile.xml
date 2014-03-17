@@ -15,7 +15,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:id="@+id/imgUser"
-            android:src="@drawable/icon"
+            android:src="@android:drawable/ic_menu_help"
             android:layout_gravity="center"
             android:scaleType="fitXY"
             android:layout_alignParentLeft="true"

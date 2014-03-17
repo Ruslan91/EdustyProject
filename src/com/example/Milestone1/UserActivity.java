@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,8 +32,10 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -107,9 +112,10 @@ public class UserActivity extends Activity {
                     new int[]{android.R.id.text1, android.R.id.text2});
 
             listView.setAdapter(sAdapter);
-            String URL = getString(R.string.url) + "File?token=" + token + "&fileID=" + user.getPictureID();
+            String url = getString(R.string.url) + "File?token=" + token + "&fileID=" + user.getPictureID();
             image = (ImageView) findViewById(R.id.imgUser);
-            image.setTag(URL);
+            image.setImageURI(Uri.parse(getString(R.string.url) + "File?token=" + token + "&fileID=" + user.getPictureID()));
+            image.setTag(url);
             new DownloadImagesTask().execute(image);
         } catch (Exception e) {
             this.exception = e;

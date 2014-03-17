@@ -40,7 +40,7 @@ public class GroupMembersFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View myView = inflater.inflate(R.layout.friends, container, false);
+        View myView = inflater.inflate(R.layout.follows, container, false);
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userdetails", Context.MODE_PRIVATE);
         token = UUID.fromString(sharedPreferences.getString("token", ""));
         groupID = UUID.fromString(getActivity().getIntent().getStringExtra("groupID"));

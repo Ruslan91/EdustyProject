@@ -8,6 +8,5 @@
     <style name="EdustyFont">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:fontFamily"></item>
     </style>
 </resources>

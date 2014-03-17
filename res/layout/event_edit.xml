@@ -1,70 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <TableLayout
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     style="@style/EdustyBackground"
     android:focusable="true">
 
-    <TableRow
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:id="@+id/etTitle"
+        android:hint="@string/title"
+        android:layout_margin="5dp"
+        android:inputType="none"
+        android:singleLine="true" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:id="@+id/etTitle"
-            android:hint="@string/title"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:inputType="none"
-            android:singleLine="true" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
+    <EditText
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:id="@+id/etDescription"
+        android:layout_margin="5dp"
+        android:hint="@string/description"
+        android:inputType="textMultiLine" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:id="@+id/etDescription"
-            android:layout_margin="5dp"
-            android:hint="@string/description"
-            android:layout_weight="1"
-            android:inputType="textMultiLine" />
-    </TableRow>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etLocation"
+        android:layout_margin="5dp"
+        android:hint="@string/location"
+        android:inputType="none"
+        android:singleLine="true" />
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/etLocation"
-            android:layout_margin="5dp"
-            android:hint="@string/location"
-            android:layout_weight="1"
-            android:inputType="none"
-            android:singleLine="true" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/starttime"
-            android:layout_gravity="left|center_vertical"
-            android:layout_margin="5dp" />
-    </TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/starttime"
+        android:layout_gravity="left|center_vertical"
+        android:layout_margin="5dp" />
 
     <TableRow
         android:layout_width="wrap_content"
@@ -87,7 +61,7 @@
             android:hint="Time"
             android:onClick="onClickStartTimePick"
             android:id="@+id/tvTime"
-            android:layout_weight="0" />
+            android:layout_weight="1" />
     </TableRow>
 
     <TableRow
@@ -122,36 +96,22 @@
             android:hint="@string/time"
             android:onClick="onClickEndTimePick"
             android:id="@+id/tvEndTime"
-            android:layout_weight="0" />
+            android:layout_weight="1" />
     </TableRow>
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/repeat"
+        android:id="@+id/textView" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/all_day"
-            android:id="@+id/cbAllDay"
-            android:layout_column="0"
-            android:checked="false"
-            android:layout_margin="5dp"
-            android:visibility="gone" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/spInterval"
-            android:entries="@array/intervals"
-            android:layout_column="0"
-            android:layout_margin="5dp"
-            android:spinnerMode="dialog" />
-    </TableRow>
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spInterval"
+        android:entries="@array/intervals"
+        android:layout_column="0"
+        android:layout_margin="5dp"
+        android:spinnerMode="dialog" />
 
 </TableLayout>
