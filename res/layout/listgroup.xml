@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:id="@+id/listGroups"
-        android:layout_margin="5dp"
         android:clickable="false"
         android:dividerHeight="20dp"
-        android:divider="@android:color/transparent" />
+        android:divider="@android:color/transparent"
+        android:layout_margin="10dp" />
 </LinearLayout>

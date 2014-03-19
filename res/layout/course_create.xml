@@ -18,6 +18,7 @@
         android:focusableInTouchMode="true"
         android:layout_alignParentTop="true"
         android:singleLine="true"
-        android:ems="30" />
+        android:ems="30"
+        android:layout_margin="10dp" />
 
 </RelativeLayout>

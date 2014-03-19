@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/scrollView"
-    android:foregroundGravity="center">
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView">
 
     <RelativeLayout
         android:orientation="vertical"
@@ -13,102 +12,100 @@
         style="@style/EdustyBackground">
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:ems="10"
             android:id="@+id/etFirstName"
             android:layout_gravity="center"
             android:hint="@string/firstName"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp" />
+            android:layout_margin="10dp" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:ems="10"
             android:id="@+id/etLastName"
             android:layout_gravity="center"
             android:hint="@string/lastName"
-            android:layout_marginTop="15dp"
             android:layout_below="@+id/etFirstName"
-            android:layout_alignLeft="@+id/etFirstName" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="10dp" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:ems="10"
             android:id="@+id/etMiddleName"
             android:layout_gravity="center"
             android:hint="@string/middleName"
-            android:layout_marginTop="10dp"
             android:layout_below="@+id/etLastName"
-            android:layout_alignLeft="@+id/etLastName" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="10dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:id="@+id/etBirthDate"
             android:onClick="onClickEditBirthDate"
             android:layout_gravity="center"
             android:hint="@string/birthDate"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/etMiddleName"
-            android:layout_alignLeft="@+id/etMiddleName"
             style="@android:style/Widget.Holo.Spinner"
-            android:layout_alignRight="@+id/etMiddleName" />
+            android:layout_below="@+id/etMiddleName"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="10dp" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:ems="10"
             android:id="@+id/etEmail"
             android:layout_gravity="center"
             android:hint="@string/eMail"
-            android:layout_marginTop="10dp"
             android:layout_below="@+id/etBirthDate"
-            android:layout_alignLeft="@+id/etBirthDate" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="10dp" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
-            android:ems="10"
             android:id="@+id/etPhone"
             android:layout_gravity="center"
             android:hint="@string/phone"
-            android:layout_marginTop="10dp"
             android:layout_below="@+id/etEmail"
-            android:layout_alignLeft="@+id/etEmail" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="10dp" />
 
         <Spinner
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/spCountry"
             android:layout_gravity="center"
             android:spinnerMode="dialog"
             android:gravity="center"
-            android:layout_marginTop="10dp"
             android:layout_below="@+id/etPhone"
-            android:layout_alignLeft="@+id/etPhone"
-            android:layout_alignRight="@+id/etPhone" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="10dp" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPostalAddress"
-            android:ems="10"
             android:id="@+id/etCity"
             android:layout_gravity="center"
             android:hint="@string/city"
-            android:layout_marginTop="10dp"
             android:layout_below="@+id/spCountry"
-            android:layout_alignLeft="@+id/spCountry" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="10dp" />
 
     </RelativeLayout>
 </ScrollView>

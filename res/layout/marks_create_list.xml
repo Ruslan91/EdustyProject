@@ -10,14 +10,13 @@
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_margin="10dp">
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spLessonNumber"
             android:spinnerMode="dropdown"
-            android:layout_margin="5dp"
             android:layout_weight="3" />
 
         <Spinner
@@ -25,17 +24,17 @@
             android:layout_height="wrap_content"
             android:id="@+id/spType"
             android:spinnerMode="dropdown"
-            android:layout_margin="5dp"
             android:entries="@array/journal_types"
             android:focusableInTouchMode="false"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp" />
     </LinearLayout>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:id="@+id/listMarks"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:clickable="false"
         android:divider="@android:color/transparent"
         android:dividerHeight="5dp" />
