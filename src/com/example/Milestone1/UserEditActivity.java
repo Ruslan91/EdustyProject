@@ -6,8 +6,11 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +35,8 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
@@ -46,7 +51,6 @@ import java.util.UUID;
  */
 public class UserEditActivity extends Activity {
     private UUID token;
-    private UUID userID;
     private Response result;
     private int language;
     private EditText etFirstName;
@@ -61,7 +65,9 @@ public class UserEditActivity extends Activity {
     private int year;
     private int month;
     private int day;
-    private Exception exception;
+    Exception exception;
+    static final int GALLERY_REQUEST = 1;
+    UUID PictureID;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +81,7 @@ public class UserEditActivity extends Activity {
         try {
             result = getUserInformation.get();
             User userInfo = (User) result.getItem();
-
+            PictureID = userInfo.getPictureID();
             etFirstName = (EditText) findViewById(R.id.etFirstName);
             etLastName = (EditText) findViewById(R.id.etLastName);
             etMiddleName = (EditText) findViewById(R.id.etMiddleName);
@@ -183,10 +189,81 @@ public class UserEditActivity extends Activity {
                 userWrite.setPhone(etPhone.getText().toString());
                 userWrite.setCity(etCity.getText().toString());
                 userWrite.setCountry(spCountry.getSelectedItem().toString());
-
+                userWrite.setPictureID(PictureID);
                 new PostUserWrite().execute();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClickBtnChangePicture(View view) {
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+
+        Bitmap galleryPic = null;
+
+        switch(requestCode) {
+            case GALLERY_REQUEST:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = imageReturnedIntent.getData();
+                    try {
+                        galleryPic = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                        if (galleryPic == null) break;
+                        new PostFile().execute(galleryPic);
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+        }
+    }
+
+    public class PostFile extends AsyncTask<Bitmap, Void, Response> {
+        Bitmap file = null;
+        Exception exception;
+        ProgressDialog pdLoading = new ProgressDialog(UserEditActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pdLoading.setMessage(getString(R.string.please_wait));
+            pdLoading.show();
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            if (response.getStatusCode().equals(0)) {
+                PictureID = UUID.fromString((String) response.getItem());
+            }
+            pdLoading.dismiss();
+        }
+
+        protected Response doInBackground(Bitmap... bitmaps) {
+            String containerName = "avatars";
+            file = bitmaps[0];
+            String fileName = "cheguevara";
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost request = new HttpPost(getString(R.string.url) + "File?fileName=" + fileName + "&token=" + token + "&containerName=" + containerName);
+                StringEntity entity = new StringEntity(new Gson().toJson(file),
+                        HTTP.UTF_8);
+                entity.setContentType("application/json");
+                request.setEntity(entity);
+                HttpResponse response = httpclient.execute(request);
+                InputStreamReader reader = new InputStreamReader(response.getEntity().getContent());
+                result = new Gson().fromJson(reader, Response.class);
+
+            } catch (Exception e) {
+                this.exception = e;
+            }
+            return result;
+        }
     }
 
     public class GetUserInformation extends AsyncTask<UUID, Void, Response> {
@@ -194,6 +271,7 @@ public class UserEditActivity extends Activity {
 
         @Override
         protected Response doInBackground(UUID... params) {
+            UUID userID = null;
             try {
                 HttpClient httpclient = new DefaultHttpClient();
                 Gson gson = new Gson();

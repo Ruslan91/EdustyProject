@@ -39,6 +39,7 @@
             android:layout_below="@+id/tvName"
             android:layout_toRightOf="@+id/imgUser"
             android:layout_margin="5dp" />
+
     </RelativeLayout>
 
     <TextView

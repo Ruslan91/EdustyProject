@@ -9,8 +9,10 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -32,6 +34,8 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
@@ -44,7 +48,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class UserActivity extends Activity {
-    private static final int DIALOG_BIRTHDATE = 0;
+
     UUID token, userID;
     Response result;
     FollowUser followTask;

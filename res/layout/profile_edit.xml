@@ -11,6 +11,15 @@
         android:baselineAligned="true"
         style="@style/EdustyBackground">
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imgUser"
+            android:src="@android:drawable/ic_menu_help"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,8 +27,9 @@
             android:id="@+id/etFirstName"
             android:layout_gravity="center"
             android:hint="@string/firstName"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/imgUser"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_margin="10dp" />
 
         <EditText
@@ -106,6 +116,18 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_margin="10dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_picture"
+            android:id="@+id/button"
+            android:layout_alignBottom="@+id/imgUser"
+            android:layout_toRightOf="@+id/imgUser"
+            android:layout_margin="10dp"
+            android:background="#20ffffff"
+            android:padding="5dp"
+            android:onClick="onClickBtnChangePicture" />
 
     </RelativeLayout>
 </ScrollView>
