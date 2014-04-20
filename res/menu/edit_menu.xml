@@ -6,9 +6,4 @@
         android:icon="@drawable/ic_action_accept"
         android:showAsAction="always|withText"
         android:title="@string/apply" />
-    <!--    <item
-            android:id="@+id/action_cancel"
-            android:icon="@drawable/ic_action_undo"
-            android:showAsAction="always|withText"
-            android:title="@string/cancel"></item>-->
 </menu>

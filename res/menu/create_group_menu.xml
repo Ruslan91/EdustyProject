@@ -5,5 +5,6 @@
         android:id="@+id/action_apply"
         android:icon="@drawable/ic_action_accept"
         android:showAsAction="always|withText"
-        android:title="@string/apply" />
+        android:title="@string/apply"
+        android:onClick="onClickBtnCreateGroup"/>
 </menu>

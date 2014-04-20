@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.Milestone1.Adapters.EventAdapter;
 import com.example.Milestone1.Classes.Event;
@@ -41,6 +42,7 @@ public class GroupEventsFragment extends Fragment {
     private ListView listEvents;
     private UUID groupID;
     Exception exception;
+    private TextView tvInfo;
 
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -56,6 +58,8 @@ public class GroupEventsFragment extends Fragment {
         GetGroupEvents getGroupEvents = new GetGroupEvents();
         getGroupEvents.execute();
         listEvents = (ListView) myView.findViewById(R.id.listEvents);
+        tvInfo = (TextView) myView.findViewById(R.id.tvInfo);
+        tvInfo.setVisibility(View.INVISIBLE);
 
 
         return myView;

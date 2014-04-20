@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.Milestone1.Adapters.EventAdapter;
 import com.example.Milestone1.Classes.Event;
@@ -43,6 +44,7 @@ public class UserEventsFragment extends Fragment {
     private Event[] events;
     HashMap<String, String> m;
     Exception exception;
+    private TextView tvInfo;
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -59,31 +61,39 @@ public class UserEventsFragment extends Fragment {
         token = UUID.fromString(sharedPreferences.getString("token", ""));
         new GetUserEvents().execute();
         listEvents = (ListView) myView.findViewById(R.id.listEvents);
+        tvInfo = (TextView) myView.findViewById(R.id.tvInfo);
+        listEvents.setVisibility(View.INVISIBLE);
+        tvInfo.setVisibility(View.INVISIBLE);
 
         return myView;
     }
 
     public void setData(Response response) {
         try {
-            events = (Event[]) response.getItem();
-            sAdapter = new EventAdapter(getActivity(), events);
-            listEvents.setAdapter(sAdapter);
-            listEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                public Exception exception;
+            if (response.getItem() != null) {
+                listEvents.setVisibility(View.VISIBLE);
+                events = (Event[]) response.getItem();
+                sAdapter = new EventAdapter(getActivity(), events);
+                listEvents.setAdapter(sAdapter);
+                listEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public Exception exception;
 
-                public void onItemClick(AdapterView<?> parent, View view,
-                                        int position, long id) {
-                    try {
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        try {
 
-                        Intent intent = new Intent(getActivity().getApplicationContext(), EventActivity.class);
-                        intent.putExtra("eventID", events[position].getEventID().toString());
-                        startActivity(intent);
-                        onDestroy();
-                    } catch (Exception e) {
-                        this.exception = e;
+                            Intent intent = new Intent(getActivity().getApplicationContext(), EventActivity.class);
+                            intent.putExtra("eventID", events[position].getEventID().toString());
+                            startActivity(intent);
+                            onDestroy();
+                        } catch (Exception e) {
+                            this.exception = e;
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                tvInfo.setVisibility(View.VISIBLE);
+            }
         } catch (Exception e) {
             this.exception = e;
         }

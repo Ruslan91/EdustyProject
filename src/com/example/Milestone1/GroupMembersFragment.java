@@ -7,10 +7,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.Milestone1.Adapters.FollowsAdapter;
 import com.example.Milestone1.Classes.Follows;
@@ -37,6 +41,7 @@ public class GroupMembersFragment extends Fragment {
     Integer offset;
     Integer count;
     private Response result;
+    private TextView tvInfo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +50,8 @@ public class GroupMembersFragment extends Fragment {
         token = UUID.fromString(sharedPreferences.getString("token", ""));
         groupID = UUID.fromString(getActivity().getIntent().getStringExtra("groupID"));
         listMembers = (ListView) myView.findViewById(R.id.listFriends);
-
+        tvInfo = (TextView) myView.findViewById(R.id.tvInfo);
+        tvInfo.setVisibility(View.INVISIBLE);
         getGroupMembers = new GetGroupMembers();
         getGroupMembers.execute();
         return myView;
@@ -95,7 +101,22 @@ public class GroupMembersFragment extends Fragment {
             this.exception = e;
         }
     }
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.user_friends_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        boolean ret;
+        if (item.getItemId() == R.id.action_update) {
+            ret = true;
+            new GetGroupMembers().execute();
+        } else {
+            ret = super.onOptionsItemSelected(item);
+        }
+        return ret;
+    }
     public class GetGroupMembers extends AsyncTask<UUID, Void, Response> {
         public Exception ex;
 

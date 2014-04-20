@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -34,6 +36,8 @@ public class CreateGroupActivity extends Activity {
     Exception exception;
     private Response result;
     private Spinner spFree;
+    private View v;
+    private MenuItem item;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +64,16 @@ public class CreateGroupActivity extends Activity {
 
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.create_group_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
     public void onClickBtnCreateGroup(View v) {
+
+    }
+
+    public void onClickBtnCreateGroup(MenuItem item) {
+        this.item = item;
         try {
             if (groupName.getText().toString().equals("")) {
                 Toast.makeText(this, "Name can't be null", Toast.LENGTH_SHORT).show();

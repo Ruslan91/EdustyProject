@@ -101,23 +101,9 @@ public class FeedAdapter extends SimpleAdapter {
         viewHolder.tvTitle.setText(results.get(position).get("titles"));
         if (results.get(position).get("picture") != null) {
             String URL = results.get(position).get("picture");
-/*            image.setImageBitmap(download_Image(URL));*/
-
             viewHolder.image.setTag(URL);
             new DownloadImagesTask().execute(viewHolder.image);
         }
-        /*try {
-            Bitmap bit = task.get();
-            if (bit != null) {
-                image.setImageBitmap(bit);
-            } else {
-                image.setImageResource(R.drawable.icon);
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }*/
         return v;
     }
 /*    class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {

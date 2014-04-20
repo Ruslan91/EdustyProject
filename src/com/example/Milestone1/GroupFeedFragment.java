@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Milestone1.Adapters.FeedAdapter;
@@ -66,6 +67,7 @@ public class GroupFeedFragment extends Fragment {
     private Date[] datetime;
     private UUID messageID;
     private boolean groupOwner;
+    private TextView tvInfo;
 
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -83,6 +85,8 @@ public class GroupFeedFragment extends Fragment {
             getGroupFeed = new GetGroupFeed();
             getGroupFeed.execute();
             listFeed = (ListView) myView.findViewById(R.id.listFeed);
+            tvInfo = (TextView) myView.findViewById(R.id.tvInfo);
+            tvInfo.setVisibility(View.INVISIBLE);
             listFeed.setClickable(true);
             registerForContextMenu(listFeed);
             listFeed.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="url">http://89.222.166.108/api/</string>
+    <string name="url">http://edusty.azurewebsites.net/api/</string>
     <!--http://89.222.166.108/api/-->
     <!--http://edusty.azurewebsites.net/api/-->
 
@@ -140,4 +140,7 @@
     <string name="action_websearch">Web search</string>
     <string name="app_not_available">Sorry, there\'s no web browser available</string>
     <string name="enter_course_title">Enter Course Title</string>
+    <string name="bug_report">Bug report</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="create_group">Create group</string>
 </resources>

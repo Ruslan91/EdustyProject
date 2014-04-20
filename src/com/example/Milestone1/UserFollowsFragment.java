@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.Milestone1.Adapters.FollowsAdapter;
 import com.example.Milestone1.Classes.Follows;
@@ -38,6 +39,7 @@ public class UserFollowsFragment extends Fragment {
     ListView listFriends;
     UUID token;
     private Response result;
+    private TextView tvInfo;
 
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -55,6 +57,9 @@ public class UserFollowsFragment extends Fragment {
             if (myView != null) {
                 listFriends = (ListView) myView.findViewById(R.id.listFriends);
             }
+            tvInfo = (TextView) myView.findViewById(R.id.tvInfo);
+            listFriends.setVisibility(View.INVISIBLE);
+            tvInfo.setVisibility(View.INVISIBLE);
             listFriends.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public Exception ex;
 
@@ -88,19 +93,14 @@ public class UserFollowsFragment extends Fragment {
 
     void setData(Response response) {
         try {
+            if (response.getItem() != null) {
+                listFriends.setVisibility(View.VISIBLE);
             follows = (Follows[]) response.getItem();
-            /*ArrayList<Map<String, String>> data = new ArrayList<>(follows.length);
-            for (Follows friend : follows) {
-                HashMap<String, String> m = new HashMap<>();
-                m.put("name", friend.getFirstName());
-                m.put("lastName", friend.getLastName());
-                if (friend.getPictureID() != null && friend.getPictureID().compareTo(new UUID(0, 0)) != 0) {
-                    m.put("picture", getString(R.string.url) + "File?token=" + token + "&fileID=" + friend.getPictureID());
-                }
-                data.add(m);
-            }*/
             FollowsAdapter sAdapter = new FollowsAdapter(getActivity(), follows);
             listFriends.setAdapter(sAdapter);
+            } else {
+                tvInfo.setVisibility(View.VISIBLE);
+            }
         } catch (Exception e) {
             this.exception = e;
         }

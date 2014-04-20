@@ -94,7 +94,7 @@ public class CreateMarksJournalActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         try {
             switch (item.getItemId()) {
-                case R.id.action_save:
+                case R.id.action_apply:
                     /*int count = listMarks.getCount();
                     marksReads = new MarksRead[count];
                     createMarks = new EditMark();

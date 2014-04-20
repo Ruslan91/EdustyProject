@@ -38,8 +38,8 @@
         android:layout_below="@+id/etPassword"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:background="@android:color/holo_blue_dark"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        style="@style/Button" />
 
     <Button
         android:layout_width="wrap_content"

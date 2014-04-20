@@ -21,6 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 /**
@@ -152,6 +154,24 @@ public class OtherMainActivity extends Activity {
                 startActivity(new Intent(this, AuthorizationActivity.class));
                 finish();
                 return true;
+/*            case R.id.action_report:
+                AlertDialog.Builder editalert = new AlertDialog.Builder(this);
+
+                editalert.setTitle("Нашли ошибку?");
+                editalert.setMessage("Отправьте отчет, чтобы улучшить работу сервиса");
+                final EditText input = new EditText(this);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+                input.setLayoutParams(lp);
+                editalert.setView(input);
+                editalert.setPositiveButton(getString(R.string.send), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+
+                    }
+                });
+                editalert.show();*/
             default:
                 return super.onOptionsItemSelected(item);
         }

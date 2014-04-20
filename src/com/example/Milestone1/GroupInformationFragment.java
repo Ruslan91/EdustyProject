@@ -121,6 +121,10 @@ public class GroupInformationFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean ret = false;
         try {
+            if (item.getItemId() == R.id.action_update) {
+                ret = true;
+                new GetGroupInformation().execute();
+            } else
             if (item.getItemId() == R.id.action_edit) {
                 ret = true;
                 Intent intent = new Intent(getActivity(), EditGroupActivity.class);

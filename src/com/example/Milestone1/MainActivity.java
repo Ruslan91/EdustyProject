@@ -68,9 +68,6 @@ public class MainActivity extends FragmentActivity {
             edit.commit();
             startActivity(new Intent(getApplicationContext(),AuthorizationActivity.class));
             finish();
-        } else if (item.getItemId() == R.id.action_settings) {
-            ret = true;
-            Toast.makeText(this, getString(R.string.secIsDev), Toast.LENGTH_SHORT).show();
         } else {
             ret = super.onOptionsItemSelected(item);
         }

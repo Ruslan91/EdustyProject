@@ -14,4 +14,9 @@
         android:id="@+id/action_follow"
         android:title="@string/follow"
         android:showAsAction="never|withText" />
+    <item
+        android:id="@+id/action_update"
+        android:icon="@drawable/ic_action_refresh"
+        android:showAsAction="always"
+        android:title="@string/update" />
 </menu>

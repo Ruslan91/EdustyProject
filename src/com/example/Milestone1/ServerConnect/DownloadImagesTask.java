@@ -27,7 +27,7 @@ public class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
         return download_Image((String) imageView.getTag());
     }
 
-    @Override
+    /*@Override
     protected void onPostExecute(Bitmap result) {
         //imageView.findViewById(R.id.imgFeed);
         if (result != null) {
@@ -35,7 +35,7 @@ public class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
         } else {
             imageView.setImageResource(android.R.drawable.ic_menu_help);
         }
-    }
+    }*/
 
     private Bitmap download_Image(String url) {
         Bitmap bm = null;

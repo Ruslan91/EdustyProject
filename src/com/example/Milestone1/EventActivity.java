@@ -94,7 +94,10 @@ public class EventActivity extends Activity {
             tvTitle.setText(event.getTitle());
             tvStartTime.setText(startTime);
             tvEndTime.setText(endTime);
-            //tvInterval.setText((int) result.getTimeInterval());
+            String[] intervals = getResources().getStringArray(R.array.intervals);
+            if (event.getTimeInterval() != null) {
+                tvInterval.setText(intervals[event.getTimeInterval()]);
+            } else tvInterval.setText(intervals[7]);
             tvLocation.setText(event.getLocation());
             tvDescription.setText(event.getDescription());
             if (event.getGroupName() != null) {
@@ -104,10 +107,14 @@ public class EventActivity extends Activity {
             this.exception = e;
         }
     }
-
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.event_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
         try {
-            getMenuInflater().inflate(R.menu.event_menu, menu);
             event = (Event) result.getItem();
             if (event.getIsReadWrite()) {
                 menu.getItem(0).setVisible(true);
@@ -119,10 +126,10 @@ public class EventActivity extends Activity {
         } catch (Exception e) {
             this.exception = e;
         }
-        return true;
+        return super.onPrepareOptionsMenu(menu);
     }
 
-
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean ret = false;
         if (item.getItemId() == R.id.action_edit) {

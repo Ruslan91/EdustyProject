@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 import com.example.Milestone1.Classes.Response;
 import com.example.Milestone1.Classes.User;
 import com.example.Milestone1.Classes.UserWrite;
+import com.example.Milestone1.ServerConnect.DownloadImagesTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -31,10 +33,12 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -240,6 +244,9 @@ public class UserEditActivity extends Activity {
             super.onPostExecute(response);
             if (response.getStatusCode().equals(0)) {
                 PictureID = UUID.fromString((String) response.getItem());
+                ImageView image = (ImageView) findViewById(R.id.imgUser);
+                image.setTag(getString(R.string.url) + "File?token=" + token + "&fileID=" + PictureID);
+                new DownloadImagesTask().execute(image);
             }
             pdLoading.dismiss();
         }
@@ -251,10 +258,10 @@ public class UserEditActivity extends Activity {
             try {
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost request = new HttpPost(getString(R.string.url) + "File?fileName=" + fileName + "&token=" + token + "&containerName=" + containerName);
-                StringEntity entity = new StringEntity(new Gson().toJson(file),
-                        HTTP.UTF_8);
-                entity.setContentType("application/json");
-                request.setEntity(entity);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                file.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+                request.setEntity(new ByteArrayEntity(byteArray));
                 HttpResponse response = httpclient.execute(request);
                 InputStreamReader reader = new InputStreamReader(response.getEntity().getContent());
                 result = new Gson().fromJson(reader, Response.class);

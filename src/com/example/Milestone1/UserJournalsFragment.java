@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.example.Milestone1.Classes.Journals;
 import com.example.Milestone1.Classes.Response;
@@ -41,6 +42,7 @@ public class UserJournalsFragment extends Fragment {
     private UUID token;
     private Journals[] journals;
     private ListView listJournals;
+    private TextView tvInfo;
 
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -55,6 +57,9 @@ public class UserJournalsFragment extends Fragment {
         try {
             new GetJournalsOwner().execute();
             listJournals = (ListView) myView.findViewById(R.id.listJournals);
+            tvInfo = (TextView) myView.findViewById(R.id.tvInfo);
+            listJournals.setVisibility(View.INVISIBLE);
+            tvInfo.setVisibility(View.INVISIBLE);
             listJournals.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public Exception ex;
 
@@ -81,6 +86,8 @@ public class UserJournalsFragment extends Fragment {
 
     public void setData(Response response) {
         try {
+            if (response.getItem() != null) {
+                listJournals.setVisibility(View.VISIBLE);
             journals = (Journals[]) response.getItem();
             ArrayList<Map<String, String>> data = new ArrayList<>(
                     journals.length);
@@ -98,6 +105,9 @@ public class UserJournalsFragment extends Fragment {
                     new int[]{R.id.tvJournalTitle, R.id.tvJournalCourse, R.id.tvJournalGroup, R.id.tvJournalOwner}
             );
             listJournals.setAdapter(sAdapter);
+        } else {
+            tvInfo.setVisibility(View.VISIBLE);
+        }
         } catch (Exception e) {
             this.exception = e;
         }

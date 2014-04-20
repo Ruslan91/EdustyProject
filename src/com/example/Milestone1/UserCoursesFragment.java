@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Milestone1.Classes.Courses;
@@ -49,6 +50,7 @@ public class UserCoursesFragment extends Fragment {
     private Courses[] courses;
     private GetUserCourses getUserCourses;
     private UUID courseID;
+    private TextView tvInfo;
 
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -61,6 +63,9 @@ public class UserCoursesFragment extends Fragment {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userdetails", Context.MODE_PRIVATE);
         token = UUID.fromString(sharedPreferences.getString("token", ""));
         listCourses = (ListView) myView.findViewById(R.id.listCourses);
+        tvInfo = (TextView) myView.findViewById(R.id.tvInfo);
+        listCourses.setVisibility(View.INVISIBLE);
+        tvInfo.setVisibility(View.INVISIBLE);
         registerForContextMenu(listCourses);
         getUserCourses = new GetUserCourses();
         getUserCourses.execute();
@@ -71,7 +76,7 @@ public class UserCoursesFragment extends Fragment {
     public void setData(Response response) {
 
         if (response.getItem() != null) {
-
+            listCourses.setVisibility(View.VISIBLE);
             courses = (Courses[]) response.getItem();
             ArrayList<Map<String, String>> data = new ArrayList<Map<String, String>>(
                     courses.length);
@@ -85,6 +90,8 @@ public class UserCoursesFragment extends Fragment {
                     new String[]{"titles"}, new int[]{R.id.tvCourseName});
 
             listCourses.setAdapter(sAdapter);
+        } else {
+            tvInfo.setVisibility(View.VISIBLE);
         }
 
     }

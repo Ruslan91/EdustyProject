@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,27 +22,63 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 
 import java.io.InputStreamReader;
+
 public class RegistrationActivity extends Activity {
     EditText editEmail, editPasswd, editName, editLastName;
     Response result;
     userRegistration userRegistration = new userRegistration();
+    private EditText editRePassword;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
         editEmail = (EditText) findViewById(R.id.editEmail);
         editPasswd = (EditText) findViewById(R.id.editPasswd);
+        editRePassword = (EditText) findViewById(R.id.editRePassword);
         editName = (EditText) findViewById(R.id.editName);
         editLastName = (EditText) findViewById(R.id.editLastName);
+/*        Button btnReg = (Button) findViewById(R.id.btnReg);
+        btnReg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    if (editEmail.getText().toString().equals("") || editPasswd.getText().toString().equals("")) {
+                        Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show();
+                        v.clearFocus();
+                    } else if (!userRegistration.Password.equals(editRePassword.getText().toString())) {
+                        Toast.makeText(this, "Пароли не совпадают", Toast.LENGTH_LONG).show();
+                        v.clearFocus();
+                    } else {
+                        userRegistration.EMail = editEmail.getText().toString();
+                        userRegistration.Password = editPasswd.getText().toString();
+                        userRegistration.FirstName = editName.getText().toString();
+                        userRegistration.LastName = editLastName.getText().toString();
+                        new Registration().execute();
+                    }
+                } catch (Exception ignored) {
+
+                }
+            }
+        });*/
     }
 
     public void onClickBtnRegistration(View v) {
-        userRegistration.EMail = editEmail.getText().toString();
-        userRegistration.Password = editPasswd.getText().toString();
-        userRegistration.FirstName = editName.getText().toString();
-        userRegistration.LastName = editLastName.getText().toString();
         try {
-            new Registration().execute();
+            if (editEmail.getText().toString().equals("") || editPasswd.getText().toString().equals("")) {
+                Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show();
+                v.clearFocus();
+            } else {
+                userRegistration.EMail = editEmail.getText().toString();
+                userRegistration.Password = editPasswd.getText().toString();
+                userRegistration.FirstName = editName.getText().toString();
+                userRegistration.LastName = editLastName.getText().toString();
+                if (!userRegistration.Password.equals(editRePassword.getText().toString())) {
+                    Toast.makeText(this, "Пароли не совпадают", Toast.LENGTH_LONG).show();
+                    v.clearFocus();
+                } else {
+                    new Registration().execute();
+                }
+            }
         } catch (Exception ignored) {
 
         }
@@ -50,16 +87,20 @@ public class RegistrationActivity extends Activity {
     public void onClickBtnLicense(View v) {
         startActivity(new Intent(this, LicenseActivity.class));
     }
+
     public class Registration extends AsyncTask<userRegistration, Void, Response> {
         public Exception exception;
         ProgressDialog progressDialog = new ProgressDialog(RegistrationActivity.this);
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             progressDialog.setMessage(getString(R.string.please_wait));
             progressDialog.setCancelable(false);
             progressDialog.show();
+
         }
+
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
@@ -80,6 +121,7 @@ public class RegistrationActivity extends Activity {
                 this.exception = e;
             }
         }
+
         protected Response doInBackground(userRegistration... params) {
 
             try {

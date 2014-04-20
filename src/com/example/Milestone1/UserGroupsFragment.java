@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.Milestone1.Adapters.GroupsAdapter;
 import com.example.Milestone1.Classes.Groups;
@@ -46,6 +47,7 @@ public class UserGroupsFragment extends Fragment {
     GetUserGroups getUserGroups;
     public UUID groupID;
     Map<String, String> m;
+    private TextView tvInfo;
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,9 @@ public class UserGroupsFragment extends Fragment {
             getUserGroups = new GetUserGroups();
             getUserGroups.execute();
             listGroups = (ListView) myView.findViewById(R.id.listGroups);
+            tvInfo = (TextView) myView.findViewById(R.id.tvInfo);
+            listGroups.setVisibility(View.INVISIBLE);
+            tvInfo.setVisibility(View.INVISIBLE);
 
         } catch (Exception e) {
             this.exception = e;
@@ -72,6 +77,8 @@ public class UserGroupsFragment extends Fragment {
 
     void setData(Response response) {
         try {
+            if (response.getItem() != null) {
+                listGroups.setVisibility(View.VISIBLE);
             groups = (Groups[]) response.getItem();
             GroupsAdapter sAdapter = new GroupsAdapter(getActivity(), groups, "user_groups");
             listGroups.setAdapter(sAdapter);
@@ -92,6 +99,9 @@ public class UserGroupsFragment extends Fragment {
                     }
                 }
             });
+            } else {
+                tvInfo.setVisibility(View.VISIBLE);
+            }
         } catch (Exception e) {
             this.exception = e;
         }

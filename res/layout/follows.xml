@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ListView
+        android:id="@+id/listFriends"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/listFriends"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:clickable="false"
-        android:dividerHeight="20dp"
-        android:divider="@android:color/transparent" />
-</LinearLayout>
+        android:divider="@android:color/transparent"
+        android:dividerHeight="20dp" />
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:singleLine="false"
+        android:text="У вас ещё нет подписок. Подпишитесь на человека или группу, чтобы увидеть их здесь"
+        android:textSize="18sp"
+        android:visibility="visible" />
+
+</RelativeLayout>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/blackboard_background">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/EdustyBackground">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -11,9 +11,11 @@
         android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:focusableInTouchMode="true"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true">
 
         <EditText
             android:layout_width="wrap_content"
@@ -24,7 +26,8 @@
             android:layout_margin="5dp"
             android:layout_gravity="center"
             android:inputType="none"
-            android:layout_weight="5"/>
+            android:layout_weight="5"
+            android:singleLine="true" />
 
         <ImageButton
             android:text="@string/send"
@@ -47,9 +50,21 @@
         android:footerDividersEnabled="true"
         android:headerDividersEnabled="true"
         android:dividerHeight="20dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:focusable="false"
         android:divider="@android:color/transparent"
-        android:scrollingCache="false"/>
-</LinearLayout>
+        android:scrollingCache="false"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_alignStart="@+id/linearLayout1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Поиск по людям и группам. Введите текст и нажмите на кнопку поиска"
+        android:id="@+id/tvInfo"
+        android:textSize="18sp"
+        android:singleLine="false"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp" />
+</RelativeLayout>

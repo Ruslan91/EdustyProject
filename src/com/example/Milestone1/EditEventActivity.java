@@ -57,7 +57,7 @@ public class EditEventActivity extends Activity {
     private String startTime;
     private String endDate;
     private String endTime;
-    private int interval;
+    private Integer interval;
     private String location;
     private String description;
     private String date;
@@ -97,7 +97,7 @@ public class EditEventActivity extends Activity {
                 startTime = extras.getString("startTime");
                 endDate = extras.getString("endDate");
                 endTime = extras.getString("endTime");
-                interval = extras.getInt("interval");
+                interval = Integer.valueOf(extras.getString("interval"));
                 location = extras.getString("location");
                 description = extras.getString("description");
                 eventID = UUID.fromString(extras.getString("eventID"));
@@ -111,7 +111,9 @@ public class EditEventActivity extends Activity {
 
         spInterval = (Spinner) findViewById(R.id.spInterval);
         //cbAllDay = (CheckBox) findViewById(R.id.cbAllDay);
-        spInterval.setSelection(interval);
+        if (interval != null) {
+            spInterval.setSelection(interval);
+        } else spInterval.setSelection(7);
         etTitle = (EditText) findViewById(R.id.etTitle);
         etDescription = (EditText) findViewById(R.id.etDescription);
         etLocation = (EditText) findViewById(R.id.etLocation);

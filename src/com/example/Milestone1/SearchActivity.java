@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Milestone1.Adapters.SearchAdapter;
@@ -43,6 +44,7 @@ public class SearchActivity extends Fragment implements View.OnClickListener {
     private ListView listResults;
     private SearchResult[] searchresult;
     Exception exception;
+    private TextView tvInfo;
 
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -53,6 +55,9 @@ public class SearchActivity extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.search, container, false);
         listResults = (ListView) view.findViewById(R.id.listResults);
+        listResults.setVisibility(View.INVISIBLE);
+        tvInfo = (TextView) view.findViewById(R.id.tvInfo);
+        tvInfo.setVisibility(View.VISIBLE);
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("userdetails", Context.MODE_PRIVATE);
         token = UUID.fromString(sharedPreferences.getString("token", ""));
         etSearch = (EditText) view.findViewById(R.id.etSearch);
@@ -60,7 +65,36 @@ public class SearchActivity extends Fragment implements View.OnClickListener {
         btnSearch.setOnClickListener(this);
         return view;
     }
+    private void setData(Response response) {
+        searchresult = (SearchResult[]) response.getItem();
+        if (searchresult != null) {
+            tvInfo.setVisibility(View.GONE);
+            listResults.setVisibility(View.VISIBLE);
+            SearchAdapter searchAdapter = new SearchAdapter(searchresult, getActivity());
+            listResults.setAdapter(searchAdapter);
+            listResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public Exception ex;
 
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    try {
+                        if (searchresult[position].get__type().equals("UserSearchResult")) {
+                            Intent intent = new Intent(getActivity(), UserActivity.class);
+                            intent.putExtra("userID", searchresult[position].getId().toString());
+                            startActivity(intent);
+                        } else if (searchresult[position].get__type().equals("GroupSearchResult")) {
+                            Intent intent = new Intent(getActivity(), GroupFragmentActivity.class);
+                            intent.putExtra("groupID", searchresult[position].getId().toString());
+                            startActivity(intent);
+                        }
+                    } catch (Exception e) {
+                        this.ex = e;
+                    }
+                }
+            });
+            searchAdapter.notifyDataSetChanged();
+        }
+    }
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSearch:
@@ -124,31 +158,5 @@ public class SearchActivity extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void setData(Response response) {
-        searchresult = (SearchResult[]) response.getItem();
 
-        SearchAdapter searchAdapter = new SearchAdapter(searchresult, getActivity());
-        listResults.setAdapter(searchAdapter);
-        listResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public Exception ex;
-
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                try {
-                    if (searchresult[position].get__type().equals("UserSearchResult")) {
-                        Intent intent = new Intent(getActivity(), UserActivity.class);
-                        intent.putExtra("userID", searchresult[position].getId().toString());
-                        startActivity(intent);
-                    } else if (searchresult[position].get__type().equals("GroupSearchResult")) {
-                        Intent intent = new Intent(getActivity(), GroupFragmentActivity.class);
-                        intent.putExtra("groupID", searchresult[position].getId().toString());
-                        startActivity(intent);
-                    }
-                } catch (Exception e) {
-                    this.ex = e;
-                }
-            }
-        });
-        searchAdapter.notifyDataSetChanged();
-    }
 }

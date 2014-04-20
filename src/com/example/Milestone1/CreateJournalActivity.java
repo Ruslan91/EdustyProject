@@ -89,7 +89,7 @@ public class CreateJournalActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean ret = false;
-        if (item.getItemId() == R.id.action_save) {
+        if (item.getItemId() == R.id.action_apply) {
             ret = true;
             try {
                 createJournal = new CreateJournal();

@@ -53,5 +53,5 @@
         android:src="@drawable/ic_action_next_item"
         android:layout_margin="5dp"
         android:contentDescription="@string/groupImage"
-        android:background="#20ffffff" />
+        android:background="#00000000" />
 </LinearLayout>

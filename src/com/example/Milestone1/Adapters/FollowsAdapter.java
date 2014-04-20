@@ -18,8 +18,10 @@ public class FollowsAdapter extends BaseAdapter {
     private final Follows[] results;
     private final LayoutInflater lInflater;
 
-    public FollowsAdapter(Activity activity, Follows[] follows) {
-        lInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    ViewHolder viewHolder = null;
+
+    public FollowsAdapter(Context context, Follows[] follows) {
+        lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         results = follows;
     }
 
@@ -39,13 +41,12 @@ public class FollowsAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        TextView Title;
-        TextView Description;
-        ImageView image;
+        public TextView Title;
+        public TextView Description;
+        public ImageView image;
     }
 
     public View getView(int position, View view, ViewGroup parent) {
-        final ViewHolder viewHolder;
         View v = view;
         if (v == null) {
             v = lInflater.inflate(R.layout.follows_list_item, null);

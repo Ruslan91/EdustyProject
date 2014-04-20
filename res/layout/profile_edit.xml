@@ -18,7 +18,8 @@
             android:src="@android:drawable/ic_menu_help"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_margin="10dp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -124,7 +125,6 @@
             android:id="@+id/button"
             android:layout_alignBottom="@+id/imgUser"
             android:layout_toRightOf="@+id/imgUser"
-            android:layout_margin="10dp"
             android:background="#20ffffff"
             android:padding="5dp"
             android:onClick="onClickBtnChangePicture" />

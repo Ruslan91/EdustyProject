@@ -9,8 +9,8 @@
         android:id="@+id/action_quit"
         android:showAsAction="never|withText"
         android:title="@string/quit" />
-    <item
-        android:id="@+id/action_settings"
+<!--    <item
+        android:id="@+id/action_report"
         android:showAsAction="never|withText"
-        android:title="@string/settings" />
+        android:title="@string/bug_report" />-->
 </menu>

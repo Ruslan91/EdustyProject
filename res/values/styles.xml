@@ -9,4 +9,9 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">18sp</item>
     </style>
+
+    <style name="Button">
+        <item name="android:cycles">45</item>
+        <item name="android:background">@android:color/holo_blue_dark</item>
+    </style>
 </resources>

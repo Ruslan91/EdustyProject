@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Milestone1.Adapters.FeedAdapter;
@@ -60,6 +61,7 @@ public class UserFeedFragment extends Fragment {
     String timeOffset;
     ArrayList<Map<String, String>> data;
     private UUID messageID;
+    private TextView tvInfo;
 
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -77,6 +79,9 @@ public class UserFeedFragment extends Fragment {
             getFeed.execute();
 
             listFeed = (ListView) myView.findViewById(R.id.listFeed);
+            tvInfo = (TextView) myView.findViewById(R.id.tvInfo);
+            listFeed.setVisibility(View.INVISIBLE);
+            tvInfo.setVisibility(View.INVISIBLE);
             listFeed.setFocusable(true);
             registerForContextMenu(listFeed);
             listFeed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -98,6 +103,8 @@ public class UserFeedFragment extends Fragment {
 
     public void setData(Response response) {
         try {
+            if (response.getItem() != null) {
+                listFeed.setVisibility(View.VISIBLE);
             feed = (Feed[]) response.getItem();
             datetime = new Date[feed.length];
             data = new ArrayList<>(
@@ -125,6 +132,9 @@ public class UserFeedFragment extends Fragment {
                     new int[]{R.id.tvName, R.id.tvMessage, R.id.tvTime, R.id.tvTitle}
             );
             listFeed.setAdapter(sAdapter);
+            } else {
+                tvInfo.setVisibility(View.VISIBLE);
+            }
         } catch (Exception e) {
             this.exception = e;
         }
